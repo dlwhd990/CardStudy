@@ -6,7 +6,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <Fragment>
       <Header />
-      <SideBar />
       <Fragment>{children}</Fragment>
     </Fragment>
   );

@@ -1,0 +1,78 @@
+.sidebar {
+  width: 18%;
+  min-width: 26rem;
+  min-height: calc(100vh - 81px);
+  border-right: 1px solid lightgray;
+}
+
+.user_data_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: 2rem;
+}
+
+.user_image {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+
+.name_and_welcome {
+  margin-left: 1.6rem;
+}
+
+.welcome {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  margin-left: 0.2rem;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.menu_title_box {
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 1rem 3rem;
+  background-color: #a5f1e9;
+}
+
+.menu {
+  padding: 0 3rem;
+}
+
+.button {
+  font-size: 1.8rem;
+  margin: 1.6rem 0;
+  cursor: pointer;
+}
+
+.button span {
+  font-weight: 500;
+  margin-left: 1rem;
+}
+
+.icon_green {
+  color: #b3ffae;
+}
+
+.icon_blue {
+  color: #b8e8fc;
+}
+
+.icon_pink {
+  color: #ffb9b9;
+}
+
+.icon_red {
+  color: #ff6464;
+}
+
+.icon_mint {
+  color: #7fe9de;
+}

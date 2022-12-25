@@ -13,9 +13,20 @@ body {
   font-weight: 400;
   margin: 0;
   padding: 0;
-  color: #2f3438;
 }
 
 ul {
   list-style: none;
+}
+
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  color: #2f3438;
 }
