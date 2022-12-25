@@ -1,0 +1,81 @@
+import {
+  faAngleLeft,
+  faAngleRight,
+  faComment,
+  faFlag,
+  faHeart,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import Card from "../../components/Card/Card";
+import styles from "../../styles/studyPage.module.css";
+const Study = () => {
+  const [now, setNow] = useState(0);
+  const studyTitle = "[운영체제 중간고사 정리]";
+  const problemList = [
+    {
+      id: 0,
+      question:
+        "프로세스란 무엇을 의미합니까? 프로세스란 무엇을 의미합니까? 프로세스란 무엇을 의미합니까?",
+      answer: "몰라",
+    },
+    {
+      id: 1,
+      question:
+        "스레드(Thread)는 무엇입니까?스레드(Thread)는 무엇입니까?스레드(Thread)는 무엇입니까?",
+      answer: "몰라ㅋㅋ",
+    },
+    {
+      id: 2,
+      question: "힙 영역과 스택영역의 차이점을 설명하시오. ",
+      answer: "ㅋㅋㅋ",
+    },
+  ];
+
+  const changeNow = (query: boolean) => {
+    if (query && now > 0) {
+      setNow((state) => state - 1);
+    } else if (!query && now < problemList.length - 1) {
+      setNow((state) => state + 1);
+    }
+  };
+  return (
+    <main className={styles.study}>
+      <section className={styles.card_section}>
+        <p className={styles.problem_number_count}>{`${now + 1}/${
+          problemList.length
+        }`}</p>
+        <h2 className={styles.study_title}>{studyTitle}</h2>
+        <div className={styles.problem_container}>
+          <FontAwesomeIcon
+            icon={faAngleLeft}
+            className={styles.arrow_left}
+            onClick={() => changeNow(true)}
+          />
+          <Card item={problemList[now]} />
+          <FontAwesomeIcon
+            icon={faAngleRight}
+            className={styles.arrow_right}
+            onClick={() => changeNow(false)}
+          />
+        </div>
+      </section>
+      <section className={styles.button_container}>
+        <button className={styles.study_button}>
+          <FontAwesomeIcon icon={faHeart} className={styles.heart} />
+          <p className={styles.button_name}>좋아요</p>
+        </button>
+        <button className={styles.study_button}>
+          <FontAwesomeIcon icon={faComment} className={styles.comment} />
+          <p className={styles.button_name}>이의제기</p>
+        </button>
+        <button className={styles.study_button}>
+          <FontAwesomeIcon icon={faFlag} className={styles.report} />
+          <p className={styles.button_name}>신고</p>
+        </button>
+      </section>
+    </main>
+  );
+};
+
+export default Study;
