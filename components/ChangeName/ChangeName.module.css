@@ -1,0 +1,42 @@
+.form_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.change_name_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.change_name_form label {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.change_name_form input {
+  width: 30rem;
+  height: 4.5rem;
+  border: 1px solid lightgray;
+  box-shadow: 0 0 2px lightgray;
+  border-radius: 8px;
+  outline: none;
+  padding: 0 1rem;
+  font-size: 1.8rem;
+}
+
+.change_name_form button {
+  margin-left: 1rem;
+  background-color: #a5f1e9;
+  padding: 1rem 2rem;
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 2px lightgray;
+}

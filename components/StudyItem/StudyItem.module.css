@@ -1,0 +1,49 @@
+.study_item {
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  padding: 1.2rem 4rem 1.2rem 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: 120ms all ease-in-out;
+}
+
+.title {
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon {
+  color: #7fe9de;
+  margin-right: 1rem;
+}
+
+.study_item:hover {
+  background-color: rgb(247, 247, 247);
+}
+
+.add_button {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  cursor: pointer;
+  text-align: start;
+  padding: 1rem 5rem 1rem 5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  transition: 120ms all ease-in-out;
+}
+
+.plus_icon {
+  margin-right: 1rem;
+  font-size: 2rem;
+}
+
+.add_button:hover {
+  background-color: rgb(247, 247, 247);
+}

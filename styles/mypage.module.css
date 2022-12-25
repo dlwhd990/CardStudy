@@ -1,0 +1,9 @@
+.mypage {
+  display: flex;
+  flex-direction: row;
+}
+
+.function_section {
+  width: 100%;
+  height: calc(100vh - 81px);
+}
