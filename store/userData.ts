@@ -10,6 +10,7 @@ const userDataSlice = createSlice({
   initialState,
   reducers: {
     setUserData(state, action) {
+      console.log(action.payload);
       state.name = action.payload.name;
       state.picture = action.payload.picture;
     },

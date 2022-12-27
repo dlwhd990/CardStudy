@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userBoxSlice from "./userBox";
+import popupSlice from "./popup";
 import userDataSlice from "./userData";
+import userFolderSlice from "./userFolder";
 
 export const store = configureStore({
   reducer: {
     userData: userDataSlice.reducer,
-    userBox: userBoxSlice.reducer,
+    popup: popupSlice.reducer,
+    userFolder: userFolderSlice.reducer,
   },
 });
 

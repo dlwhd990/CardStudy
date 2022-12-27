@@ -8,10 +8,10 @@ import {
 import Link from "next/link";
 import UserBox from "../UserBox/UserBox";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { changeUserBoxState } from "../../store/userBox";
+import { changeUserBoxState } from "../../store/popup";
 
 const Header = () => {
-  const showUserBox = useAppSelector((state) => state.userBox.show);
+  const showUserBox = useAppSelector((state) => state.popup.userBox);
   const dispatch = useAppDispatch();
 
   const changeShowUserBox = () => {

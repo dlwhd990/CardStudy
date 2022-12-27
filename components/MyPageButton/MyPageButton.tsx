@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useAppDispatch } from "../../store/hooks";
-import { closeUserBox } from "../../store/userBox";
+import { closeUserBox } from "../../store/popup";
 import styles from "./MyPageButton.module.css";
 
 const MyPageButton = () => {

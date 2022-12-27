@@ -1,6 +1,5 @@
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-import { Fragment } from "react";
 import { useAppSelector } from "../../store/hooks";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import MyPageButton from "../MyPageButton/MyPageButton";
@@ -8,9 +7,6 @@ import styles from "./UserBox.module.css";
 
 const UserBox = () => {
   const userData = useAppSelector((state) => state.userData);
-
-  // 로그아웃
-
   // 로그인
   const loginHandler = async (data: { credential: string }) => {
     await axios.post(
