@@ -34,7 +34,6 @@ async function login(req: NextApiRequest, res: NextApiResponse) {
     const jwtToken = jwt.sign(credentials, secret); // 비밀키 임시로 둠
     res.setHeader("Set-Cookie", `token=${jwtToken}; Max-Age=86400000`);
     res.status(200).json({ message: "success" });
-    client.close();
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "server error" });

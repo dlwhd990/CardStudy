@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import verifyToken from "../../../util/verifyToken";
 
-async function folderAPI(req: NextApiRequest, res: NextApiResponse) {
+async function uploadFolder(req: NextApiRequest, res: NextApiResponse) {
   // POST 요청 = 추가 (upload)
   if (req.method === "POST") {
     try {
@@ -26,4 +26,4 @@ async function folderAPI(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default folderAPI;
+export default uploadFolder;

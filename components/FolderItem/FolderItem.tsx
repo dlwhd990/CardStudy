@@ -6,15 +6,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import Folder from "../../model/folder";
-import { useAppDispatch } from "../../store/hooks";
+import Problem from "../../model/problem";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { openProblemUpload } from "../../store/popup";
 import { loadUserFolderList } from "../../store/userFolder";
+import { loadUserProblemList } from "../../store/userProblem";
+import ProblemItem from "../ProblemItem/ProblemItem";
+import ProblemUpload from "../ProblemUpload/ProblemUpload";
 import UpdateNameForm from "../UpdateNameForm/UpdateNameForm";
 import styles from "./FolderItem.module.css";
 
-const FolderItem: React.FC<{ folder: Folder }> = ({ folder }) => {
+const FolderItem: React.FC<{ folder: Folder; problemList: Problem[] }> = ({
+  folder,
+  problemList,
+}) => {
   const dispatch = useAppDispatch();
+
+  const problemUploadOn = useAppSelector((state) => state.popup.problemUpload);
   const [open, setOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
 
@@ -30,7 +40,7 @@ const FolderItem: React.FC<{ folder: Folder }> = ({ folder }) => {
     if (!confirm) return;
     const response = await axios.delete(`/api/folder/${folder._id.toString()}`);
     if (response.data.success) {
-      dispatch(loadUserFolderList());
+      dispatch(loadUserProblemList());
     }
   };
 
@@ -51,13 +61,22 @@ const FolderItem: React.FC<{ folder: Folder }> = ({ folder }) => {
     }
   };
 
+  const openProblemUploadPopup = () => {
+    dispatch(openProblemUpload(folder._id.toString()));
+  };
+
   return (
-    <Fragment>
+    <div>
       <div className={styles.study_item} onClick={changeOpenStatus}>
         <div className={styles.title_part}>
           <FontAwesomeIcon icon={faFolderOpen} className={styles.icon} />
           {updateOpen ? (
-            <UpdateNameForm updateFolder={updateFolder} />
+            <UpdateNameForm
+              updateFunc={updateFolder}
+              minLength={2}
+              maxLength={15}
+              placeholder="제목 변경 (2~15자)"
+            />
           ) : (
             <p className={styles.title}>{folder.title}</p>
           )}
@@ -77,13 +96,22 @@ const FolderItem: React.FC<{ folder: Folder }> = ({ folder }) => {
       </div>
       {open && (
         <div className={styles.open_part}>
-          <button className={styles.add_button}>
+          <button
+            onClick={openProblemUploadPopup}
+            className={styles.add_button}
+          >
             <FontAwesomeIcon icon={faPlus} className={styles.plus_icon} />
             <span>이 폴더에 새로운 문제 추가</span>
           </button>
+          {problemList.map((problem) => (
+            <ProblemItem key={problem._id.toString()} problem={problem} />
+          ))}
         </div>
       )}
-    </Fragment>
+      {problemUploadOn === folder._id.toString() && (
+        <ProblemUpload folderId={folder._id.toString()} />
+      )}
+    </div>
   );
 };
 

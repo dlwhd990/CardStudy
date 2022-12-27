@@ -12,7 +12,6 @@ async function loginCheck(req: NextApiRequest, res: NextApiResponse) {
     const collection = db.collection("user");
     const userData = await collection.findOne({ userId: result.sub });
     res.status(200).json({ ...userData, success: true });
-    client.close();
   } catch (err) {
     console.error(err);
     res.status(200).json({ success: false });

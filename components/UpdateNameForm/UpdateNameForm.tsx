@@ -3,8 +3,11 @@ import React, { useState } from "react";
 import styles from "./UpdateNameForm.module.css";
 
 const UpdateNameForm: React.FC<{
-  updateFolder: (newTitle: string) => void;
-}> = ({ updateFolder }) => {
+  updateFunc: (newTitle: string) => void;
+  minLength: number;
+  maxLength: number;
+  placeholder: string;
+}> = ({ updateFunc, minLength, maxLength, placeholder }) => {
   const [newTitle, setNewTitle] = useState("");
 
   const changeNewTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,11 +16,11 @@ const UpdateNameForm: React.FC<{
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (newTitle.length < 2 || newTitle.length > 15) {
+    if (newTitle.length < minLength || newTitle.length > maxLength) {
       console.log("글자 수 안내 알림 뜨도록");
       return;
     }
-    updateFolder(newTitle);
+    updateFunc(newTitle);
   };
 
   return (
@@ -32,7 +35,7 @@ const UpdateNameForm: React.FC<{
         value={newTitle}
         onChange={changeNewTitle}
         type="text"
-        placeholder="변경할 이름 (2~15자)"
+        placeholder={placeholder}
       />
       <button>변경</button>
     </form>

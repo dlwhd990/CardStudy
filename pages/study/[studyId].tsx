@@ -12,25 +12,7 @@ import styles from "../../styles/studyPage.module.css";
 const Study = () => {
   const [now, setNow] = useState(0);
   const studyTitle = "[운영체제 중간고사 정리]";
-  const problemList = [
-    {
-      id: 0,
-      question:
-        "프로세스란 무엇을 의미합니까? 프로세스란 무엇을 의미합니까? 프로세스란 무엇을 의미합니까?",
-      answer: "몰라",
-    },
-    {
-      id: 1,
-      question:
-        "스레드(Thread)는 무엇입니까?스레드(Thread)는 무엇입니까?스레드(Thread)는 무엇입니까?",
-      answer: "몰라ㅋㅋ",
-    },
-    {
-      id: 2,
-      question: "힙 영역과 스택영역의 차이점을 설명하시오. ",
-      answer: "ㅋㅋㅋ",
-    },
-  ];
+  const problemList = [];
 
   const changeNow = (query: boolean) => {
     if (query && now > 0) {

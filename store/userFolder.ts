@@ -6,13 +6,7 @@ const initialState = { list: [] };
 const userFolderSlice = createSlice({
   name: "userFolder",
   initialState,
-  reducers: {
-    updateUserFolderList(state, action) {
-      const temp = action.payload;
-      temp.sort((a: Folder, b: Folder) => b.date - a.date);
-      state.list = temp;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(loadUserFolderList.pending, (state) => {
       console.log("pending"); // 나중에 로딩 추가 가능
@@ -40,5 +34,4 @@ export const loadUserFolderList = createAsyncThunk(
   }
 );
 
-export const { updateUserFolderList } = userFolderSlice.actions;
 export default userFolderSlice;

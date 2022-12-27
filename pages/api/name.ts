@@ -20,7 +20,6 @@ async function changeName(req: NextApiRequest, res: NextApiResponse) {
       { $set: { name: req.body.name } }
     );
     res.status(200).json({ success: true });
-    client.close();
   } catch (err) {
     console.error(err);
     res.status(401).json({ success: false });

@@ -3,6 +3,7 @@ import React, { Fragment, useEffect } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import { removeUserData, setUserData } from "../../store/userData";
 import { loadUserFolderList } from "../../store/userFolder";
+import { loadUserProblemList } from "../../store/userProblem";
 import Header from "../Header/Header";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -13,7 +14,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const checkLoginStatus = async () => {
       const response = await axios.post("/api/logincheck");
       if (response.data.success) {
-        console.log("SETSET", response.data);
         dispatch(
           setUserData({
             name: response.data.name,
@@ -28,6 +28,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     checkLoginStatus();
     // 로그인 된 사용자의 폴더 리스트 불러오기
     dispatch(loadUserFolderList());
+    dispatch(loadUserProblemList());
   }, []);
 
   return (
