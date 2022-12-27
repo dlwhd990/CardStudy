@@ -40,7 +40,7 @@ const FolderItem: React.FC<{ folder: Folder; problemList: Problem[] }> = ({
     if (!confirm) return;
     const response = await axios.delete(`/api/folder/${folder._id.toString()}`);
     if (response.data.success) {
-      dispatch(loadUserProblemList());
+      dispatch(loadUserFolderList());
     }
   };
 

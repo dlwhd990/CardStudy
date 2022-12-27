@@ -1,5 +1,6 @@
 import { MongoClient, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
+import { connectToDatabase } from "../../../util/mongodb";
 import verifyToken from "../../../util/verifyToken";
 
 async function problemIdAPI(req: NextApiRequest, res: NextApiResponse) {
@@ -12,8 +13,7 @@ async function problemIdAPI(req: NextApiRequest, res: NextApiResponse) {
     }
     const userData = verifyToken(req);
     const mongodbURI = process.env.MONGODB_URI || "";
-    const client = await MongoClient.connect(mongodbURI);
-    const db = client.db();
+    const db = await connectToDatabase();
     const collection = db.collection("problem");
 
     // 삭제

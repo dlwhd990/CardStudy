@@ -9,7 +9,7 @@ const userFolderSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(loadUserFolderList.pending, (state) => {
-      console.log("pending"); // 나중에 로딩 추가 가능
+      // 나중에 로딩 추가 가능
       // state.list = [];
     });
 

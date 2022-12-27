@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
+import { connectToDatabase } from "../../../util/mongodb";
 import verifyToken from "../../../util/verifyToken";
 
 async function getUserProblem(req: NextApiRequest, res: NextApiResponse) {
@@ -7,8 +8,7 @@ async function getUserProblem(req: NextApiRequest, res: NextApiResponse) {
   try {
     const userData = verifyToken(req);
     const mongodbURI = process.env.MONGODB_URI || "";
-    const client = await MongoClient.connect(mongodbURI);
-    const db = client.db();
+    const db = await connectToDatabase();
     const collection = db.collection("problem");
     const result = await collection.find({ userId: userData.sub }).toArray();
     res.json({ success: true, result });

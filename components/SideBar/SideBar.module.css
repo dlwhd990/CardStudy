@@ -56,21 +56,21 @@
 }
 
 .icon_green {
-  color: #b3ffae;
+  color: var(--color-green);
 }
 
 .icon_blue {
-  color: #b8e8fc;
+  color: var(--color-blue);
 }
 
 .icon_pink {
-  color: #ffb9b9;
+  color: var(--color-pink);
 }
 
 .icon_red {
-  color: #ff6464;
+  color: var(--color-red);
 }
 
 .icon_mint {
-  color: #7fe9de;
+  color: var(--color-mint);
 }

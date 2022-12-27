@@ -59,13 +59,13 @@
 }
 
 .heart {
-  color: #ff6464;
+  color: var(--color-red);
 }
 
 .comment {
-  color: #b3ffae;
+  color: var(--color-green);
 }
 
 .report {
-  color: #b8e8fc;
+  color: var(--color-blue);
 }

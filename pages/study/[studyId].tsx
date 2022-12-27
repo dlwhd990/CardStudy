@@ -8,11 +8,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Card from "../../components/Card/Card";
+import Problem from "../../model/problem";
 import styles from "../../styles/studyPage.module.css";
 const Study = () => {
   const [now, setNow] = useState(0);
   const studyTitle = "[운영체제 중간고사 정리]";
-  const problemList = [];
+  const problemList: Problem[] = [];
 
   const changeNow = (query: boolean) => {
     if (query && now > 0) {

@@ -21,7 +21,7 @@
 .top {
   width: 100%;
   height: 5rem;
-  background-color: #7fe9de;
+  background-color: var(--color-mint);
   border-radius: 14px 14px 0 0;
   line-height: 5rem;
   padding-left: 2rem;
@@ -76,7 +76,7 @@
 }
 
 .submit_button button {
-  background-color: #7fe9de;
+  background-color: var(--color-mint);
   border: none;
   font-size: 1.7rem;
   font-weight: 700;
@@ -92,6 +92,6 @@
   top: 1.5rem;
   right: 2rem;
   font-size: 2.5rem;
-  color: #ff6464;
+  color: var(--color-red);
   cursor: pointer;
 }

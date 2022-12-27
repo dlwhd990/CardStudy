@@ -1,14 +1,13 @@
 import { MongoClient } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
+import { connectToDatabase } from "../../util/mongodb";
 import verifyToken from "../../util/verifyToken";
 
 async function loginCheck(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") return;
   try {
-    const mongodbURI = process.env.MONGODB_URI || "";
     const result = verifyToken(req);
-    const client = await MongoClient.connect(mongodbURI);
-    const db = client.db();
+    const db = await connectToDatabase();
     const collection = db.collection("user");
     const userData = await collection.findOne({ userId: result.sub });
     res.status(200).json({ ...userData, success: true });

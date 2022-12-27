@@ -21,7 +21,7 @@
 }
 
 .q {
-  color: #7fe9de;
+  color: var(--color-mint);
   margin-right: 1rem;
 }
 
@@ -45,9 +45,9 @@
 }
 
 .update_icon:hover {
-  color: #b8e8fc;
+  color: var(--color-blue);
 }
 
 .delete_icon:hover {
-  color: #ff6464;
+  color: var(--color-red);
 }

@@ -26,9 +26,21 @@ const Header = () => {
         </Link>
         <nav className={styles.navbar}>
           <ul>
-            <li>공부하기</li>
-            <li>나의공부</li>
-            <li>문의하기</li>
+            <li>
+              <Link href="/study" className={styles.link}>
+                공부하기
+              </Link>
+            </li>
+            <li>
+              <Link href="/study" className={styles.link}>
+                나의공부
+              </Link>
+            </li>
+            <li>
+              <Link href="/study" className={styles.link}>
+                문의하기
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

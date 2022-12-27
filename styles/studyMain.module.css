@@ -1,0 +1,19 @@
+.main {
+  width: 100rem;
+  min-height: 100vh;
+  margin: auto;
+  padding: 6rem 0;
+}
+
+.main h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-left: 1rem;
+}
+
+.folder_card_section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}

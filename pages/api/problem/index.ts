@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
+import { connectToDatabase } from "../../../util/mongodb";
 import verifyToken from "../../../util/verifyToken";
 
 async function uploadProblem(req: NextApiRequest, res: NextApiResponse) {
@@ -8,8 +9,7 @@ async function uploadProblem(req: NextApiRequest, res: NextApiResponse) {
     const userData = verifyToken(req);
     const { question, answer, folderId } = req.body;
     const mongodbURI = process.env.MONGODB_URI || "";
-    const client = await MongoClient.connect(mongodbURI);
-    const db = client.db();
+    const db = await connectToDatabase();
     const collection = db.collection("problem");
     collection.insertOne({
       question,

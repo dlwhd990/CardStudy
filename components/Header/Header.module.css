@@ -16,7 +16,7 @@
   font-size: 3.2rem;
   font-weight: 900;
   cursor: pointer;
-  color: #7fe9de;
+  color: var(--color-mint);
 }
 
 .logo {
@@ -29,7 +29,7 @@
   flex-direction: row;
 }
 
-.navbar ul li {
+.link {
   font-size: 1.8rem;
   font-weight: 700;
   margin-right: 5rem;
@@ -37,7 +37,7 @@
 }
 
 .navbar ul li:hover {
-  color: #7fe9de;
+  color: var(--color-mint);
   transition: 140ms all ease-in-out;
 }
 

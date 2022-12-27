@@ -20,6 +20,10 @@ const FolderUpload = () => {
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (title.length < 2 || title.length > 15) {
+      console.log("글자수 알림 띄우기");
+      return;
+    }
     const response = await axios.post("/api/folder", { title });
     if (response.data.success) {
       dispatch(loadUserFolderList());
@@ -38,7 +42,13 @@ const FolderUpload = () => {
         <div className={styles.top}>카드묶음 만들기</div>
         <form onSubmit={onSubmitHandler} className={styles.form}>
           <label htmlFor="title">제목</label>
-          <input value={title} onChange={changeTitle} type="text" id="title" />
+          <input
+            value={title}
+            onChange={changeTitle}
+            type="text"
+            id="title"
+            placeholder="제목 (2~15자)"
+          />
           <div className={styles.submit_button}>
             <button>만들기</button>
           </div>

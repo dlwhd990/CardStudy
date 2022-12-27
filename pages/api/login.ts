@@ -1,7 +1,8 @@
-import { MongoClient } from "mongodb";
+import { Db, MongoClient } from "mongodb";
 import jwt from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library";
 import { NextApiRequest, NextApiResponse } from "next";
+import { connectToDatabase } from "../../util/mongodb";
 
 const authClient = new OAuth2Client(process.env.APP_API);
 
@@ -22,8 +23,7 @@ async function login(req: NextApiRequest, res: NextApiResponse) {
     const payload = ticket.getPayload() || { name: "", picture: "", sub: "" };
     const { name, picture, sub } = payload;
 
-    const client = await MongoClient.connect(mongodbURI);
-    const db = client.db();
+    const db = await connectToDatabase();
     const User = db.collection("user");
 
     const check = await User.findOne({ userId: sub });

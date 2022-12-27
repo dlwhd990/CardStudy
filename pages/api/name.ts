@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { MongoClient } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
+import { connectToDatabase } from "../../util/mongodb";
 import verifyToken from "../../util/verifyToken";
 
 async function changeName(req: NextApiRequest, res: NextApiResponse) {
@@ -9,8 +10,7 @@ async function changeName(req: NextApiRequest, res: NextApiResponse) {
   try {
     const cookieData = verifyToken(req);
     const mongodbURI = process.env.MONGODB_URI || "";
-    const client = await MongoClient.connect(mongodbURI);
-    const db = client.db();
+    const db = await connectToDatabase();
     const collection = db.collection("user");
     const user = await collection.findOne({ userId: cookieData.sub });
     if (user === null) return res.status(401).json({ success: false });

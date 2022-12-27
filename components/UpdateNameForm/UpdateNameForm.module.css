@@ -12,7 +12,7 @@
   height: 3rem;
   padding: 0 1rem;
   border: none;
-  background-color: #7fe9de;
+  background-color: var(--color-mint);
   border-radius: 6px;
   font-weight: 700;
   cursor: pointer;

@@ -8,9 +8,7 @@ const userProblemSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(loadUserProblemList.pending, (state, action) => {
-      console.log("pending userProblem");
-    });
+    builder.addCase(loadUserProblemList.pending, (state, action) => {});
 
     builder.addCase(loadUserProblemList.fulfilled, (state, action) => {
       if (action.payload.success) {
