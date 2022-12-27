@@ -59,5 +59,13 @@
 }
 
 .heart {
-  color: red;
+  color: #ff6464;
+}
+
+.comment {
+  color: #b3ffae;
+}
+
+.report {
+  color: #b8e8fc;
 }

@@ -16,8 +16,11 @@
   font-size: 3.2rem;
   font-weight: 900;
   cursor: pointer;
-  margin-right: 10rem;
   color: #7fe9de;
+}
+
+.logo {
+  margin-right: 10rem;
 }
 
 .navbar ul {
@@ -40,10 +43,16 @@
 
 .right {
   margin-top: 0.6rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .header_icon {
   font-size: 2.2rem;
   margin: 0 2.2rem;
   cursor: pointer;
+}
+
+.user_container {
+  position: relative;
 }

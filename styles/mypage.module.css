@@ -4,6 +4,6 @@
 }
 
 .function_section {
-  width: 100%;
+  width: calc(100% - 26rem);
   height: calc(100vh - 81px);
 }

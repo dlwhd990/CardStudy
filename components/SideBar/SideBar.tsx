@@ -8,7 +8,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./SideBar.module.css";
 
-const SideBar = () => {
+const SideBar: React.FC<{
+  changeSelectedValue: (value: string) => void;
+}> = (props) => {
+  const { changeSelectedValue } = props;
   return (
     <aside className={styles.sidebar}>
       <section className={styles.user_data_container}>
@@ -27,23 +30,38 @@ const SideBar = () => {
       <div className={styles.menu_title_box}>메뉴</div>
       <section className={styles.menu}>
         <ul>
-          <li className={styles.button}>
+          <li
+            className={styles.button}
+            onClick={() => changeSelectedValue("changeName")}
+          >
             <FontAwesomeIcon icon={faIdCard} className={styles.icon_pink} />
             <span>닉네임 변경</span>
           </li>
-          <li className={styles.button}>
+          <li
+            className={styles.button}
+            onClick={() => changeSelectedValue("problem")}
+          >
             <FontAwesomeIcon icon={faListCheck} className={styles.icon_mint} />
             <span>문제 관리</span>
           </li>
-          <li className={styles.button}>
+          <li
+            className={styles.button}
+            onClick={() => changeSelectedValue("like")}
+          >
             <FontAwesomeIcon icon={faHeart} className={styles.icon_red} />
             <span>좋아요</span>
           </li>
-          <li className={styles.button}>
+          <li
+            className={styles.button}
+            onClick={() => changeSelectedValue("alert")}
+          >
             <FontAwesomeIcon icon={faBell} className={styles.icon_green} />
             <span>알림</span>
           </li>
-          <li className={styles.button}>
+          <li
+            className={styles.button}
+            onClick={() => changeSelectedValue("article")}
+          >
             <FontAwesomeIcon
               icon={faPenToSquare}
               className={styles.icon_blue}

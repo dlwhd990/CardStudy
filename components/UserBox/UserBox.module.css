@@ -1,0 +1,63 @@
+.user_box {
+  position: absolute;
+  top: 4rem;
+  transform: translateX(-37%);
+  width: 25rem;
+  /* height: 25rem; */
+  border-radius: 16px;
+  background-color: #a5f1e9;
+  box-shadow: 0 0 6px lightgray;
+  padding: 2rem;
+}
+
+/* https://devbirdfeet.tistory.com/152 */
+.user_box::after {
+  border-color: #a5f1e9 transparent;
+  border-style: solid;
+  border-width: 0 6px 8px 6.5px;
+  content: "";
+  display: block;
+  left: 117px;
+  position: absolute;
+  top: -7px;
+  width: 0;
+  z-index: 1;
+}
+
+.user_box::before {
+  border-color: #a5f1e9 transparent;
+  border-style: solid;
+  border-width: 0 6px 8px 6.5px;
+  content: "";
+  display: block;
+  left: 117px;
+  position: absolute;
+  top: -8px;
+  width: 0;
+  z-index: 0;
+}
+
+.user_data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user_image {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+
+.user_name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.login_button_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem;
+}

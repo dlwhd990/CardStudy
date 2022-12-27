@@ -1,7 +1,7 @@
 .study_item {
   width: 100%;
   border-bottom: 1px solid lightgray;
-  padding: 1.2rem 4rem 1.2rem 2rem;
+  padding: 1.2rem 3rem 1.2rem 2rem;
   font-size: 2rem;
   cursor: pointer;
   display: flex;
@@ -46,4 +46,27 @@
 
 .add_button:hover {
   background-color: rgb(247, 247, 247);
+}
+
+.update_and_delete_button {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.7rem;
+}
+
+.update_icon {
+  margin: 0 1rem;
+  transition: 120ms all ease-in-out;
+}
+
+.delete_icon {
+  transition: 120ms all ease-in-out;
+}
+
+.update_icon:hover {
+  color: #b8e8fc;
+}
+
+.delete_icon:hover {
+  color: #ff6464;
 }

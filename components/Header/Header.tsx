@@ -6,12 +6,16 @@ import {
   faMagnifyingGlass,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+import UserBox from "../UserBox/UserBox";
 
 const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.left}>
-        <h1>CardStudy</h1>
+        <Link href="/" className={styles.logo}>
+          <h1>CardStudy</h1>
+        </Link>
         <nav className={styles.navbar}>
           <ul>
             <li>공부하기</li>
@@ -25,8 +29,10 @@ const Header = () => {
           icon={faMagnifyingGlass}
           className={styles.header_icon}
         />
-
-        <FontAwesomeIcon icon={faUser} className={styles.header_icon} />
+        <div className={styles.user_container}>
+          <FontAwesomeIcon icon={faUser} className={styles.header_icon} />
+          <UserBox />
+        </div>
         <FontAwesomeIcon icon={faBell} className={styles.header_icon} />
       </div>
     </header>

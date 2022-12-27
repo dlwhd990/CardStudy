@@ -1,10 +1,12 @@
 .problem {
   width: 100%;
   border-bottom: 1px solid lightgray;
-  padding: 1.2rem 5rem 1.2rem 5rem;
+  padding: 1.2rem 3rem 1.2rem 5rem;
   font-size: 1.8rem;
   cursor: pointer;
   transition: 120ms all ease-in-out;
+  display: flex;
+  flex-direction: row;
 }
 
 .question {
@@ -21,4 +23,27 @@
 
 .problem:hover {
   background-color: rgb(247, 247, 247);
+}
+
+.update_and_delete_button {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.7rem;
+}
+
+.update_icon {
+  margin: 0 1rem;
+  transition: 120ms all ease-in-out;
+}
+
+.delete_icon {
+  transition: 120ms all ease-in-out;
+}
+
+.update_icon:hover {
+  color: #b8e8fc;
+}
+
+.delete_icon:hover {
+  color: #ff6464;
 }
