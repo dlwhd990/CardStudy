@@ -16,6 +16,7 @@ async function loadStudyList(req: NextApiRequest, res: NextApiResponse) {
   const collection = db.collection("study");
   collection.insertOne(dummy);
   res.status(200).json({ hello: "world" });
+  client.close();
 }
 
 export default loadStudyList;

@@ -17,8 +17,12 @@ const userDataSlice = createSlice({
       state.name = "";
       state.picture = "";
     },
+    changeUserName(state, action) {
+      state.name = action.payload;
+    },
   },
 });
 
-export const { setUserData, removeUserData } = userDataSlice.actions;
+export const { setUserData, removeUserData, changeUserName } =
+  userDataSlice.actions;
 export default userDataSlice;

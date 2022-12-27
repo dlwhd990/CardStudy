@@ -1,15 +1,23 @@
 import styles from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBed,
   faBell,
   faMagnifyingGlass,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import UserBox from "../UserBox/UserBox";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { changeUserBoxState } from "../../store/userBox";
 
 const Header = () => {
+  const showUserBox = useAppSelector((state) => state.userBox.show);
+  const dispatch = useAppDispatch();
+
+  const changeShowUserBox = () => {
+    dispatch(changeUserBoxState());
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.left}>
@@ -30,8 +38,12 @@ const Header = () => {
           className={styles.header_icon}
         />
         <div className={styles.user_container}>
-          <FontAwesomeIcon icon={faUser} className={styles.header_icon} />
-          <UserBox />
+          <FontAwesomeIcon
+            icon={faUser}
+            className={styles.header_icon}
+            onClick={changeShowUserBox}
+          />
+          {showUserBox && <UserBox />}
         </div>
         <FontAwesomeIcon icon={faBell} className={styles.header_icon} />
       </div>

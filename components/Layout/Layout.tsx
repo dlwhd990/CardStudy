@@ -9,7 +9,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      const response = await axios.post("/api/loginCheck");
+      const response = await axios.post("/api/logincheck");
       if (response.data.success) {
         dispatch(
           setUserData({

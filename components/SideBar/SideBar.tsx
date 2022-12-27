@@ -6,11 +6,13 @@ import {
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAppSelector } from "../../store/hooks";
 import styles from "./SideBar.module.css";
 
 const SideBar: React.FC<{
   changeSelectedValue: (value: string) => void;
 }> = (props) => {
+  const userData = useAppSelector((state) => state.userData);
   const { changeSelectedValue } = props;
   return (
     <aside className={styles.sidebar}>
@@ -18,13 +20,18 @@ const SideBar: React.FC<{
         {/* 에러나서 일단 next/image는 적용하지 않음 */}
         <img
           loading="lazy"
-          src="https://preview.redd.it/0gfxom5gjlr41.jpg?auto=webp&s=aeb12132cabe51ef0953e5f5d23e8295d6694706"
+          src={
+            userData.picture ||
+            "https://preview.redd.it/0gfxom5gjlr41.jpg?auto=webp&s=aeb12132cabe51ef0953e5f5d23e8295d6694706"
+          }
           alt="프로필사진"
           className={styles.user_image}
         />
         <div className={styles.name_and_welcome}>
           <p className={styles.welcome}>안녕하세요</p>
-          <p className={styles.name}>이종혁 님</p>
+          <p className={styles.name}>{`${
+            userData.name.length > 0 ? userData.name : "비회원"
+          } 님`}</p>
         </div>
       </section>
       <div className={styles.menu_title_box}>메뉴</div>

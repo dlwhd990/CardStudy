@@ -1,7 +1,9 @@
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { Fragment } from "react";
 import { useAppSelector } from "../../store/hooks";
 import LogoutButton from "../LogoutButton/LogoutButton";
+import MyPageButton from "../MyPageButton/MyPageButton";
 import styles from "./UserBox.module.css";
 
 const UserBox = () => {
@@ -43,7 +45,10 @@ const UserBox = () => {
       </div>
       <div className={styles.login_button_container}>
         {userData.name.length > 0 && userData.picture.length > 0 ? (
-          <LogoutButton />
+          <div className={styles.button_container}>
+            <MyPageButton />
+            <LogoutButton />
+          </div>
         ) : (
           <GoogleLogin
             onSuccess={(credentialResponse: any) => {
