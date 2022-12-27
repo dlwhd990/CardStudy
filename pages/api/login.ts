@@ -19,7 +19,7 @@ async function login(req: NextApiRequest, res: NextApiResponse) {
 
     const token = req.headers.authorization || "";
     const ticket = await verify(token);
-    const payload = ticket.getPayload();
+    const payload = ticket.getPayload() || { name: "", picture: "", sub: "" };
     const { name, picture, sub } = payload;
 
     const client = await MongoClient.connect(mongodbURI);
@@ -30,7 +30,7 @@ async function login(req: NextApiRequest, res: NextApiResponse) {
     if (!check) {
       await User.insertOne({ name, userId: sub, picture });
     }
-    const credentials = { ...ticket.getPayload(), signedIn: true };
+    const credentials = { ...payload, signedIn: true };
     const jwtToken = jwt.sign(credentials, "temp123123temp"); // 비밀키 임시로 둠
     res.setHeader("Set-Cookie", `token=${jwtToken}; Max-Age=86400`);
     res.status(200).json({ message: "success" });
