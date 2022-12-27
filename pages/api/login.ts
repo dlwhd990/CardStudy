@@ -3,22 +3,24 @@ import jwt from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library";
 import { NextApiRequest, NextApiResponse } from "next";
 
+const authClient = new OAuth2Client(process.env.APP_API);
+
+async function verify(token: string) {
+  const ticket = await authClient.verifyIdToken({
+    idToken: token,
+    audience: process.env.APP_API,
+  });
+  return ticket;
+}
+
 async function login(req: NextApiRequest, res: NextApiResponse) {
   try {
     const mongodbURI = process.env.MONGODB_URI || "";
-    const authClient = new OAuth2Client(process.env.APP_API);
+
     const token = req.headers.authorization || "";
-
-    async function verify() {
-      const ticket = await authClient.verifyIdToken({
-        idToken: token,
-        audience: process.env.APP_API,
-      });
-      return ticket;
-    }
-
-    const ticket = await verify();
-    const { name, picture, sub } = ticket.getPayload();
+    const ticket = await verify(token);
+    const payload = ticket.getPayload();
+    const { name, picture, sub } = payload;
 
     const client = await MongoClient.connect(mongodbURI);
     const db = client.db();
