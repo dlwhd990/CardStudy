@@ -12,7 +12,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useEffect(() => {
     // 로그인 체크 => 새로고침 시 마다 실행
     const checkLoginStatus = async () => {
-      const response = await axios.get("/api/logincheck");
+      const response = await axios.get("/api/loginCheck");
       if (response.data.success) {
         dispatch(
           setUserData({
