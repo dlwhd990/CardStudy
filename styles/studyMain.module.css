@@ -20,6 +20,11 @@
 
 .folder_card_section {
   display: flex;
+  flex-direction: column;
+}
+
+.card_list {
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 2rem;
@@ -48,4 +53,40 @@
   border-radius: 8px;
   color: white;
   cursor: pointer;
+}
+
+.page_box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  margin-top: 3rem;
+  font-size: 1.8rem;
+}
+
+.page_box ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page_box ul li {
+  margin: 0 1.4rem;
+  cursor: pointer;
+}
+
+.arrow_prev {
+  margin-right: 3rem;
+  cursor: pointer;
+}
+
+.arrow_next {
+  margin-left: 3rem;
+  cursor: pointer;
+}
+
+.page_selected {
+  color: var(--color-mint);
+  font-weight: 900;
 }

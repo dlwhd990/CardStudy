@@ -56,6 +56,7 @@ const ProblemUpload: React.FC<{ folderId: string }> = ({ folderId }) => {
               type="text"
               id="question"
               placeholder="질문 입력 (50자 이하)"
+              autoFocus
             />
           </div>
           <div className={styles.input_box}>

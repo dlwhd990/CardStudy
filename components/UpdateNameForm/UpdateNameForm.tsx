@@ -36,6 +36,7 @@ const UpdateNameForm: React.FC<{
         onChange={changeNewTitle}
         type="text"
         placeholder={placeholder}
+        autoFocus
       />
       <button>변경</button>
     </form>

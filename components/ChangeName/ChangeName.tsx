@@ -36,6 +36,7 @@ const ChangeName = () => {
             type="text"
             id="name"
             placeholder="닉네임 (2~6자)"
+            autoFocus
           />
           <button>변경</button>
         </div>

@@ -53,6 +53,7 @@ const FolderUpload = () => {
             type="text"
             id="title"
             placeholder="제목 (2~15자)"
+            autoFocus
           />
           <div className={styles.submit_button}>
             <button>만들기</button>
