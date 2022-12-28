@@ -7,7 +7,6 @@ async function getUserProblem(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "GET") return;
   try {
     const userData = verifyToken(req);
-    const mongodbURI = process.env.MONGODB_URI || "";
     const db = await connectToDatabase();
     const collection = db.collection("problem");
     const result = await collection.find({ userId: userData.sub }).toArray();

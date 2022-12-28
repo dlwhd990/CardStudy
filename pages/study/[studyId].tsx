@@ -6,14 +6,16 @@ import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import { GetStaticPropsContext } from "next";
 import { useState } from "react";
 import Card from "../../components/Card/Card";
 import Problem from "../../model/problem";
 import styles from "../../styles/studyPage.module.css";
-const Study = () => {
+
+const Study: React.FC<{ problemList: Problem[] }> = ({ problemList }) => {
   const [now, setNow] = useState(0);
   const studyTitle = "[운영체제 중간고사 정리]";
-  const problemList: Problem[] = [];
 
   const changeNow = (query: boolean) => {
     if (query && now > 0) {
@@ -22,6 +24,7 @@ const Study = () => {
       setNow((state) => state + 1);
     }
   };
+
   return (
     <main className={styles.study}>
       <section className={styles.card_section}>
@@ -60,5 +63,34 @@ const Study = () => {
     </main>
   );
 };
+
+export async function getStaticPaths() {
+  const response = await axios.get("http://localhost:3000/api/folder/idlist");
+  const idList = response.data.result;
+  const paths = idList.map((id: string) => {
+    return {
+      params: {
+        studyId: id,
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context: GetStaticPropsContext) {
+  const response = await axios.get(
+    `http://localhost:3000/api/problemlist/${context?.params?.studyId}`
+  );
+
+  return {
+    props: {
+      problemList: response.data.result,
+    },
+  };
+}
 
 export default Study;

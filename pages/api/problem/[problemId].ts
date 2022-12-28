@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../../util/mongodb";
 import verifyToken from "../../../util/verifyToken";
@@ -12,7 +12,6 @@ async function problemIdAPI(req: NextApiRequest, res: NextApiResponse) {
       problemId = "";
     }
     const userData = verifyToken(req);
-    const mongodbURI = process.env.MONGODB_URI || "";
     const db = await connectToDatabase();
     const collection = db.collection("problem");
 
