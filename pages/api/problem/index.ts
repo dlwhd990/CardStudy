@@ -8,7 +8,7 @@ async function uploadProblem(req: NextApiRequest, res: NextApiResponse) {
   try {
     const userData = verifyToken(req);
     const { question, answer, folderId } = req.body;
-    const mongodbURI = process.env.MONGODB_URI || "";
+    const mongodbURI = process.env.NEXT_PUBLIC_MONGODB_URI || "";
     const db = await connectToDatabase();
     const collection = db.collection("problem");
     collection.insertOne({

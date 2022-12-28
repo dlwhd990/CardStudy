@@ -8,7 +8,7 @@ async function uploadFolder(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     try {
       const userData = verifyToken(req);
-      const mongodbURI = process.env.MONGODB_URI || "";
+      const mongodbURI = process.env.NEXT_PUBLIC_MONGODB_URI || "";
       const db = await connectToDatabase();
       const collection = db.collection("folder");
       await collection.insertOne({

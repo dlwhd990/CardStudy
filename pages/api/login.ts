@@ -16,7 +16,7 @@ async function verify(token: string) {
 
 async function login(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const mongodbURI = process.env.MONGODB_URI || "";
+    const mongodbURI = process.env.NEXT_PUBLIC_MONGODB_URI || "";
     const secret = process.env.SECRET_KEY || "";
     const token = req.headers.authorization || "";
     const ticket = await verify(token);

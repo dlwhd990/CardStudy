@@ -10,18 +10,9 @@ async function getProblemListOfFolder(
   try {
     const { folderId } = req.query;
     const db = await connectToDatabase();
-    const folderCollection = db.collection("folder");
-    const thisFolder = await folderCollection.findOne({
-      _id: new ObjectId(folderId?.toString()),
-    });
-    if (!thisFolder) {
-      throw new Error("ID ERROR");
-    }
 
     const problemCollection = db.collection("problem");
-    const result = await problemCollection
-      .find({ folderId: req.query.folderId })
-      .toArray();
+    const result = await problemCollection.find({ folderId }).toArray();
     res.json({ success: true, result });
   } catch (err) {
     console.error(err);

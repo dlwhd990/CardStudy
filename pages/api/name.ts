@@ -9,7 +9,7 @@ async function changeName(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const cookieData = verifyToken(req);
-    const mongodbURI = process.env.MONGODB_URI || "";
+    const mongodbURI = process.env.NEXT_PUBLIC_MONGODB_URI || "";
     const db = await connectToDatabase();
     const collection = db.collection("user");
     const user = await collection.findOne({ userId: cookieData.sub });

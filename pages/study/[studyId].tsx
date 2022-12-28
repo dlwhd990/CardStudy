@@ -6,7 +6,7 @@ import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
+import { ObjectId } from "mongodb";
 import { GetStaticPropsContext } from "next";
 import { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
@@ -15,6 +15,7 @@ import Problem from "../../model/problem";
 import { makeInactive } from "../../store/cardActive";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import styles from "../../styles/studyPage.module.css";
+import { connectToDatabase } from "../../util/mongodb";
 
 const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   problemList,
@@ -86,8 +87,9 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
 };
 
 export async function getStaticPaths() {
-  const response = await axios.get("http://localhost:3000/api/folder/idlist");
-  const fullList = response.data.result;
+  const db = await connectToDatabase();
+  const folderCollection = db.collection<Folder>("folder");
+  const fullList = await folderCollection.find({}).toArray();
   const idList = fullList.map((folder: Folder) => folder._id.toString());
   const paths = idList.map((id: string) => {
     return {
@@ -104,17 +106,24 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-  const folderResponse = await axios.get(
-    `https://card-study.vercel.app/api/folder/${context?.params?.studyId}`
-  );
-  const response = await axios.get(
-    `https://card-study.vercel.app/api/problemlist/${context?.params?.studyId}`
-  );
+  const db = await connectToDatabase();
+  const collection = db.collection<Folder>("folder");
+  const folder = await collection.findOne({
+    _id: new ObjectId(context?.params?.studyId as string),
+  });
+  // console.log("FOLDER", folder);
 
+  const problemCollection = db.collection<Problem>("problem");
+  const problemList = await problemCollection
+    .find({ folderId: context?.params?.studyId })
+    .toArray();
+
+  // https://imgyuzzzang.tistory.com/13
+  // https://stackoverflow.com/questions/52453407/the-difference-between-object-and-plain-object-in-javascript
   return {
     props: {
-      problemList: response.data.result,
-      folder: folderResponse.data.result,
+      problemList: JSON.parse(JSON.stringify(problemList)),
+      folder: JSON.parse(JSON.stringify(folder)),
     },
   };
 }
