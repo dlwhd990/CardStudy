@@ -11,13 +11,13 @@ async function folderIdAPI(req: NextApiRequest, res: NextApiResponse) {
     } else {
       folderId = "";
     }
-    const userData = verifyToken(req);
-    const mongodbURI = process.env.MONGODB_URI || "";
+
     const db = await connectToDatabase();
     const collection = db.collection("folder");
 
     // 삭제
     if (req.method === "DELETE") {
+      const userData = verifyToken(req);
       await collection.deleteOne({
         userId: userData.sub,
         _id: new ObjectId(folderId),
@@ -28,6 +28,7 @@ async function folderIdAPI(req: NextApiRequest, res: NextApiResponse) {
 
     // 변경 (update)
     else if (req.method === "PATCH") {
+      const userData = verifyToken(req);
       await collection.updateOne(
         {
           userId: userData.sub,
@@ -39,6 +40,16 @@ async function folderIdAPI(req: NextApiRequest, res: NextApiResponse) {
       );
 
       res.json({ success: true });
+    }
+
+    // 폴더 ID로 폴더 찾기
+    else if (req.method === "GET") {
+      console.log("SDFASDSA");
+      const result = await collection.findOne({
+        _id: new ObjectId(folderId),
+      });
+
+      res.json({ success: true, result });
     }
   } catch (err) {
     console.error(err);

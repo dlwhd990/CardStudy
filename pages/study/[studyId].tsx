@@ -8,14 +8,21 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { GetStaticPropsContext } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
+import Folder from "../../model/folder";
 import Problem from "../../model/problem";
+import { makeInactive } from "../../store/cardActive";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import styles from "../../styles/studyPage.module.css";
 
-const Study: React.FC<{ problemList: Problem[] }> = ({ problemList }) => {
+const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
+  problemList,
+  folder,
+}) => {
+  const dispatch = useAppDispatch();
+  const active = useAppSelector((state) => state.cardActive.active);
   const [now, setNow] = useState(0);
-  const studyTitle = "[운영체제 중간고사 정리]";
 
   const changeNow = (query: boolean) => {
     if (query && now > 0) {
@@ -25,24 +32,38 @@ const Study: React.FC<{ problemList: Problem[] }> = ({ problemList }) => {
     }
   };
 
+  const arrowClickHandler = (direction: boolean) => {
+    dispatch(makeInactive());
+    setTimeout(() => {
+      changeNow(direction);
+    }, [200]);
+  };
+
+  useEffect(() => {
+    dispatch(makeInactive());
+    return () => {
+      dispatch(makeInactive());
+    };
+  }, [dispatch]);
+
   return (
     <main className={styles.study}>
       <section className={styles.card_section}>
         <p className={styles.problem_number_count}>{`${now + 1}/${
           problemList.length
         }`}</p>
-        <h2 className={styles.study_title}>{studyTitle}</h2>
+        <h2 className={styles.study_title}>{folder.title}</h2>
         <div className={styles.problem_container}>
           <FontAwesomeIcon
             icon={faAngleLeft}
             className={styles.arrow_left}
-            onClick={() => changeNow(true)}
+            onClick={() => arrowClickHandler(true)}
           />
           <Card item={problemList[now]} />
           <FontAwesomeIcon
             icon={faAngleRight}
             className={styles.arrow_right}
-            onClick={() => changeNow(false)}
+            onClick={() => arrowClickHandler(false)}
           />
         </div>
       </section>
@@ -66,7 +87,8 @@ const Study: React.FC<{ problemList: Problem[] }> = ({ problemList }) => {
 
 export async function getStaticPaths() {
   const response = await axios.get("http://localhost:3000/api/folder/idlist");
-  const idList = response.data.result;
+  const fullList = response.data.result;
+  const idList = fullList.map((folder: Folder) => folder._id.toString());
   const paths = idList.map((id: string) => {
     return {
       params: {
@@ -82,6 +104,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
+  const folderResponse = await axios.get(
+    `http://localhost:3000/api/folder/${context?.params?.studyId}`
+  );
   const response = await axios.get(
     `http://localhost:3000/api/problemlist/${context?.params?.studyId}`
   );
@@ -89,6 +114,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   return {
     props: {
       problemList: response.data.result,
+      folder: folderResponse.data.result,
     },
   };
 }

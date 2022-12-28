@@ -9,6 +9,7 @@
   box-shadow: 0 0 6px lightgray;
   padding: 2rem;
   animation: 200ms appear;
+  z-index: 1;
 }
 
 /* https://devbirdfeet.tistory.com/152 */

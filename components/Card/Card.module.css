@@ -1,6 +1,11 @@
+.card_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .card {
   width: 50rem;
-  height: auto;
   min-height: 30rem;
   background-color: #a5f1e9;
   border-radius: 32px;
@@ -11,8 +16,43 @@
   padding: 1rem 5rem;
   box-shadow: 0 0 5px lightgray;
   cursor: pointer;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-perspective: 0;
+  -webkit-transition: 1s;
+  backface-visibility: hidden;
+  visibility: visible;
+  transition: 500ms;
 }
 
-.question {
+.front {
+  position: absolute;
+}
+
+.back {
+  background: #fff6bf;
+  transform: rotateY(-180deg);
+}
+
+.active .front {
+  transform: rotateY(180deg);
+}
+
+.active .back {
+  transform: rotateY(0deg);
+}
+
+.question,
+.answer {
   font-weight: 500;
+  white-space: pre-line;
+}
+
+.answer_icon,
+.question_icon {
+  font-size: 2rem;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 1;
 }

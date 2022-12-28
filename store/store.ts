@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import cardActiveSlice from "./cardActive";
 import popupSlice from "./popup";
 import userDataSlice from "./userData";
 import userFolderSlice from "./userFolder";
@@ -10,6 +11,7 @@ export const store = configureStore({
     popup: popupSlice.reducer,
     userFolder: userFolderSlice.reducer,
     userProblem: userProblemSlice.reducer,
+    cardActive: cardActiveSlice.reducer,
   },
 });
 
