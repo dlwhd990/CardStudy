@@ -1,10 +1,9 @@
-import { MongoClient } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../util/mongodb";
 import verifyToken from "../../util/verifyToken";
 
 async function loginCheck(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") return;
+  if (req.method !== "GET") return;
   try {
     const result = verifyToken(req);
     const db = await connectToDatabase();
