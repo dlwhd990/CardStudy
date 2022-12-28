@@ -36,7 +36,7 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
     dispatch(makeInactive());
     setTimeout(() => {
       changeNow(direction);
-    }, [200]);
+    }, 200);
   };
 
   useEffect(() => {
