@@ -131,6 +131,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       problemList: JSON.parse(JSON.stringify(problemList)),
       folder: JSON.parse(JSON.stringify(folder)),
     },
+    // 임시
+    revalidate: 10,
   };
 }
 

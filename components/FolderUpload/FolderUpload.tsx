@@ -2,6 +2,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../store/hooks";
 import { closeFolderUpload } from "../../store/popup";
 import { loadUserFolderList } from "../../store/userFolder";
@@ -9,6 +10,7 @@ import styles from "./FolderUpload.module.css";
 
 const FolderUpload = () => {
   const dispatch = useAppDispatch();
+  const userData = useSelector((state) => state.userData);
   const [title, setTitle] = useState("");
   const changeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -24,7 +26,10 @@ const FolderUpload = () => {
       console.log("글자수 알림 띄우기");
       return;
     }
-    const response = await axios.post("/api/folder", { title });
+    const response = await axios.post("/api/folder", {
+      title,
+      userName: userData.name,
+    });
     if (response.data.success) {
       dispatch(loadUserFolderList());
       dispatch(closeFolderUpload());

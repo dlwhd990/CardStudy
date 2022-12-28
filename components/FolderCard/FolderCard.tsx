@@ -25,6 +25,7 @@ const FolderCard: React.FC<{ folder: Folder; count: number }> = ({
         <FontAwesomeIcon icon={faFolderOpen} className={styles.folder_icon} />
       </div>
       <p className={styles.title}>{folder.title}</p>
+      <p className={styles.author}>{`by ${folder.userName} 님`}</p>
       <button className={styles.go_button} onClick={moveToStudy}>
         시작
       </button>

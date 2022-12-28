@@ -3,6 +3,7 @@ type Folder = {
   title: string;
   like: number;
   userId: string;
+  userName: string;
   date: number;
   public: true;
 };

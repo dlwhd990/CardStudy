@@ -32,7 +32,7 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href="/study" className={styles.link}>
+              <Link href="/mystudy" className={styles.link}>
                 나의공부
               </Link>
             </li>
