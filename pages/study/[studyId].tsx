@@ -49,7 +49,7 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
 
   return (
     <main className={styles.study}>
-      {problemList.length > 0 ? (
+      {problemList && problemList.length > 0 ? (
         <Fragment>
           <section className={styles.card_section}>
             <p className={styles.problem_number_count}>{`${now + 1}/${
