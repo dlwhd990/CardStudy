@@ -105,10 +105,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const folderResponse = await axios.get(
-    `http://localhost:3000/api/folder/${context?.params?.studyId}`
+    `https://card-study.vercel.app/api/folder/${context?.params?.studyId}`
   );
   const response = await axios.get(
-    `http://localhost:3000/api/problemlist/${context?.params?.studyId}`
+    `https://card-study.vercel.app/api/problemlist/${context?.params?.studyId}`
   );
 
   return {
