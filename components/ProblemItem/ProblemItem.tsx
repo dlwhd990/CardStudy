@@ -6,12 +6,14 @@ import Problem from "../../model/problem";
 import { showAlert } from "../../store/alert";
 import { useAppDispatch } from "../../store/hooks";
 import { loadUserProblemList } from "../../store/userProblem";
+import AnswerItem from "../AnswerItem/AnswerItem";
 import UpdateNameForm from "../UpdateNameForm/UpdateNameForm";
 import styles from "./ProblemItem.module.css";
 
 const ProblemItem: React.FC<{ problem: Problem }> = ({ problem }) => {
   const dispatch = useAppDispatch();
   const [updateOpen, setUpdateOpen] = useState(false);
+  const [answerOpen, setAnswerOpen] = useState(false);
 
   const deleteProblem = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -33,6 +35,10 @@ const ProblemItem: React.FC<{ problem: Problem }> = ({ problem }) => {
     setUpdateOpen((state) => !state);
   };
 
+  const openAnswer = () => {
+    setAnswerOpen((state) => !state);
+  };
+
   const updateProblem = async (newQuestion: string) => {
     const response = await axios.patch(
       `/api/problem/${problem._id.toString()}`,
@@ -50,32 +56,35 @@ const ProblemItem: React.FC<{ problem: Problem }> = ({ problem }) => {
   };
 
   return (
-    <div className={styles.problem}>
-      <div className={styles.question}>
-        <span className={styles.q}>Q.</span>
-        {updateOpen ? (
-          <UpdateNameForm
-            updateFunc={updateProblem}
-            minLength={1}
-            maxLength={50}
-            placeholder="질문 변경 (50자 이하)"
+    <div>
+      <div className={styles.problem} onClick={openAnswer}>
+        <div className={styles.question}>
+          <span className={styles.q}>Q.</span>
+          {updateOpen ? (
+            <UpdateNameForm
+              updateFunc={updateProblem}
+              minLength={1}
+              maxLength={50}
+              placeholder="질문 변경 (50자 이하)"
+            />
+          ) : (
+            <span>{problem.question}</span>
+          )}
+        </div>
+        <div className={styles.update_and_delete_button}>
+          <FontAwesomeIcon
+            icon={faPenToSquare}
+            className={styles.update_icon}
+            onClick={openUpdate}
           />
-        ) : (
-          <span>{problem.question}</span>
-        )}
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            className={styles.delete_icon}
+            onClick={deleteProblem}
+          />
+        </div>
       </div>
-      <div className={styles.update_and_delete_button}>
-        <FontAwesomeIcon
-          icon={faPenToSquare}
-          className={styles.update_icon}
-          onClick={openUpdate}
-        />
-        <FontAwesomeIcon
-          icon={faTrashCan}
-          className={styles.delete_icon}
-          onClick={deleteProblem}
-        />
-      </div>
+      {answerOpen && <AnswerItem problem={problem} />}
     </div>
   );
 };

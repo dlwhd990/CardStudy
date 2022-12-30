@@ -1,25 +1,23 @@
 .user_box {
   position: absolute;
   top: 4rem;
-  transform: translateX(-37%);
-  width: 25rem;
+  transform: translateX(-80%);
+  width: 22rem;
   /* height: 25rem; */
-  border-radius: 16px;
-  background-color: #a5f1e9;
+  background-color: white;
   box-shadow: 0 0 6px lightgray;
-  padding: 2rem;
   animation: 200ms appear;
   z-index: 1;
 }
 
 /* https://devbirdfeet.tistory.com/152 */
 .user_box::after {
-  border-color: #a5f1e9 transparent;
+  border-color: var(--color-mint) transparent;
   border-style: solid;
   border-width: 0 6px 8px 6.5px;
   content: "";
   display: block;
-  left: 117px;
+  left: 203px;
   position: absolute;
   top: -7px;
   width: 0;
@@ -27,22 +25,32 @@
 }
 
 .user_box::before {
-  border-color: #a5f1e9 transparent;
+  border-color: var(--color-mint) transparent;
   border-style: solid;
   border-width: 0 6px 8px 6.5px;
   content: "";
   display: block;
-  left: 117px;
+  left: 203px;
   position: absolute;
   top: -8px;
   width: 0;
   z-index: 0;
 }
 
+.user_box_top {
+  width: 100%;
+  background-color: var(--color-mint);
+  padding: 1rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+}
+
 .user_data {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2rem;
 }
 
 .user_image {
@@ -58,24 +66,27 @@
 }
 
 .login_button_container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 2rem;
 }
 
 .button_container button {
-  margin: 0.4rem 0;
-  border-radius: 8px;
+  width: 22rem;
+}
+
+.login_container {
+  padding-bottom: 2rem;
 }
 
 @keyframes appear {
   0% {
     opacity: 0;
-    transform: translate3d(0, -15px, 0) translateX(-37%);
+    transform: translate3d(0, -15px, 0) translateX(-80%);
   }
   to {
     opacity: 1;
-    transform: translateZ(0) translateX(-37%);
+    transform: translateZ(0) translateX(-80%);
   }
 }

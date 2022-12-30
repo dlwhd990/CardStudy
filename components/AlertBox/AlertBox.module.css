@@ -8,7 +8,7 @@
   box-shadow: 0 0 4px lightgray;
   border-radius: 10px;
   animation: 0.4s appear;
-  z-index: 2;
+  z-index: 5;
 }
 
 .message {

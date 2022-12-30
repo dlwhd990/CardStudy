@@ -1,11 +1,24 @@
+import { useRouter } from "next/router";
 import Objection from "../../model/objection";
+import { useAppDispatch } from "../../store/hooks";
+import { closeObjectionPreview } from "../../store/popup";
 import styles from "./ObjectionPreviewItem.module.css";
 
 const ObjectionPreviewItem: React.FC<{ objection: Objection }> = ({
   objection,
 }) => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const onClickHandler = () => {
+    dispatch(closeObjectionPreview());
+    router.push("/mypage");
+  };
+
   return (
-    <li className={`${styles.item} ${!objection.read && `${styles.new_item}`}`}>
+    <li
+      className={`${styles.item} ${!objection.read && `${styles.new_item}`}`}
+      onClick={onClickHandler}
+    >
       <p className={styles.folder_title}>{`[${objection.folderTitle}]`}</p>
       <p className={styles.title}>{objection.content}</p>
       <p className={styles.reporter_and_date}>{`${

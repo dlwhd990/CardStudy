@@ -23,6 +23,10 @@ const ObjectionPopup: React.FC<{ folder: Folder }> = ({ folder }) => {
 
   const onSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (content.length > 300) {
+      dispatch(showAlert("최대 300자 까지만 가능합니다!"));
+      return;
+    }
     const response = await axios.post("/api/objection", {
       folderId: folder._id.toString(),
       folderTitle: folder.title,
@@ -58,6 +62,7 @@ const ObjectionPopup: React.FC<{ folder: Folder }> = ({ folder }) => {
             value={content}
             onChange={changeContent}
             className={styles.content}
+            placeholder="이의 내용을 입력해주세요 (최대 300자)"
           ></textarea>
           <button className={styles.submit_button} onClick={onSubmitHandler}>
             제출

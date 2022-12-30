@@ -51,6 +51,7 @@
 .objection_list {
   height: calc(100% - 8rem);
   overflow-y: scroll;
+  border: 1px solid lightgray;
 }
 
 .objection_item {

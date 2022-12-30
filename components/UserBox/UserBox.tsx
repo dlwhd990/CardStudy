@@ -23,6 +23,7 @@ const UserBox = () => {
 
   return (
     <div className={styles.user_box}>
+      <div className={styles.user_box_top}>회원 정보</div>
       <div className={styles.user_data}>
         <img
           loading="lazy"
@@ -46,14 +47,16 @@ const UserBox = () => {
             <LogoutButton />
           </div>
         ) : (
-          <GoogleLogin
-            onSuccess={(credentialResponse: any) => {
-              loginHandler(credentialResponse);
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-          />
+          <div className={styles.login_container}>
+            <GoogleLogin
+              onSuccess={(credentialResponse: any) => {
+                loginHandler(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          </div>
         )}
       </div>
     </div>

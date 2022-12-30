@@ -1,0 +1,30 @@
+.answer_container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.2rem 3rem 1.2rem 7rem;
+  font-size: 1.8rem;
+  border-bottom: 1px solid lightgray;
+}
+
+.answer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.a {
+  color: var(--color-mint);
+  margin-right: 1rem;
+}
+
+.update_icon {
+  margin: 0 1rem;
+  transition: 120ms all ease-in-out;
+  cursor: pointer;
+}
+
+.update_icon:hover {
+  color: var(--color-blue);
+}
