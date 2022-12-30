@@ -10,7 +10,12 @@
   text-align: center;
   font-size: 3rem;
   font-weight: 900;
-  margin-bottom: 2.5rem;
+}
+.author {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 1.4rem 0 2.5rem 0;
 }
 
 .problem_number_count {

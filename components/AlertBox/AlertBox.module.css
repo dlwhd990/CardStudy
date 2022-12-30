@@ -1,0 +1,30 @@
+.alert_box {
+  position: fixed;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.8rem 2.6rem;
+  background-color: var(--color-pink);
+  box-shadow: 0 0 4px lightgray;
+  border-radius: 10px;
+  animation: 0.4s appear;
+  z-index: 2;
+}
+
+.message {
+  font-size: 2rem;
+  font-weight: 500;
+  color: white;
+}
+
+@keyframes appear {
+  0% {
+    transform: translate(-50%, -10px);
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translateY(-50%, 0);
+    opacity: 1;
+  }
+}

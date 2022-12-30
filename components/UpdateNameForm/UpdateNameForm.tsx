@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { showAlert } from "../../store/alert";
+import { useAppDispatch } from "../../store/hooks";
 import styles from "./UpdateNameForm.module.css";
 
 const UpdateNameForm: React.FC<{
@@ -9,6 +11,7 @@ const UpdateNameForm: React.FC<{
   placeholder: string;
 }> = ({ updateFunc, minLength, maxLength, placeholder }) => {
   const [newTitle, setNewTitle] = useState("");
+  const dispatch = useAppDispatch();
 
   const changeNewTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTitle(e.target.value);
@@ -17,7 +20,7 @@ const UpdateNameForm: React.FC<{
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (newTitle.length < minLength || newTitle.length > maxLength) {
-      console.log("글자 수 안내 알림 뜨도록");
+      dispatch(showAlert(`제목은 ${minLength}~${maxLength}사이로만 가능해요`));
       return;
     }
     updateFunc(newTitle);

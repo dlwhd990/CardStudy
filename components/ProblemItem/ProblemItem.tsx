@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useState } from "react";
 import Problem from "../../model/problem";
+import { showAlert } from "../../store/alert";
 import { useAppDispatch } from "../../store/hooks";
 import { loadUserProblemList } from "../../store/userProblem";
 import UpdateNameForm from "../UpdateNameForm/UpdateNameForm";
@@ -23,6 +24,7 @@ const ProblemItem: React.FC<{ problem: Problem }> = ({ problem }) => {
     );
     if (response.data.success) {
       dispatch(loadUserProblemList());
+      dispatch(showAlert("문제가 삭제되었습니다!"));
     }
   };
 
@@ -43,6 +45,7 @@ const ProblemItem: React.FC<{ problem: Problem }> = ({ problem }) => {
     if (response.data.success) {
       dispatch(loadUserProblemList());
       setUpdateOpen(false);
+      dispatch(showAlert("문제가 변경되었습니다!"));
     }
   };
 

@@ -1,0 +1,88 @@
+.objection_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(32, 32, 32, 0.8);
+  z-index: 3;
+}
+
+.objection_popup {
+  width: 60rem;
+  height: 50rem;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+}
+
+.objection_top {
+  padding: 1.6rem 2rem;
+  background-color: var(--color-mint);
+  border-radius: 11px 11px 0 0;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: white;
+}
+
+.content_box {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.folder_title {
+  font-size: 2.4rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.content_title {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.content {
+  width: 100%;
+  height: 26rem;
+  padding: 1rem;
+  font-size: 1.7rem;
+  outline: none;
+  resize: none;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+}
+
+.close_button {
+  position: absolute;
+  top: 2rem;
+  right: 2.4rem;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  transition: 150ms all ease-in-out;
+}
+
+.close_button:hover {
+  color: var(--color-red);
+}
+
+.submit_button {
+  align-self: flex-end;
+  margin-top: 1rem;
+  padding: 0.6rem 2rem;
+  font-size: 2rem;
+  font-weight: 500;
+  border: none;
+  background-color: var(--color-mint);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}

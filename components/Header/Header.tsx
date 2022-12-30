@@ -8,15 +8,47 @@ import {
 import Link from "next/link";
 import UserBox from "../UserBox/UserBox";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { changeUserBoxState } from "../../store/popup";
+import {
+  changeObjectionPreview,
+  changeUserBoxState,
+  closeObjectionPreview,
+  closeUserBox,
+} from "../../store/popup";
+import ObjectionPreview from "../ObjectionPreview/ObjectionPreview";
+import { useEffect, useState } from "react";
+import Objection from "../../model/objection";
+import NumberBadge from "../NumberBadge/NumberBadge";
 
 const Header = () => {
   const showUserBox = useAppSelector((state) => state.popup.userBox);
+  const userObjectionList = useAppSelector((state) => state.userObjection.list);
+  const showObjectionPreview = useAppSelector(
+    (state) => state.popup.objectionPreview
+  );
   const dispatch = useAppDispatch();
+  const [newObjectionCount, setNewObjectionCount] = useState(0);
 
   const changeShowUserBox = () => {
+    if (showObjectionPreview) {
+      dispatch(closeObjectionPreview());
+    }
     dispatch(changeUserBoxState());
   };
+
+  const changeShowObjectionPreview = () => {
+    if (showUserBox) {
+      dispatch(closeUserBox());
+    }
+    dispatch(changeObjectionPreview());
+  };
+
+  useEffect(() => {
+    if (!userObjectionList) return;
+    const newObjectionList = userObjectionList.filter(
+      (objection: Objection) => !objection.read
+    );
+    setNewObjectionCount(newObjectionList.length);
+  }, [userObjectionList]);
 
   return (
     <header className={styles.header}>
@@ -57,7 +89,19 @@ const Header = () => {
           />
           {showUserBox && <UserBox />}
         </div>
-        <FontAwesomeIcon icon={faBell} className={styles.header_icon} />
+        <div className={styles.objection_container}>
+          <FontAwesomeIcon
+            icon={faBell}
+            className={styles.header_icon}
+            onClick={changeShowObjectionPreview}
+          />
+          {newObjectionCount > 0 && (
+            <div className={styles.badge_container}>
+              <NumberBadge num={newObjectionCount} />
+            </div>
+          )}
+          {showObjectionPreview && <ObjectionPreview />}
+        </div>
       </div>
     </header>
   );

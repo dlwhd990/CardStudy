@@ -4,6 +4,8 @@ const initialState = {
   userBox: false,
   folderUpload: false,
   problemUpload: "1",
+  objection: false,
+  objectionPreview: false,
 };
 
 const popupSlice = createSlice({
@@ -28,6 +30,18 @@ const popupSlice = createSlice({
     closeProblemUpload(state) {
       state.problemUpload = "1";
     },
+    openObjection(state) {
+      state.objection = true;
+    },
+    closeObjection(state) {
+      state.objection = false;
+    },
+    changeObjectionPreview(state) {
+      state.objectionPreview = !state.objectionPreview;
+    },
+    closeObjectionPreview(state) {
+      state.objectionPreview = false;
+    },
   },
 });
 
@@ -38,6 +52,10 @@ export const {
   closeFolderUpload,
   openProblemUpload,
   closeProblemUpload,
+  openObjection,
+  closeObjection,
+  changeObjectionPreview,
+  closeObjectionPreview,
 } = popupSlice.actions;
 
 export default popupSlice;

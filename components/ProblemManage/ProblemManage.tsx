@@ -24,7 +24,7 @@ const ProblemManage = () => {
         <div className={styles.content_box}>
           <button onClick={openFolderUploadPopup} className={styles.add_button}>
             <FontAwesomeIcon icon={faPlus} className={styles.plus_icon} />
-            <span>새로운 폴더 추가</span>
+            <span>새로운 카드 묶음 추가</span>
           </button>
           {userFolderList.map((folder: Folder) => (
             <FolderItem

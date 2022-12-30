@@ -56,3 +56,13 @@
 .user_container {
   position: relative;
 }
+
+.objection_container {
+  position: relative;
+}
+
+.badge_container {
+  position: absolute;
+  top: -1.4rem;
+  right: 0.2rem;
+}

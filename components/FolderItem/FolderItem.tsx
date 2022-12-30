@@ -9,10 +9,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import Folder from "../../model/folder";
 import Problem from "../../model/problem";
+import { showAlert } from "../../store/alert";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { openProblemUpload } from "../../store/popup";
 import { loadUserFolderList } from "../../store/userFolder";
-import { loadUserProblemList } from "../../store/userProblem";
 import ProblemItem from "../ProblemItem/ProblemItem";
 import ProblemUpload from "../ProblemUpload/ProblemUpload";
 import UpdateNameForm from "../UpdateNameForm/UpdateNameForm";
@@ -35,12 +35,13 @@ const FolderItem: React.FC<{ folder: Folder; problemList: Problem[] }> = ({
   const deleteFolder = async (e: React.MouseEvent) => {
     e.stopPropagation();
     const confirm: boolean = window.confirm(
-      "정말로 삭제하시겠습니까? 삭제한 폴더는 복구가 불가능합니다!"
+      "정말로 삭제하시겠습니까? 삭제한 카드 묶음은 복구가 불가능합니다!"
     );
     if (!confirm) return;
     const response = await axios.delete(`/api/folder/${folder._id.toString()}`);
     if (response.data.success) {
       dispatch(loadUserFolderList());
+      dispatch(showAlert("카드 묶음이 삭제되었습니다!"));
     }
   };
 
@@ -58,6 +59,7 @@ const FolderItem: React.FC<{ folder: Folder; problemList: Problem[] }> = ({
     if (response.data.success) {
       dispatch(loadUserFolderList());
       setUpdateOpen(false);
+      dispatch(showAlert("카드 묶음의 이름이 변경되었습니다!"));
     }
   };
 
@@ -101,7 +103,7 @@ const FolderItem: React.FC<{ folder: Folder; problemList: Problem[] }> = ({
             className={styles.add_button}
           >
             <FontAwesomeIcon icon={faPlus} className={styles.plus_icon} />
-            <span>이 폴더에 새로운 문제 추가</span>
+            <span>이 카드 묶음에 새로운 문제 추가</span>
           </button>
           {problemList.map((problem) => (
             <ProblemItem key={problem._id.toString()} problem={problem} />

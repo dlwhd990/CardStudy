@@ -53,3 +53,9 @@
   margin: 1rem 0;
   color: #687074;
 }
+
+.badge_container {
+  position: absolute;
+  top: -0.8rem;
+  right: -0.8rem;
+}

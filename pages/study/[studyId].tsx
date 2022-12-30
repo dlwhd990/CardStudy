@@ -10,10 +10,12 @@ import { ObjectId } from "mongodb";
 import { GetStaticPropsContext } from "next";
 import { Fragment, useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
+import ObjectionPopup from "../../components/ObjectionPopup/ObjectionPopup";
 import Folder from "../../model/folder";
 import Problem from "../../model/problem";
 import { makeInactive } from "../../store/cardActive";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { openObjection } from "../../store/popup";
 import styles from "../../styles/studyPage.module.css";
 import { connectToDatabase } from "../../util/mongodb";
 
@@ -22,7 +24,7 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   folder,
 }) => {
   const dispatch = useAppDispatch();
-  const active = useAppSelector((state) => state.cardActive.active);
+  const objectionOn = useAppSelector((state) => state.popup.objection);
   const [now, setNow] = useState(0);
 
   const changeNow = (query: boolean) => {
@@ -40,6 +42,10 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
     }, 200);
   };
 
+  const openObjectionPopup = () => {
+    dispatch(openObjection());
+  };
+
   useEffect(() => {
     dispatch(makeInactive());
     return () => {
@@ -49,13 +55,15 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
 
   return (
     <main className={styles.study}>
+      {objectionOn && <ObjectionPopup folder={folder} />}
       {problemList && problemList.length > 0 ? (
         <Fragment>
           <section className={styles.card_section}>
             <p className={styles.problem_number_count}>{`${now + 1}/${
               problemList.length
             }`}</p>
-            <h2 className={styles.study_title}>{folder.title}</h2>
+            <h2 className={styles.study_title}>{`[${folder.title}]`}</h2>
+            <p className={styles.author}>{`by ${folder.userName} 님`}</p>
             <div className={styles.problem_container}>
               <FontAwesomeIcon
                 icon={faAngleLeft}
@@ -75,7 +83,10 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
               <FontAwesomeIcon icon={faHeart} className={styles.heart} />
               <p className={styles.button_name}>좋아요</p>
             </button>
-            <button className={styles.study_button}>
+            <button
+              className={styles.study_button}
+              onClick={openObjectionPopup}
+            >
               <FontAwesomeIcon icon={faComment} className={styles.comment} />
               <p className={styles.button_name}>이의제기</p>
             </button>

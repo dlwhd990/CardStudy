@@ -2,15 +2,15 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../store/hooks";
+import { showAlert } from "../../store/alert";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { closeFolderUpload } from "../../store/popup";
 import { loadUserFolderList } from "../../store/userFolder";
 import styles from "./FolderUpload.module.css";
 
 const FolderUpload = () => {
   const dispatch = useAppDispatch();
-  const userData = useSelector((state) => state.userData);
+  const userData = useAppSelector((state) => state.userData);
   const [title, setTitle] = useState("");
   const changeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -23,7 +23,7 @@ const FolderUpload = () => {
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (title.length < 2 || title.length > 15) {
-      console.log("글자수 알림 띄우기");
+      dispatch(showAlert("제목은 2~15자로만 가능해요"));
       return;
     }
     const response = await axios.post("/api/folder", {
@@ -33,6 +33,7 @@ const FolderUpload = () => {
     if (response.data.success) {
       dispatch(loadUserFolderList());
       dispatch(closeFolderUpload());
+      dispatch(showAlert("카드 묶음이 생성되었습니다!"));
     }
   };
 

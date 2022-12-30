@@ -2,6 +2,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useState } from "react";
+import { showAlert } from "../../store/alert";
 import { useAppDispatch } from "../../store/hooks";
 import { closeProblemUpload } from "../../store/popup";
 import { loadUserProblemList } from "../../store/userProblem";
@@ -35,6 +36,7 @@ const ProblemUpload: React.FC<{ folderId: string }> = ({ folderId }) => {
       console.log(response.data);
       dispatch(loadUserProblemList());
       dispatch(closeProblemUpload());
+      dispatch(showAlert("문제가 추가되었습니다!"));
     }
   };
 

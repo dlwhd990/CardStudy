@@ -1,0 +1,37 @@
+.item {
+  width: 100%;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid lightgray;
+  cursor: pointer;
+  transition: 120ms all ease-in-out;
+}
+
+.folder_title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin: 0.4rem 0 1rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reporter_and_date {
+  font-size: 1.3rem;
+  color: #687074;
+}
+
+.new_item {
+  background-color: rgba(255, 158, 158, 0.1);
+}
+
+.item:hover {
+  background-color: rgba(248, 248, 248);
+}

@@ -1,0 +1,86 @@
+.objection_preview {
+  position: absolute;
+  width: 30rem;
+  height: 40rem;
+  border: 1px solid lightgray;
+  box-shadow: 0 0 5px lightgray;
+  top: 4rem;
+  transform: translateX(-85%);
+  background-color: white;
+  z-index: 2;
+  animation: 200ms appear;
+}
+
+.objection_preview_top {
+  height: 5rem;
+  line-height: 4.8rem;
+  padding: 0 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  background-color: var(--color-mint);
+  border-bottom: 1px solid lightgray;
+  color: white;
+}
+
+.objection_list {
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.objection_list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.objection_preview::after {
+  border-color: var(--color-mint) transparent;
+  border-style: solid;
+  border-width: 0 6px 8px 6.5px;
+  content: "";
+  display: block;
+  left: 280px;
+  position: absolute;
+  top: -9px;
+  width: 0;
+  z-index: 1;
+}
+
+.objection_preview::before {
+  border-color: var(--color-mint) transparent;
+  border-style: solid;
+  border-width: 0 6px 8px 6.5px;
+  content: "";
+  display: block;
+  left: 280px;
+  position: absolute;
+  top: -9px;
+  width: 0;
+  z-index: 0;
+}
+
+.exception_container {
+  width: 100%;
+  height: 35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exception {
+  font-size: 1.6rem;
+  color: #687074;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -15px, 0) translateX(-85%);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0) translateX(-85%);
+  }
+}
