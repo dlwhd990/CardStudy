@@ -19,7 +19,7 @@ const ProblemManage = () => {
     <div className={styles.manage_container}>
       <div className={styles.manager}>
         <div className={styles.top}>
-          <p>문제 관리</p>
+          <h2>문제 관리</h2>
         </div>
         <div className={styles.content_box}>
           <button onClick={openFolderUploadPopup} className={styles.add_button}>

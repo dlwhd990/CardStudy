@@ -1,0 +1,66 @@
+.objection_page {
+  width: 100%;
+  height: 100%;
+  padding: 5rem;
+}
+
+.objection_page h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.list_container {
+  width: 100%;
+  height: calc(100% - 3rem);
+}
+
+.list_top {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  background-color: var(--color-mint);
+}
+
+.list_top p {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: white;
+}
+
+.title {
+  width: 20%;
+  padding-right: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content {
+  width: 60%;
+  padding-right: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.date {
+  width: 20%;
+}
+
+.objection_list {
+  height: calc(100% - 8rem);
+  overflow-y: scroll;
+}
+
+.objection_item {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid lightgray;
+  cursor: pointer;
+}
+
+.objection_item p {
+  font-size: 1.6rem;
+}

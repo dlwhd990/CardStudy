@@ -23,6 +23,9 @@ async function folderIdAPI(req: NextApiRequest, res: NextApiResponse) {
         _id: new ObjectId(folderId),
       });
 
+      const problemCollection = db.collection("problem");
+      await problemCollection.deleteMany({ folderId });
+
       res.json({ success: true });
     }
 

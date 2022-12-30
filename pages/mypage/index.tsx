@@ -5,6 +5,7 @@ import SideBar from "../../components/SideBar/SideBar";
 import FolderUpload from "../../components/FolderUpload/FolderUpload";
 import { useAppSelector } from "../../store/hooks";
 import styles from "../../styles/mypage.module.css";
+import ObjectionPage from "../../components/ObjectionPage/ObjectionPage";
 
 const MyPage = () => {
   const userData = useAppSelector((state) => state.userData);
@@ -18,6 +19,7 @@ const MyPage = () => {
     if (userData.name.length === 0) return <p>로그인 후에 사용 가능합니다.</p>;
     else if (selected === "changeName") return <ChangeName />;
     else if (selected === "problem") return <ProblemManage />;
+    else if (selected === "alert") return <ObjectionPage />;
   };
   return (
     <main className={styles.mypage}>

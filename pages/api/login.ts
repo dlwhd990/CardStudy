@@ -1,4 +1,3 @@
-import { Db, MongoClient } from "mongodb";
 import jwt from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library";
 import { NextApiRequest, NextApiResponse } from "next";
