@@ -37,7 +37,7 @@
   font-size: 1.8rem;
   font-weight: 700;
   padding: 1rem 3rem;
-  background-color: #a5f1e9;
+  background-color: var(--color-mint);
 }
 
 .menu {

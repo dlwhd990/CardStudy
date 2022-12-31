@@ -4,6 +4,7 @@ type Folder = {
   like: number;
   userId: string;
   userName: string;
+  problemCount: number;
   date: number;
   public: true;
 };

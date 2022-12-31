@@ -17,10 +17,21 @@ async function problemIdAPI(req: NextApiRequest, res: NextApiResponse) {
 
     // 삭제
     if (req.method === "DELETE") {
+      const problem = await collection.findOne({
+        userId: userData.sub,
+        _id: new ObjectId(problemId),
+      });
+
       await collection.deleteOne({
         userId: userData.sub,
         _id: new ObjectId(problemId),
       });
+
+      const folderCollection = db.collection("folder");
+      await folderCollection.findOneAndUpdate(
+        { _id: new ObjectId(problem?.folderId.toString()) },
+        { $inc: { problemCount: -1 } }
+      );
 
       res.json({ success: true });
     }

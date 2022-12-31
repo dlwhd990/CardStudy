@@ -4,6 +4,7 @@ import {
   faBell,
   faMagnifyingGlass,
   faUser,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import UserBox from "../UserBox/UserBox";
@@ -18,6 +19,7 @@ import ObjectionPreview from "../ObjectionPreview/ObjectionPreview";
 import React, { useEffect, useState } from "react";
 import Objection from "../../model/objection";
 import NumberBadge from "../NumberBadge/NumberBadge";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const [showSearchInput, setShowSearchInput] = useState(false); // 다른 곳에서 이것을 조작할 필요가 없기 떄문에 useState로 사용
@@ -30,6 +32,7 @@ const Header = () => {
   );
 
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const changeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
@@ -51,6 +54,17 @@ const Header = () => {
       dispatch(closeUserBox());
     }
     dispatch(changeObjectionPreview());
+  };
+
+  const searchHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push(`/search/${searchInput}`);
+    setSearchInput("");
+  };
+
+  const searchIconSelector = () => {
+    if (showSearchInput) return faXmark;
+    return faMagnifyingGlass;
   };
 
   useEffect(() => {
@@ -89,20 +103,37 @@ const Header = () => {
       </div>
       <div className={styles.right}>
         <div className={styles.search_container}>
-          {showSearchInput && (
+          <form onSubmit={searchHandler}>
             <input
               value={searchInput}
               onChange={changeSearchInput}
               type="text"
               placeholder="검색"
-              className={styles.search_input}
+              className={`${styles.search_input} ${
+                showSearchInput
+                  ? `${styles.search_input_on}`
+                  : `${styles.search_input_off}`
+              }`}
+              autoFocus
             />
-          )}
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className={`${styles.header_icon} ${styles.search_icon}`}
-            onClick={changeShowSearchInput}
-          />
+          </form>
+          <div
+            className={`${styles.search_icon_container} ${
+              showSearchInput
+                ? `${styles.search_icon_container_on}`
+                : `${styles.search_icon_container_off}`
+            }`}
+          >
+            <FontAwesomeIcon
+              icon={searchIconSelector()}
+              className={`${styles.header_icon} ${
+                showSearchInput
+                  ? `${styles.close_icon}`
+                  : `${styles.search_icon}`
+              }`}
+              onClick={changeShowSearchInput}
+            />
+          </div>
         </div>
         <div className={styles.user_container}>
           <FontAwesomeIcon

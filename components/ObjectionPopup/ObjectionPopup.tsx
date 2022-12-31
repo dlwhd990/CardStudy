@@ -27,6 +27,12 @@ const ObjectionPopup: React.FC<{ folder: Folder }> = ({ folder }) => {
       dispatch(showAlert("최대 300자 까지만 가능합니다!"));
       return;
     }
+
+    if (content.length === 0) {
+      dispatch(showAlert("내용을 입력해주세요!"));
+      return;
+    }
+
     const response = await axios.post("/api/objection", {
       folderId: folder._id.toString(),
       folderTitle: folder.title,

@@ -71,14 +71,7 @@ const StudyMain: React.FC<{ folderList: Folder[]; problemList: Problem[] }> = ({
               .slice((pageNum - 1) * 8, pageNum * 8)
               .map((folder: Folder) => (
                 <li key={folder._id.toString()}>
-                  <FolderCard
-                    folder={folder}
-                    count={
-                      problemList.filter(
-                        (pro: Problem) => pro.folderId === folder._id.toString()
-                      ).length
-                    }
-                  />
+                  <FolderCard folder={folder} count={folder.problemCount} />
                 </li>
               ))}
           </ul>

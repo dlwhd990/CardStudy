@@ -27,6 +27,22 @@ const ProblemUpload: React.FC<{ folderId: string }> = ({ folderId }) => {
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (question.length === 0 || answer.length === 0) {
+      dispatch(showAlert("내용을 모두 입력해주세요"));
+      return;
+    }
+
+    if (question.length > 50) {
+      dispatch(showAlert("질문은 50자 이하로만 가능합니다!"));
+      return;
+    }
+
+    if (answer.length > 150) {
+      dispatch(showAlert("정답은 150자 이하로만 가능합니다!"));
+      return;
+    }
+
     const response = await axios.post("/api/problem", {
       question,
       answer,

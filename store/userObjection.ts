@@ -9,7 +9,6 @@ const userObjectionSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(loadUserObjectionList.fulfilled, (state, action) => {
-      console.log(action.payload);
       if (action.payload.success) {
         state.list = action.payload.result.sort(
           (a: Objection, b: Objection) => b.date - a.date

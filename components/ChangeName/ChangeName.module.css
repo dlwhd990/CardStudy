@@ -30,7 +30,7 @@
 
 .change_name_form button {
   margin-left: 1rem;
-  background-color: #a5f1e9;
+  background-color: var(--color-mint);
   padding: 1rem 2rem;
   color: white;
   font-size: 2rem;
