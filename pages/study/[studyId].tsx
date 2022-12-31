@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ObjectId } from "mongodb";
-import { GetStaticPropsContext } from "next";
+import { GetServerSidePropsContext } from "next";
 import { Fragment, useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import ObjectionPopup from "../../components/ObjectionPopup/ObjectionPopup";
@@ -103,27 +103,26 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   );
 };
 
-export async function getStaticPaths() {
-  const db = await connectToDatabase();
-  const folderCollection = db.collection<Folder>("folder");
-  const fullList = await folderCollection.find({}).toArray();
-  const idList = fullList.map((folder: Folder) => folder._id.toString());
-  const paths = idList.map((id: string) => {
-    return {
-      params: {
-        studyId: id,
-      },
-    };
-  });
+// export async function getStaticPaths() {
+//   const db = await connectToDatabase();
+//   const folderCollection = db.collection<Folder>("folder");
+//   const fullList = await folderCollection.find({}).toArray();
+//   const idList = fullList.map((folder: Folder) => folder._id.toString());
+//   const paths = idList.map((id: string) => {
+//     return {
+//       params: {
+//         studyId: id,
+//       },
+//     };
+//   });
 
-  return {
-    paths,
-    fallback: true,
-  };
-}
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// }
 
-export async function getStaticProps(context: GetStaticPropsContext) {
-  // 폴더 삭제로 인한 오류 해결법 추후 추가
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const db = await connectToDatabase();
   const collection = db.collection<Folder>("folder");
   const folder = await collection.findOne({
@@ -142,8 +141,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       problemList: JSON.parse(JSON.stringify(problemList)),
       folder: JSON.parse(JSON.stringify(folder)),
     },
-    // 임시
-    revalidate: 10,
   };
 }
 

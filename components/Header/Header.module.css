@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  height: 8.7rem;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -45,12 +46,36 @@
   margin-top: 0.6rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.search_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search_input {
+  width: 25rem;
+  height: 4rem;
+  padding: 0 4rem 0 0.8rem;
+  font-size: 1.6rem;
+  outline: none;
+  transform: translateX(18%);
+  border-radius: 12px;
+  border: 1px solid lightgray;
+  animation: 400ms appear;
 }
 
 .header_icon {
   font-size: 2.2rem;
   margin: 0 2.2rem;
   cursor: pointer;
+}
+
+.search_icon {
+  margin-left: 1.2rem;
+  z-index: 1;
 }
 
 .user_container {
@@ -65,4 +90,14 @@
   position: absolute;
   top: -1.4rem;
   right: 0.2rem;
+}
+
+@keyframes appear {
+  0% {
+    width: 0px;
+  }
+
+  100% {
+    width: 25rem;
+  }
 }

@@ -15,18 +15,29 @@ import {
   closeUserBox,
 } from "../../store/popup";
 import ObjectionPreview from "../ObjectionPreview/ObjectionPreview";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Objection from "../../model/objection";
 import NumberBadge from "../NumberBadge/NumberBadge";
 
 const Header = () => {
+  const [showSearchInput, setShowSearchInput] = useState(false); // 다른 곳에서 이것을 조작할 필요가 없기 떄문에 useState로 사용
+  const [searchInput, setSearchInput] = useState("");
+  const [newObjectionCount, setNewObjectionCount] = useState(0);
   const showUserBox = useAppSelector((state) => state.popup.userBox);
   const userObjectionList = useAppSelector((state) => state.userObjection.list);
   const showObjectionPreview = useAppSelector(
     (state) => state.popup.objectionPreview
   );
+
   const dispatch = useAppDispatch();
-  const [newObjectionCount, setNewObjectionCount] = useState(0);
+
+  const changeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value);
+  };
+
+  const changeShowSearchInput = () => {
+    setShowSearchInput((state) => !state);
+  };
 
   const changeShowUserBox = () => {
     if (showObjectionPreview) {
@@ -77,10 +88,22 @@ const Header = () => {
         </nav>
       </div>
       <div className={styles.right}>
-        <FontAwesomeIcon
-          icon={faMagnifyingGlass}
-          className={styles.header_icon}
-        />
+        <div className={styles.search_container}>
+          {showSearchInput && (
+            <input
+              value={searchInput}
+              onChange={changeSearchInput}
+              type="text"
+              placeholder="검색"
+              className={styles.search_input}
+            />
+          )}
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className={`${styles.header_icon} ${styles.search_icon}`}
+            onClick={changeShowSearchInput}
+          />
+        </div>
         <div className={styles.user_container}>
           <FontAwesomeIcon
             icon={faUser}
