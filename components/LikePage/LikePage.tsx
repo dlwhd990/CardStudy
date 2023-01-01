@@ -56,7 +56,7 @@ const LikePage = () => {
               .slice((pageNum - 1) * 8, pageNum * 8)
               .map((like: Like) => (
                 <li key={like._id.toString()}>
-                  <FolderCard item={like} count={like.problemCount} />
+                  <FolderCard item={like} count={-1} />
                 </li>
               ))}
           </ul>

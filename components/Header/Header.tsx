@@ -20,6 +20,7 @@ import React, { useEffect, useState } from "react";
 import Objection from "../../model/objection";
 import NumberBadge from "../NumberBadge/NumberBadge";
 import { useRouter } from "next/router";
+import { showAlert } from "../../store/alert";
 
 const Header = () => {
   const [showSearchInput, setShowSearchInput] = useState(false); // 다른 곳에서 이것을 조작할 필요가 없기 떄문에 useState로 사용
@@ -58,6 +59,10 @@ const Header = () => {
 
   const searchHandler = (e: React.FormEvent) => {
     e.preventDefault();
+    if (searchInput === "") {
+      dispatch(showAlert("검색어를 입력해주세요!"));
+      return;
+    }
     router.push(`/search/${searchInput}`);
     setSearchInput("");
   };
@@ -93,11 +98,11 @@ const Header = () => {
                 나의공부
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/study" className={styles.link}>
                 문의하기
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>

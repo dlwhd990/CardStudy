@@ -17,11 +17,12 @@ import Folder from "../../model/folder";
 import Problem from "../../model/problem";
 import { makeInactive } from "../../store/cardActive";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { openObjection } from "../../store/popup";
+import { openObjection, openReport } from "../../store/popup";
 import styles from "../../styles/studyPage.module.css";
 import { connectToDatabase } from "../../util/mongodb";
 import axios from "axios";
 import { showAlert } from "../../store/alert";
+import ReportPopup from "../../components/ReportPopup/ReportPopup";
 
 const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   problemList,
@@ -32,6 +33,7 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   const [liked, setLiked] = useState(false);
   const [now, setNow] = useState(0);
   const objectionOn = useAppSelector((state) => state.popup.objection);
+  const reportOn = useAppSelector((state) => state.popup.report);
   const userName = useAppSelector((state) => state.userData.name);
 
   const changeNow = (query: boolean) => {
@@ -55,6 +57,14 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
       return;
     }
     dispatch(openObjection());
+  };
+
+  const openReportPopup = () => {
+    if (userName.length === 0) {
+      dispatch(showAlert("로그인 후에 사용 가능합니다!"));
+      return;
+    }
+    dispatch(openReport());
   };
 
   const onLikeHandler = async () => {
@@ -108,6 +118,7 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   return (
     <main className={styles.study}>
       {objectionOn && <ObjectionPopup folder={folder} />}
+      {reportOn && <ReportPopup folder={folder} />}
       {problemList && problemList.length > 0 ? (
         <Fragment>
           <section className={styles.card_section}>
@@ -145,7 +156,7 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
               <FontAwesomeIcon icon={faComment} className={styles.comment} />
               <p className={styles.button_name}>이의제기</p>
             </button>
-            <button className={styles.study_button}>
+            <button className={styles.study_button} onClick={openReportPopup}>
               <FontAwesomeIcon icon={faFlag} className={styles.report} />
               <p className={styles.button_name}>신고</p>
             </button>

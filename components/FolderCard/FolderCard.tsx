@@ -38,7 +38,7 @@ const FolderCard: React.FC<{ item: Folder | Like; count: number }> = ({
     <div className={styles.folder_card}>
       <div className={styles.icon_box}>
         <div className={styles.badge_container}>
-          <NumberBadge num={count} />
+          {count >= 0 && <NumberBadge num={count} />}
         </div>
         <FontAwesomeIcon icon={faFolderOpen} className={styles.folder_icon} />
       </div>

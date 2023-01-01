@@ -39,13 +39,6 @@ const SideBar: React.FC<{
         <ul>
           <li
             className={styles.button}
-            onClick={() => changeSelectedValue("changeName")}
-          >
-            <FontAwesomeIcon icon={faIdCard} className={styles.icon_pink} />
-            <span>닉네임 변경</span>
-          </li>
-          <li
-            className={styles.button}
             onClick={() => changeSelectedValue("problem")}
           >
             <FontAwesomeIcon icon={faListCheck} className={styles.icon_mint} />
@@ -64,6 +57,13 @@ const SideBar: React.FC<{
           >
             <FontAwesomeIcon icon={faBell} className={styles.icon_green} />
             <span>알림</span>
+          </li>
+          <li
+            className={styles.button}
+            onClick={() => changeSelectedValue("changeName")}
+          >
+            <FontAwesomeIcon icon={faIdCard} className={styles.icon_pink} />
+            <span>닉네임 변경</span>
           </li>
           <li
             className={styles.button}

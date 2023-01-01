@@ -3,8 +3,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import FolderCard from "../../components/FolderCard/FolderCard";
 import Folder from "../../model/folder";
-import Problem from "../../model/problem";
-import { useAppSelector } from "../../store/hooks";
 import styles from "../../styles/searchPage.module.css";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +12,6 @@ const SearchPage: React.FC<{ searchResult: Folder[] }> = ({ searchResult }) => {
   const router = useRouter();
   const [pageNum, setPageNum] = useState(1);
   const [pageListNum, setPageListNum] = useState(0);
-  const userData = useAppSelector((state) => state.userData);
 
   const changePageNum = (e: React.MouseEvent) => {
     const eventTarget = e.target as HTMLElement;

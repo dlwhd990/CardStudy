@@ -6,6 +6,7 @@ const initialState = {
   problemUpload: "1",
   objection: false,
   objectionPreview: false,
+  report: false,
 };
 
 const popupSlice = createSlice({
@@ -42,6 +43,12 @@ const popupSlice = createSlice({
     closeObjectionPreview(state) {
       state.objectionPreview = false;
     },
+    openReport(state) {
+      state.report = true;
+    },
+    closeReport(state) {
+      state.report = false;
+    },
   },
 });
 
@@ -56,6 +63,8 @@ export const {
   closeObjection,
   changeObjectionPreview,
   closeObjectionPreview,
+  openReport,
+  closeReport,
 } = popupSlice.actions;
 
 export default popupSlice;

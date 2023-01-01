@@ -11,7 +11,7 @@ import LikePage from "../../components/LikePage/LikePage";
 const MyPage = () => {
   const userData = useAppSelector((state) => state.userData);
   const folderUploadOn = useAppSelector((state) => state.popup.folderUpload);
-  const [selected, setSelected] = useState("changeName");
+  const [selected, setSelected] = useState("problem");
   const changeSelectedValue = (value: string) => {
     setSelected(value);
   };
