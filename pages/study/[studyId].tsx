@@ -14,7 +14,6 @@ import { Fragment, useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import ObjectionPopup from "../../components/ObjectionPopup/ObjectionPopup";
 import Folder from "../../model/folder";
-import Like from "../../model/like";
 import Problem from "../../model/problem";
 import { makeInactive } from "../../store/cardActive";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -31,11 +30,9 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [liked, setLiked] = useState(false);
+  const [now, setNow] = useState(0);
   const objectionOn = useAppSelector((state) => state.popup.objection);
   const userName = useAppSelector((state) => state.userData.name);
-  const userLikeList = useAppSelector((state) => state.userLike.list);
-
-  const [now, setNow] = useState(0);
 
   const changeNow = (query: boolean) => {
     if (query && now > 0) {
@@ -53,6 +50,10 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   };
 
   const openObjectionPopup = () => {
+    if (userName.length === 0) {
+      dispatch(showAlert("로그인 후에 사용 가능합니다!"));
+      return;
+    }
     dispatch(openObjection());
   };
 
@@ -87,18 +88,15 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   };
 
   useEffect(() => {
-    const checkLiked = () => {
-      if (userLikeList.length === 0) return;
+    const checkLiked = async () => {
+      const response = await axios.get(`/api/like/${router.query.studyId}`);
 
-      const check = userLikeList.some(
-        (like: Like) => like.folderId === router.query.studyId
-      );
-      if (check) {
+      if (response.data.success && response.data.isLiked) {
         setLiked(true);
       }
     };
     checkLiked();
-  }, [router.query.studyId, userLikeList]);
+  }, [router.query.studyId]);
 
   useEffect(() => {
     dispatch(makeInactive());

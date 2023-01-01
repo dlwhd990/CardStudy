@@ -25,8 +25,7 @@ async function likeUploadAPI(req: NextApiRequest, res: NextApiResponse) {
       date: new Date().getTime(),
     });
 
-    // isLiked => 현재 좋아요 상태인지 판별
-    res.json({ success: true, isLiked: true });
+    res.json({ success: true });
   } catch (err) {
     res.json({ success: false });
   }

@@ -10,14 +10,24 @@ async function likeAPI(req: NextApiRequest, res: NextApiResponse) {
     const db = await connectToDatabase();
     const collection = db.collection("like");
 
+    // 삭제
     if (req.method === "DELETE") {
       await collection.deleteOne({
         likedUserId: userData.sub,
         folderId,
       });
 
-      // isLiked => 현재 좋아요 상태인지 판별
-      res.json({ success: true, isLiked: false });
+      res.json({ success: true });
+    }
+
+    // 초기 좋아요 여부 판별
+    if (req.method === "GET") {
+      const response = await collection.findOne({ folderId });
+      if (response) {
+        res.json({ success: true, isLiked: true });
+      } else {
+        res.json({ success: true, isLiked: false });
+      }
     }
   } catch (err) {
     res.json({ success: false });
