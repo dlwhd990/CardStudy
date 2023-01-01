@@ -7,7 +7,6 @@ type Like = {
   likedUserName: string;
   authorId: string;
   authorName: string;
-  problemCount: number;
   date: number;
 };
 

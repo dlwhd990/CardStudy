@@ -15,6 +15,7 @@ async function uploadFolder(req: NextApiRequest, res: NextApiResponse) {
         userId: userData.sub,
         userName: req.body.userName,
         date: new Date().getTime(),
+        problemCount: 0,
         public: true,
       });
 

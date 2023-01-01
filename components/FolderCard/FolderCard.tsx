@@ -2,25 +2,38 @@ import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import Folder from "../../model/folder";
+import Like from "../../model/like";
 import { showAlert } from "../../store/alert";
 import { useAppDispatch } from "../../store/hooks";
 import NumberBadge from "../NumberBadge/NumberBadge";
 import styles from "./FolderCard.module.css";
 
-const FolderCard: React.FC<{ folder: Folder; count: number }> = ({
-  folder,
+const FolderCard: React.FC<{ item: Folder | Like; count: number }> = ({
+  item,
   count,
 }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   const moveToStudy = () => {
+    let folderId;
+
     if (count === 0) {
       dispatch(showAlert("아직 문제가 등록되지 않았어요!"));
       return;
     }
-    router.push(`/study/${folder._id.toString()}`);
+
+    if ("folderId" in item) {
+      // Like 타입인 경우
+      folderId = item.folderId;
+    } else {
+      // Folder 타입인 경우
+      folderId = item._id.toString();
+    }
+
+    router.push(`/study/${folderId}`);
   };
+
   return (
     <div className={styles.folder_card}>
       <div className={styles.icon_box}>
@@ -29,8 +42,10 @@ const FolderCard: React.FC<{ folder: Folder; count: number }> = ({
         </div>
         <FontAwesomeIcon icon={faFolderOpen} className={styles.folder_icon} />
       </div>
-      <p className={styles.title}>{folder.title}</p>
-      <p className={styles.author}>{`by ${folder.userName} 님`}</p>
+      <p className={styles.title}>{item.title}</p>
+      <p className={styles.author}>{`by ${
+        "userName" in item ? item.userName : item.authorName
+      } 님`}</p>
       <button className={styles.go_button} onClick={moveToStudy}>
         시작
       </button>

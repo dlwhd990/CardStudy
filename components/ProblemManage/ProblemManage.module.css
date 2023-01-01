@@ -1,14 +1,14 @@
 .manage_container {
   width: 100%;
   height: 100%;
-  padding: 5rem 3rem;
+  padding: 6rem 0;
 }
 
 .manager {
   width: 100%;
+  height: 100%;
   max-width: 120rem;
   margin: auto;
-  height: 100%;
   border: 1px solid lightgray;
 }
 

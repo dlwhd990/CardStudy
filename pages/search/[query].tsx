@@ -59,7 +59,7 @@ const SearchPage: React.FC<{ searchResult: Folder[] }> = ({ searchResult }) => {
               .slice((pageNum - 1) * 8, pageNum * 8)
               .map((folder: Folder) => (
                 <li key={folder._id.toString()}>
-                  <FolderCard folder={folder} count={folder.problemCount} />
+                  <FolderCard item={folder} count={folder.problemCount} />
                 </li>
               ))}
           </ul>
