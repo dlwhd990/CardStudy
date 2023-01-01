@@ -4,6 +4,7 @@ import cardActiveSlice from "./cardActive";
 import popupSlice from "./popup";
 import userDataSlice from "./userData";
 import userFolderSlice from "./userFolder";
+import userLikeSlice from "./userLike";
 import userObjectionSlice from "./userObjection";
 import userProblemSlice from "./userProblem";
 
@@ -13,6 +14,7 @@ export const store = configureStore({
     popup: popupSlice.reducer,
     userFolder: userFolderSlice.reducer,
     userProblem: userProblemSlice.reducer,
+    userLike: userLikeSlice.reducer,
     userObjection: userObjectionSlice.reducer,
     cardActive: cardActiveSlice.reducer,
     alert: alertSlice.reducer,

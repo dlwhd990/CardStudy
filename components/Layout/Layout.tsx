@@ -3,6 +3,7 @@ import React, { Fragment, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { removeUserData, setUserData } from "../../store/userData";
 import { loadUserFolderList } from "../../store/userFolder";
+import { loadUserLikeList } from "../../store/userLike";
 import { loadUserObjectionList } from "../../store/userObjection";
 import { loadUserProblemList } from "../../store/userProblem";
 import AlertBox from "../AlertBox/AlertBox";
@@ -32,6 +33,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     // 로그인 된 사용자의 폴더 리스트 불러오기
     dispatch(loadUserFolderList());
     dispatch(loadUserProblemList());
+    dispatch(loadUserLikeList());
     dispatch(loadUserObjectionList());
   }, [dispatch]);
 

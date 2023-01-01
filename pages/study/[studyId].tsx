@@ -3,28 +3,38 @@ import {
   faAngleRight,
   faComment,
   faFlag,
-  faHeart,
+  faHeart as fullHeart,
 } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ObjectId } from "mongodb";
 import { GetServerSidePropsContext } from "next";
+import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import ObjectionPopup from "../../components/ObjectionPopup/ObjectionPopup";
 import Folder from "../../model/folder";
+import Like from "../../model/like";
 import Problem from "../../model/problem";
 import { makeInactive } from "../../store/cardActive";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { openObjection } from "../../store/popup";
 import styles from "../../styles/studyPage.module.css";
 import { connectToDatabase } from "../../util/mongodb";
+import axios from "axios";
+import { showAlert } from "../../store/alert";
 
 const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   problemList,
   folder,
 }) => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
+  const [liked, setLiked] = useState(false);
   const objectionOn = useAppSelector((state) => state.popup.objection);
+  const userName = useAppSelector((state) => state.userData.name);
+  const userLikeList = useAppSelector((state) => state.userLike.list);
+
   const [now, setNow] = useState(0);
 
   const changeNow = (query: boolean) => {
@@ -45,6 +55,50 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   const openObjectionPopup = () => {
     dispatch(openObjection());
   };
+
+  const onLikeHandler = async () => {
+    if (userName.length === 0) {
+      dispatch(showAlert("로그인 후에 사용 가능합니다!"));
+      return;
+    }
+
+    if (liked) {
+      const response = await axios.delete(`/api/like/${router.query.studyId}`);
+      if (response.data.success) {
+        setLiked(false);
+        dispatch(showAlert("좋아요 취소 되었습니다!"));
+      } else {
+        dispatch(showAlert("로그인 후에 사용 가능합니다!"));
+      }
+    } else {
+      const response = await axios.post("/api/like", { folder, userName });
+      if (response.data.success) {
+        setLiked(true);
+        dispatch(showAlert("좋아요 하셨습니다!"));
+      } else {
+        dispatch(showAlert("로그인 후에 사용 가능합니다!"));
+      }
+    }
+  };
+
+  const likeIconSelector = () => {
+    if (liked) return fullHeart;
+    return faHeart;
+  };
+
+  useEffect(() => {
+    const checkLiked = () => {
+      if (userLikeList.length === 0) return;
+
+      const check = userLikeList.some(
+        (like: Like) => like.folderId === router.query.studyId
+      );
+      if (check) {
+        setLiked(true);
+      }
+    };
+    checkLiked();
+  }, [router.query.studyId, userLikeList]);
 
   useEffect(() => {
     dispatch(makeInactive());
@@ -79,8 +133,11 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
             </div>
           </section>
           <section className={styles.button_container}>
-            <button className={styles.study_button}>
-              <FontAwesomeIcon icon={faHeart} className={styles.heart} />
+            <button className={styles.study_button} onClick={onLikeHandler}>
+              <FontAwesomeIcon
+                icon={likeIconSelector()}
+                className={styles.heart}
+              />
               <p className={styles.button_name}>좋아요</p>
             </button>
             <button
@@ -102,25 +159,6 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
     </main>
   );
 };
-
-// export async function getStaticPaths() {
-//   const db = await connectToDatabase();
-//   const folderCollection = db.collection<Folder>("folder");
-//   const fullList = await folderCollection.find({}).toArray();
-//   const idList = fullList.map((folder: Folder) => folder._id.toString());
-//   const paths = idList.map((id: string) => {
-//     return {
-//       params: {
-//         studyId: id,
-//       },
-//     };
-//   });
-
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const db = await connectToDatabase();

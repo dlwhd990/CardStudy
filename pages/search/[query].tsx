@@ -42,24 +42,14 @@ const SearchPage: React.FC<{ searchResult: Folder[] }> = ({ searchResult }) => {
       <p className={styles.description}>
         {`검색 결과 총 ${searchResult.length}건`}
       </p>
-      {userData.name.length === 0 ? (
+      {searchResult.length === 0 ? (
         <div className={styles.message_box}>
-          <p className={styles.message}>🔒 로그인 후에 사용해주세요</p>
+          <p className={styles.message}>검색 결과가 없습니다!</p>
           <button
             className={styles.message_button}
             onClick={() => router.back()}
           >
             뒤로 가기
-          </button>
-        </div>
-      ) : searchResult.length === 0 ? (
-        <div className={styles.message_box}>
-          <p className={styles.message}>아직 카드 묶음이 없어요 😂</p>
-          <button
-            className={styles.message_button}
-            onClick={() => router.push("/mypage")}
-          >
-            카드 묶음 만들기
           </button>
         </div>
       ) : (

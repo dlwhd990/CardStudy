@@ -1,37 +1,37 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Folder from "../model/folder";
+import Like from "../model/like";
 
 const initialState = { list: [] };
 
-const userFolderSlice = createSlice({
-  name: "userFolder",
+const userLikeSlice = createSlice({
+  name: "userLike",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(loadUserFolderList.pending, (state) => {
+    builder.addCase(loadUserLikeList.pending, (state) => {
       // 나중에 로딩 추가 가능
       // state.list = [];
     });
 
-    builder.addCase(loadUserFolderList.fulfilled, (state, action) => {
+    builder.addCase(loadUserLikeList.fulfilled, (state, action) => {
       if (!action.payload.success) {
         state.list = [];
       } else {
         state.list = action.payload.result.sort(
-          (a: Folder, b: Folder) => b.date - a.date
+          (a: Like, b: Like) => b.date - a.date
         );
       }
     });
   },
 });
 
-export const loadUserFolderList = createAsyncThunk(
-  "userFolderSlice/loadUserFolderList",
+export const loadUserLikeList = createAsyncThunk(
+  "userLikeSlice/loadUserLikeList",
   async () => {
-    const response = await fetch("/api/user/folder");
+    const response = await fetch("/api/user/like");
     const data = await response.json();
     return data;
   }
 );
 
-export default userFolderSlice;
+export default userLikeSlice;

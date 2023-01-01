@@ -53,6 +53,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-right: 0.8875rem;
 }
 
 /* .search_input {
@@ -98,7 +99,6 @@
   width: 4rem;
   height: 4rem;
   background-color: var(--color-mint);
-  margin-right: 0.8875rem;
   transition: 400ms width ease-in-out;
 }
 
@@ -119,9 +119,9 @@
   color: white;
 }
 
-/* .search_icon {
+.search_icon {
   margin: 0;
-} */
+}
 
 .user_container {
   position: relative;

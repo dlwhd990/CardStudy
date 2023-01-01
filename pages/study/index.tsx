@@ -5,17 +5,14 @@ import { useState } from "react";
 import FolderCard from "../../components/FolderCard/FolderCard";
 import Folder from "../../model/folder";
 import Problem from "../../model/problem";
-import { useAppSelector } from "../../store/hooks";
 import styles from "../../styles/studyMain.module.css";
 import { connectToDatabase } from "../../util/mongodb";
 
 const StudyMain: React.FC<{ folderList: Folder[]; problemList: Problem[] }> = ({
   folderList,
-  problemList,
 }) => {
   const [pageNum, setPageNum] = useState(1);
   const [pageListNum, setPageListNum] = useState(0);
-  const userData = useAppSelector((state) => state.userData);
   const router = useRouter();
 
   const changePageNum = (e: React.MouseEvent) => {
@@ -44,17 +41,7 @@ const StudyMain: React.FC<{ folderList: Folder[]; problemList: Problem[] }> = ({
       <p className={styles.description}>
         다른 회원들의 카드 묶음으로 공부할 수 있어요
       </p>
-      {userData.name.length === 0 ? (
-        <div className={styles.message_box}>
-          <p className={styles.message}>🔒 로그인 후에 사용해주세요</p>
-          <button
-            className={styles.message_button}
-            onClick={() => router.back()}
-          >
-            뒤로 가기
-          </button>
-        </div>
-      ) : folderList.length === 0 ? (
+      {folderList.length === 0 ? (
         <div className={styles.message_box}>
           <p className={styles.message}>아직 카드 묶음이 없어요 😂</p>
           <button

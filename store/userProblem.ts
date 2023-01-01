@@ -22,7 +22,7 @@ const userProblemSlice = createSlice({
 
 export const loadUserProblemList = createAsyncThunk(
   "userProblemSlice/loadUserProblemList",
-  async (req, res) => {
+  async () => {
     const response = await fetch("/api/user/problem");
     const body = response.json();
     return body;
