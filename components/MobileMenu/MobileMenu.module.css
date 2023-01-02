@@ -3,11 +3,12 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
+  height: 100vh;
   min-height: 100vh;
   z-index: 3;
   background-color: white;
   visibility: collapse;
+  overflow-y: scoll;
 }
 
 .user_data_container {
@@ -75,12 +76,6 @@
 .menu_title {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 2rem;
-}
-
-.menu ul {
-  height: 100%;
-  overflow-y: scroll;
 }
 
 .button {
