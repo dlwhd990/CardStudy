@@ -97,9 +97,9 @@ const MobileMenu = () => {
       <div className={styles.divide_line}></div>
       <section className={styles.menu}>
         <p className={styles.menu_title}>메뉴</p>
-        <ul>
+        <ul className={styles.menu_list}>
           <li
-            className={styles.button}
+            className={`${styles.button} ${styles.button_first}`}
             onClick={() => onMenuClickHandler("/study")}
           >
             <FontAwesomeIcon
