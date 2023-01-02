@@ -5,7 +5,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(32, 32, 32, 0.8);
-  z-index: 3;
+  z-index: 2;
 }
 
 .report_popup {
@@ -85,4 +85,29 @@
   color: white;
   border-radius: 8px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .report_popup {
+    width: 95vw;
+    height: auto;
+  }
+
+  .folder_title,
+  .content_title {
+    font-size: 1.8rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .submit_button {
+    font-size: 1.6rem;
+  }
+
+  .close_button {
+    top: 1.4rem;
+    right: 1.4rem;
+  }
 }

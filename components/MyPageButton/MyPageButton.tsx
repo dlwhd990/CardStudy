@@ -7,7 +7,7 @@ const MyPageButton = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <Link href="/mypage" onClick={() => dispatch(closeUserBox())}>
+    <Link href="/mypage/problem" onClick={() => dispatch(closeUserBox())}>
       <button className={styles.mypage_button}>마이페이지</button>
     </Link>
   );

@@ -56,3 +56,10 @@
   left: 2rem;
   z-index: 1;
 }
+
+@media screen and (max-width: 700px) {
+  .card {
+    width: 95vw;
+    border-radius: 16px;
+  }
+}

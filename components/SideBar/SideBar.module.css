@@ -74,3 +74,9 @@
 .icon_mint {
   color: var(--color-mint);
 }
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+}

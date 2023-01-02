@@ -30,6 +30,12 @@
   margin-top: 2rem;
 }
 
+.card_list li {
+  width: 23rem;
+  height: 23rem;
+  margin: 1rem;
+}
+
 .message_box {
   position: absolute;
   top: 50%;
@@ -89,4 +95,58 @@
 .page_selected {
   color: var(--color-mint);
   font-weight: 900;
+}
+
+@media screen and (max-width: 1000px) {
+  .search_page {
+    width: 90%;
+    margin: auto;
+  }
+  .card_list li {
+    flex-basis: 32%;
+    margin: 0.6%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card_list li {
+    flex-basis: 49%;
+    margin: 0.5%;
+  }
+
+  .message {
+    font-size: 2.2rem;
+    white-space: nowrap;
+  }
+
+  .message_button {
+    font-size: 1.6rem;
+    padding: 0.7rem 3rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .search_page {
+    width: 95%;
+    padding-top: 2rem;
+  }
+
+  .search_page h2 {
+    font-size: 2.2rem;
+    margin-left: 0.7%;
+  }
+
+  .description {
+    font-size: 1.7rem;
+    margin-left: 0.7%;
+    font-weight: 500;
+    color: #687074;
+  }
+
+  .card_list li {
+    height: auto;
+    flex-basis: 49%;
+    max-width: 49%;
+    margin: 0.5%;
+  }
 }

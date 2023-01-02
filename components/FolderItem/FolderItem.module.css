@@ -35,6 +35,7 @@
 
 .add_button {
   width: 100%;
+
   background-color: transparent;
   border: none;
   border-bottom: 1px solid lightgray;
@@ -76,4 +77,32 @@
 
 .delete_icon:hover {
   color: var(--color-red);
+}
+
+@media screen and (max-width: 700px) {
+  .title_part {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .study_item {
+    padding: 1.2rem 1.5rem;
+  }
+  .add_button {
+    padding: 1rem 1.5rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .plus_icon {
+    font-size: 1.6rem;
+    margin-right: 0.5rem;
+  }
+
+  .add_button {
+    font-size: 1.6rem;
+  }
 }

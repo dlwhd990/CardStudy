@@ -4,22 +4,24 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 1.2rem 3rem 1.2rem 7rem;
-  font-size: 1.8rem;
   border-bottom: 1px solid lightgray;
 }
 
 .answer {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  font-size: 1.8rem;
 }
 
 .a {
   color: var(--color-mint);
   margin-right: 1rem;
+  font-size: 1.8rem;
 }
 
 .update_icon {
+  font-size: 1.8rem;
   margin: 0 1rem;
   transition: 120ms all ease-in-out;
   cursor: pointer;
@@ -27,4 +29,19 @@
 
 .update_icon:hover {
   color: var(--color-blue);
+}
+
+@media screen and (max-width: 500px) {
+  .answer_container {
+    padding: 1.2rem 1rem 1.2rem 5.5rem;
+  }
+
+  .answer {
+    font-size: 1.6rem;
+  }
+
+  .a {
+    font-size: 1.6rem;
+    margin-right: 0.8rem;
+  }
 }

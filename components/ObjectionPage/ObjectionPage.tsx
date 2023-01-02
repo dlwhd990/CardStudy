@@ -10,6 +10,9 @@ const ObjectionPage = () => {
       <h2>알림</h2>
       <div className={styles.list_container}>
         <div className={styles.list_top}>
+          <p
+            className={styles.mobile_top}
+          >{`알림 총 ${userObjectionList.length} 건`}</p>
           <p className={styles.title}>제목</p>
           <p className={styles.content}>내용</p>
           <p className={styles.date}>일시</p>

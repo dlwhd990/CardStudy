@@ -5,7 +5,7 @@
 }
 
 .manager {
-  width: 100%;
+  width: 90%;
   height: 100%;
   max-width: 120rem;
   margin: auto;
@@ -51,4 +51,23 @@
 
 .add_button:hover {
   background-color: rgb(247, 247, 247);
+}
+
+@media screen and (max-width: 500px) {
+  .manage_container {
+    padding: 0;
+    padding-bottom: 8rem;
+  }
+
+  .manager {
+    width: 100%;
+  }
+
+  .add_button {
+    font-size: 1.6rem;
+  }
+
+  .plus_icon {
+    font-size: 1.6rem;
+  }
 }

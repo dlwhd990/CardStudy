@@ -10,8 +10,7 @@ async function likeUploadAPI(req: NextApiRequest, res: NextApiResponse) {
     const db = await connectToDatabase();
     const collection = db.collection("like");
 
-    const { _id, title, like, userId, userName, problemCount } =
-      req.body.folder;
+    const { _id, title, like, userId, userName } = req.body.folder;
 
     await collection.insertOne({
       folderId: _id.toString(),
@@ -21,7 +20,6 @@ async function likeUploadAPI(req: NextApiRequest, res: NextApiResponse) {
       likedUserName: req.body.userName,
       authorId: userId,
       authorName: userName,
-      problemCount,
       date: new Date().getTime(),
     });
 

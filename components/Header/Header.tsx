@@ -1,6 +1,7 @@
 import styles from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faBars,
   faBell,
   faMagnifyingGlass,
   faUser,
@@ -10,6 +11,7 @@ import Link from "next/link";
 import UserBox from "../UserBox/UserBox";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
+  changeMobileMenu,
   changeObjectionPreview,
   changeUserBoxState,
   closeObjectionPreview,
@@ -72,6 +74,10 @@ const Header = () => {
     return faMagnifyingGlass;
   };
 
+  const onToggleClickHandler = () => {
+    dispatch(changeMobileMenu());
+  };
+
   useEffect(() => {
     if (!userObjectionList) return;
     const newObjectionList = userObjectionList.filter(
@@ -82,84 +88,91 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.left}>
-        <Link href="/" className={styles.logo}>
-          <h1>CardStudy</h1>
-        </Link>
-        <nav className={styles.navbar}>
-          <ul>
-            <li>
-              <Link href="/study" className={styles.link}>
-                공부하기
-              </Link>
-            </li>
-            <li>
-              <Link href="/mystudy" className={styles.link}>
-                나의공부
-              </Link>
-            </li>
-            {/* <li>
+      <FontAwesomeIcon
+        icon={faBars}
+        className={styles.toggle_button}
+        onClick={onToggleClickHandler}
+      />
+      <Link href="/" className={styles.logo}>
+        <h1>CardStudy</h1>
+      </Link>
+      <div className={styles.header_main}>
+        <div className={styles.left}>
+          <nav className={styles.navbar}>
+            <ul>
+              <li>
+                <Link href="/study" className={styles.link}>
+                  공부하기
+                </Link>
+              </li>
+              <li>
+                <Link href="/mystudy" className={styles.link}>
+                  나의공부
+                </Link>
+              </li>
+              {/* <li>
               <Link href="/study" className={styles.link}>
                 문의하기
               </Link>
             </li> */}
-          </ul>
-        </nav>
-      </div>
-      <div className={styles.right}>
-        <div className={styles.search_container}>
-          <form onSubmit={searchHandler}>
-            <input
-              value={searchInput}
-              onChange={changeSearchInput}
-              type="text"
-              placeholder="검색"
-              className={`${styles.search_input} ${
-                showSearchInput
-                  ? `${styles.search_input_on}`
-                  : `${styles.search_input_off}`
-              }`}
-              autoFocus
-            />
-          </form>
-          <div
-            className={`${styles.search_icon_container} ${
-              showSearchInput
-                ? `${styles.search_icon_container_on}`
-                : `${styles.search_icon_container_off}`
-            }`}
-          >
-            <FontAwesomeIcon
-              icon={searchIconSelector()}
-              className={`${styles.header_icon} ${
-                showSearchInput
-                  ? `${styles.close_icon}`
-                  : `${styles.search_icon}`
-              }`}
-              onClick={changeShowSearchInput}
-            />
-          </div>
+            </ul>
+          </nav>
         </div>
-        <div className={styles.user_container}>
-          <FontAwesomeIcon
-            icon={faUser}
-            className={styles.header_icon}
-            onClick={changeShowUserBox}
-          />
-          {showUserBox && <UserBox />}
-        </div>
-        <div className={styles.objection_container}>
-          <FontAwesomeIcon
-            icon={faBell}
-            className={styles.header_icon}
-            onClick={changeShowObjectionPreview}
-          />
-          {newObjectionCount > 0 && (
-            <div className={styles.badge_container}>
-              <NumberBadge num={newObjectionCount} />
+        <div className={styles.right}>
+          <div className={styles.search_container}>
+            <form onSubmit={searchHandler}>
+              <input
+                value={searchInput}
+                onChange={changeSearchInput}
+                type="text"
+                placeholder="검색"
+                className={`${styles.search_input} ${
+                  showSearchInput
+                    ? `${styles.search_input_on}`
+                    : `${styles.search_input_off}`
+                }`}
+                autoFocus
+              />
+            </form>
+            <div
+              className={`${styles.search_icon_container} ${
+                showSearchInput
+                  ? `${styles.search_icon_container_on}`
+                  : `${styles.search_icon_container_off}`
+              }`}
+            >
+              <FontAwesomeIcon
+                icon={searchIconSelector()}
+                className={`${styles.header_icon} ${
+                  showSearchInput
+                    ? `${styles.close_icon}`
+                    : `${styles.search_icon}`
+                }`}
+                onClick={changeShowSearchInput}
+              />
             </div>
-          )}
-          {showObjectionPreview && <ObjectionPreview />}
+          </div>
+          <div className={styles.user_container}>
+            <FontAwesomeIcon
+              icon={faUser}
+              className={styles.header_icon}
+              onClick={changeShowUserBox}
+            />
+            {showUserBox && <UserBox />}
+          </div>
+          <div className={styles.objection_container}>
+            <FontAwesomeIcon
+              icon={faBell}
+              className={styles.header_icon}
+              onClick={changeShowObjectionPreview}
+            />
+            {newObjectionCount > 0 && (
+              <div className={styles.badge_container}>
+                <NumberBadge num={newObjectionCount} />
+              </div>
+            )}
+            {showObjectionPreview && <ObjectionPreview />}
+          </div>
         </div>
       </div>
     </header>

@@ -7,8 +7,16 @@
   background-color: var(--color-pink);
   box-shadow: 0 0 4px lightgray;
   border-radius: 10px;
+  z-index: 4;
+}
+
+.off {
+  visibility: collapse;
+}
+
+.on {
+  visibility: visible;
   animation: 0.4s appear;
-  z-index: 5;
 }
 
 .message {
@@ -26,5 +34,18 @@
   100% {
     transform: translateY(-50%, 0);
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .alert_box {
+    padding: 0.8rem 2rem;
+    background-color: var(--color-pink);
+    box-shadow: 0 0 4px lightgray;
+    border-radius: 10px;
+  }
+  .message {
+    font-size: 1.7rem;
+    white-space: nowrap;
   }
 }

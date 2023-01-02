@@ -1,0 +1,123 @@
+.mobile_menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background-color: white;
+  visibility: collapse;
+}
+
+.user_data_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rem 2rem 3rem 2rem;
+}
+
+.user_image {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+.name_and_welcome {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.welcome {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  margin-left: 0.2rem;
+  color: #687074;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.login_container {
+  text-align: center;
+  margin-top: 1.6rem;
+}
+
+.login_container p {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.divide_line {
+  width: 100%;
+  height: 1px;
+  background-color: lightgray;
+}
+
+.search_section {
+  width: 100%;
+  height: 8rem;
+  background-color: var(--color-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  padding: 2rem 2.4rem;
+}
+
+.menu_title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.button {
+  font-size: 1.8rem;
+  margin: 2rem 0;
+  cursor: pointer;
+}
+
+.button span {
+  font-weight: 500;
+  margin-left: 1rem;
+}
+
+.icon_green {
+  color: var(--color-green);
+}
+
+.icon_blue {
+  color: var(--color-blue);
+}
+
+.icon_pink {
+  color: var(--color-pink);
+}
+
+.icon_red {
+  color: var(--color-red);
+}
+
+.icon_mint {
+  color: var(--color-mint);
+}
+
+@media screen and (max-width: 1100px) {
+  .on {
+    transform: translateX(0);
+    transition: 200ms all ease-in-out;
+    visibility: visible;
+  }
+
+  .off {
+    transform: translateX(100vw);
+    visibility: collapse;
+    transition: 200ms all ease-in-out;
+  }
+}

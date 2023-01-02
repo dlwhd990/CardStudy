@@ -17,3 +17,17 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+@media screen and (max-width: 700px) {
+  .form {
+    width: 100%;
+  }
+  .form input {
+    width: 75%;
+  }
+
+  .form button {
+    width: 20%;
+    min-width: 5rem;
+  }
+}

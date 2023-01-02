@@ -21,11 +21,34 @@
 .content {
   width: 60%;
   padding-right: 3rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .date {
   width: 20%;
+}
+
+@media screen and (max-width: 700px) {
+  .objection_item {
+    flex-direction: column;
+  }
+
+  .title,
+  .content,
+  .date {
+    width: 100%;
+    padding: 0;
+  }
+
+  .content {
+    margin: 0.4rem 0 0.8rem 0;
+  }
+
+  .date {
+    font-size: 1.3rem !important;
+    color: #687074;
+  }
+
+  .objection_item p {
+    font-size: 1.5rem;
+  }
 }

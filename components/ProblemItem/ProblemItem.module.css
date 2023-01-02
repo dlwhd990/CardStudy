@@ -2,7 +2,6 @@
   width: 100%;
   border-bottom: 1px solid lightgray;
   padding: 1.2rem 3rem 1.2rem 5rem;
-  font-size: 1.8rem;
   cursor: pointer;
   transition: 120ms all ease-in-out;
   display: flex;
@@ -11,16 +10,15 @@
 }
 
 .question {
+  font-size: 1.8rem;
   font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .q {
+  font-size: 1.8rem;
   color: var(--color-mint);
   margin-right: 1rem;
 }
@@ -50,4 +48,19 @@
 
 .delete_icon:hover {
   color: var(--color-red);
+}
+
+@media screen and (max-width: 500px) {
+  .problem {
+    padding: 1.2rem 1.5rem 1.2rem 4rem;
+  }
+
+  .question {
+    font-size: 1.6rem;
+  }
+
+  .q {
+    font-size: 1.6rem;
+    margin-right: 0.6rem;
+  }
 }

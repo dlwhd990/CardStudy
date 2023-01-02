@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Fragment, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import { removeUserData, setUserData } from "../../store/userData";
 import { loadUserFolderList } from "../../store/userFolder";
 import { loadUserLikeList } from "../../store/userLike";
@@ -8,10 +8,10 @@ import { loadUserObjectionList } from "../../store/userObjection";
 import { loadUserProblemList } from "../../store/userProblem";
 import AlertBox from "../AlertBox/AlertBox";
 import Header from "../Header/Header";
+import MobileMenu from "../MobileMenu/MobileMenu";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dispatch = useAppDispatch();
-  const alertShow = useAppSelector((state) => state.alert.show);
 
   useEffect(() => {
     // 로그인 체크 => 새로고침 시 마다 실행
@@ -40,7 +40,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <Fragment>
       <Header />
-      {alertShow && <AlertBox />}
+      <AlertBox />
+      <MobileMenu />
       <Fragment>{children}</Fragment>
     </Fragment>
   );

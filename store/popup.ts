@@ -7,6 +7,7 @@ const initialState = {
   objection: false,
   objectionPreview: false,
   report: false,
+  mobileMenu: false,
 };
 
 const popupSlice = createSlice({
@@ -49,6 +50,12 @@ const popupSlice = createSlice({
     closeReport(state) {
       state.report = false;
     },
+    changeMobileMenu(state) {
+      state.mobileMenu = !state.mobileMenu;
+    },
+    closeMobileMenu(state) {
+      state.mobileMenu = false;
+    },
   },
 });
 
@@ -65,6 +72,8 @@ export const {
   closeObjectionPreview,
   openReport,
   closeReport,
+  changeMobileMenu,
+  closeMobileMenu,
 } = popupSlice.actions;
 
 export default popupSlice;

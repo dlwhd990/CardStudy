@@ -40,3 +40,21 @@
   cursor: pointer;
   box-shadow: 0 0 2px lightgray;
 }
+
+@media screen and (max-width: 500px) {
+  .input_and_button {
+    display: flex;
+    flex-direction: column;
+  }
+  .change_name_form {
+    width: 90vw;
+  }
+
+  .change_name_form input {
+    width: 100%;
+  }
+
+  .change_name_form button {
+    margin: 1rem 0 0 0;
+  }
+}

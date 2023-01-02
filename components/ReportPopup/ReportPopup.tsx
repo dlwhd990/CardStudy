@@ -60,14 +60,14 @@ const ReportPopup: React.FC<{ folder: Folder }> = ({ folder }) => {
         <form className={styles.content_box}>
           <p className={styles.folder_title}>{folder.title}</p>
           <label className={styles.content_title} htmlFor="content">
-            이의 내용
+            신고 내용
           </label>
           <textarea
             id="content"
             value={content}
             onChange={changeContent}
             className={styles.content}
-            placeholder="이의 내용을 입력해주세요 (최대 300자)"
+            placeholder="신고 내용을 입력해주세요 (최대 300자)"
           ></textarea>
           <button className={styles.submit_button} onClick={onSubmitHandler}>
             제출

@@ -11,7 +11,7 @@ const ObjectionPreviewItem: React.FC<{ objection: Objection }> = ({
   const dispatch = useAppDispatch();
   const onClickHandler = () => {
     dispatch(closeObjectionPreview());
-    router.push("/mypage");
+    router.push("/mypage/alert");
   };
 
   return (

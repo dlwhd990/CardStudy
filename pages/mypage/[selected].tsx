@@ -7,13 +7,15 @@ import { useAppSelector } from "../../store/hooks";
 import styles from "../../styles/mypage.module.css";
 import ObjectionPage from "../../components/ObjectionPage/ObjectionPage";
 import LikePage from "../../components/LikePage/LikePage";
+import { useRouter } from "next/router";
 
 const MyPage = () => {
   const userData = useAppSelector((state) => state.userData);
   const folderUploadOn = useAppSelector((state) => state.popup.folderUpload);
-  const [selected, setSelected] = useState("problem");
+  const router = useRouter();
+  const { selected } = router.query;
   const changeSelectedValue = (value: string) => {
-    setSelected(value);
+    router.push(`/mypage/${value}`);
   };
 
   const showSelected = () => {

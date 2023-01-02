@@ -139,6 +139,20 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
                 className={styles.arrow_right}
                 onClick={() => arrowClickHandler(false)}
               />
+              <div className={styles.mobile_arrow_container}>
+                <button
+                  className={styles.mobile_arrow_left}
+                  onClick={() => arrowClickHandler(true)}
+                >
+                  이전
+                </button>
+                <button
+                  className={styles.mobile_arrow_right}
+                  onClick={() => arrowClickHandler(false)}
+                >
+                  다음
+                </button>
+              </div>
             </div>
           </section>
           <section className={styles.button_container}>

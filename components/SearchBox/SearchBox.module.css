@@ -1,0 +1,30 @@
+.search_box {
+  width: 90%;
+  height: 4rem;
+  background-color: white;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.search_box input {
+  height: 4rem;
+  width: 90%;
+  outline: none;
+  border: none;
+  font-size: 1.6rem;
+}
+
+.search_box button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.search_icon {
+  font-size: 1.8rem;
+  color: #2f3438;
+}

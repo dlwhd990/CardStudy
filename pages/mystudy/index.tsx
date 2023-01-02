@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import FolderCard from "../../components/FolderCard/FolderCard";
 import Folder from "../../model/folder";
-import Problem from "../../model/problem";
 import { useAppSelector } from "../../store/hooks";
 import styles from "../../styles/mystudy.module.css";
 
@@ -12,7 +11,6 @@ const MyStudy = () => {
   const [pageNum, setPageNum] = useState(1);
   const [pageListNum, setPageListNum] = useState(0);
   const userFolderList = useAppSelector((state) => state.userFolder.list);
-  const userProblemList = useAppSelector((state) => state.userProblem.list);
   const userData = useAppSelector((state) => state.userData);
   const router = useRouter();
 
@@ -55,7 +53,7 @@ const MyStudy = () => {
           <p className={styles.message}>아직 카드 묶음이 없어요 😂</p>
           <button
             className={styles.message_button}
-            onClick={() => router.push("/mypage")}
+            onClick={() => router.push("/mypage/problem")}
           >
             카드 묶음 만들기
           </button>

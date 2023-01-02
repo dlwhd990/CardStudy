@@ -45,6 +45,10 @@
   cursor: pointer;
 }
 
+.mobile_arrow_container {
+  display: none;
+}
+
 .button_container {
   width: 50rem;
   display: flex;
@@ -73,4 +77,69 @@
 
 .report {
   color: var(--color-blue);
+}
+
+@media screen and (max-width: 700px) {
+  .study {
+    padding: 3rem 1rem;
+  }
+
+  .study_title {
+    font-size: 2.6rem;
+  }
+  .author {
+    font-size: 1.8rem;
+    margin: 1.2rem 0 2.2rem 0;
+  }
+
+  .problem_number_count {
+    font-size: 2rem;
+    letter-spacing: 0.7rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .problem_container {
+    flex-direction: column;
+  }
+
+  .arrow_left,
+  .arrow_right {
+    display: none;
+  }
+
+  .mobile_arrow_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
+    width: 95vw;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .mobile_arrow_left,
+  .mobile_arrow_right {
+    width: 49.5%;
+    height: 3.5rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 0 3px lightgray;
+    background-color: #fff6bd;
+    cursor: pointer;
+  }
+
+  .card_section {
+    width: 100%;
+  }
+
+  .button_container {
+    width: 95vw;
+    padding: 1rem 4rem;
+  }
+
+  .study_button {
+    font-size: 1.6rem;
+  }
 }

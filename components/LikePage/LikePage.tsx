@@ -35,89 +35,97 @@ const LikePage = () => {
 
   return (
     <div className={styles.like_page}>
-      <h2>좋아요</h2>
-      <p className={styles.description}>
-        내가 좋아요 한 카드 묶음을 모아서 볼 수 있어요
-      </p>
       {userLikeList.length === 0 ? (
         <div className={styles.message_box}>
-          <p className={styles.message}>아직 카드 묶음이 없어요 😂</p>
+          <p className={styles.message}>
+            아직 좋아요 하신 카드 묶음이 없어요 😂
+          </p>
           <button
             className={styles.message_button}
-            onClick={() => router.push("/mypage")}
+            onClick={() => router.push("/study")}
           >
-            카드 묶음 만들기
+            카드 묶음 보러가기
           </button>
         </div>
       ) : (
-        <section className={styles.folder_card_section}>
-          <ul className={styles.card_list}>
-            {userLikeList
-              .slice((pageNum - 1) * 8, pageNum * 8)
-              .map((like: Like) => (
-                <li key={like._id.toString()}>
-                  <FolderCard item={like} count={-1} />
-                </li>
-              ))}
-          </ul>
-          <div className={styles.page_box}>
-            <FontAwesomeIcon
-              icon={faAngleLeft}
-              className={styles.arrow_prev}
-              onClick={clickArrowPrev}
-            />
-            <ul onClick={changePageNum}>
-              <li
-                className={`${
-                  pageNum === 1 + pageListNum * 5 && `${styles.page_selected}`
-                }`}
-              >
-                {1 + pageListNum * 5}
-              </li>
-              {(1 + pageListNum * 5) * 8 < userLikeList.length && (
-                <li
-                  className={`${
-                    pageNum === 2 + pageListNum * 5 && `${styles.page_selected}`
-                  }`}
-                >
-                  {2 + pageListNum * 5}
-                </li>
-              )}
-              {(2 + pageListNum * 5) * 8 < userLikeList.length && (
-                <li
-                  className={`${
-                    pageNum === 3 + pageListNum * 5 && `${styles.page_selected}`
-                  }`}
-                >
-                  {3 + pageListNum * 5}
-                </li>
-              )}
-              {(3 + pageListNum * 5) * 8 < userLikeList.length && (
-                <li
-                  className={`${
-                    pageNum === 4 + pageListNum * 5 && `${styles.page_selected}`
-                  }`}
-                >
-                  {4 + pageListNum * 5}
-                </li>
-              )}
-              {(4 + pageListNum * 5) * 8 < userLikeList.length && (
-                <li
-                  className={`${
-                    pageNum === 5 + pageListNum * 5 && `${styles.page_selected}`
-                  }`}
-                >
-                  {5 + pageListNum * 5}
-                </li>
-              )}
+        <>
+          <h2>좋아요</h2>
+          <p className={styles.description}>
+            내가 좋아요 한 카드 묶음을 모아서 볼 수 있어요
+          </p>
+          <section className={styles.folder_card_section}>
+            <ul className={styles.card_list}>
+              {userLikeList
+                .slice((pageNum - 1) * 8, pageNum * 8)
+                .map((like: Like) => (
+                  <li key={like._id.toString()}>
+                    <FolderCard item={like} count={-1} />
+                  </li>
+                ))}
             </ul>
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              className={styles.arrow_next}
-              onClick={clickArrowNext}
-            />
-          </div>
-        </section>
+            <div className={styles.page_box}>
+              <FontAwesomeIcon
+                icon={faAngleLeft}
+                className={styles.arrow_prev}
+                onClick={clickArrowPrev}
+              />
+              <ul onClick={changePageNum}>
+                <li
+                  className={`${
+                    pageNum === 1 + pageListNum * 5 && `${styles.page_selected}`
+                  }`}
+                >
+                  {1 + pageListNum * 5}
+                </li>
+                {(1 + pageListNum * 5) * 8 < userLikeList.length && (
+                  <li
+                    className={`${
+                      pageNum === 2 + pageListNum * 5 &&
+                      `${styles.page_selected}`
+                    }`}
+                  >
+                    {2 + pageListNum * 5}
+                  </li>
+                )}
+                {(2 + pageListNum * 5) * 8 < userLikeList.length && (
+                  <li
+                    className={`${
+                      pageNum === 3 + pageListNum * 5 &&
+                      `${styles.page_selected}`
+                    }`}
+                  >
+                    {3 + pageListNum * 5}
+                  </li>
+                )}
+                {(3 + pageListNum * 5) * 8 < userLikeList.length && (
+                  <li
+                    className={`${
+                      pageNum === 4 + pageListNum * 5 &&
+                      `${styles.page_selected}`
+                    }`}
+                  >
+                    {4 + pageListNum * 5}
+                  </li>
+                )}
+                {(4 + pageListNum * 5) * 8 < userLikeList.length && (
+                  <li
+                    className={`${
+                      pageNum === 5 + pageListNum * 5 &&
+                      `${styles.page_selected}`
+                    }`}
+                  >
+                    {5 + pageListNum * 5}
+                  </li>
+                )}
+              </ul>
+              <FontAwesomeIcon
+                icon={faAngleRight}
+                className={styles.arrow_next}
+                onClick={clickArrowNext}
+              />
+            </div>
+          </section>
+        </>
       )}
     </div>
   );

@@ -46,7 +46,7 @@ const StudyMain: React.FC<{ folderList: Folder[]; problemList: Problem[] }> = ({
           <p className={styles.message}>아직 카드 묶음이 없어요 😂</p>
           <button
             className={styles.message_button}
-            onClick={() => router.push("/mypage")}
+            onClick={() => router.push("/mypage/problem")}
           >
             카드 묶음 만들기
           </button>
