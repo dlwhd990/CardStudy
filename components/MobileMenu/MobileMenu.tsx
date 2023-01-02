@@ -1,5 +1,6 @@
 import {
   faArrowRightFromBracket,
+  faBars,
   faBell,
   faFolder,
   faHeart,
@@ -12,7 +13,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { closeMobileMenu } from "../../store/popup";
+import { changeMobileMenu, closeMobileMenu } from "../../store/popup";
 import SearchBox from "../SearchBox/SearchBox";
 import styles from "./MobileMenu.module.css";
 
@@ -45,12 +46,21 @@ const MobileMenu = () => {
     window.location.reload();
   };
 
+  const onToggleClickHandler = () => {
+    dispatch(changeMobileMenu());
+  };
+
   return (
     <div
       className={`${styles.mobile_menu} ${
         mobileMenuOn ? `${styles.on}` : `${styles.off}`
       }`}
     >
+      <FontAwesomeIcon
+        icon={faBars}
+        className={styles.toggle_button}
+        onClick={onToggleClickHandler}
+      />
       <section className={styles.user_data_container}>
         <img
           loading="lazy"

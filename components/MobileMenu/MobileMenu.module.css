@@ -77,6 +77,11 @@
   margin-bottom: 2rem;
 }
 
+.menu ul {
+  height: 100%;
+  overflow-y: scroll;
+}
+
 .button {
   font-size: 1.8rem;
   margin: 2rem 0;
@@ -86,6 +91,16 @@
 .button span {
   font-weight: 500;
   margin-left: 1rem;
+}
+
+.toggle_button {
+  visibility: visible;
+  font-size: 2.4rem;
+  color: #2f3438;
+  position: absolute;
+  top: 2.7rem;
+  right: 3rem;
+  cursor: pointer;
 }
 
 .icon_green {
