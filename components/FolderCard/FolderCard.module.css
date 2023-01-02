@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid var(--color-mint);
+  border: 2px solid var(--color-blue);
   border-radius: 16px;
   padding: 3rem 2rem;
   transition: 200ms all ease-in-out;
@@ -15,7 +15,7 @@
 
 .folder_icon {
   font-size: 4rem;
-  color: var(--color-mint);
+  color: var(--color-blue);
 }
 
 .title {
@@ -31,7 +31,7 @@
   height: 3rem;
   outline: none;
   border: none;
-  background-color: var(--color-mint);
+  background-color: var(--color-blue);
   border-radius: 6px;
   font-size: 1.6rem;
   font-weight: 500;

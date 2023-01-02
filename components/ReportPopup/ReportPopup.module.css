@@ -21,7 +21,7 @@
 
 .report_top {
   padding: 1.6rem 2rem;
-  background-color: var(--color-mint);
+  background-color: var(--color-blue);
   border-radius: 11px 11px 0 0;
 }
 
@@ -81,7 +81,7 @@
   font-size: 2rem;
   font-weight: 500;
   border: none;
-  background-color: var(--color-mint);
+  background-color: var(--color-blue);
   color: white;
   border-radius: 8px;
   cursor: pointer;

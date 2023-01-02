@@ -7,7 +7,7 @@
 .card {
   width: 50rem;
   min-height: 30rem;
-  background-color: var(--color-mint);
+  background-color: var(--color-blue);
   border-radius: 32px;
   font-size: 2.2rem;
   display: flex;

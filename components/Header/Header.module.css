@@ -1,12 +1,18 @@
 .header {
   width: 100%;
-  display: flex;
   height: 8.7rem;
-  flex-direction: row;
-  align-items: center;
-  padding: 2rem 8rem;
   border-bottom: 1px solid #e1e3e4;
   position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.header_body {
+  width: 100rem;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .header_main {
@@ -27,11 +33,11 @@
   font-size: 3.2rem;
   font-weight: 900;
   cursor: pointer;
-  color: var(--color-mint);
+  color: var(--color-blue);
 }
 
 .logo {
-  margin-right: 10rem;
+  margin-right: 6rem;
 }
 
 .navbar ul {
@@ -48,7 +54,7 @@
 }
 
 .navbar ul li:hover {
-  color: var(--color-mint);
+  color: var(--color-blue);
   transition: 140ms all ease-in-out;
 }
 
@@ -66,18 +72,6 @@
   margin-right: 0.8875rem;
 }
 
-/* .search_input {
-  width: 25rem;
-  height: 4rem;
-  padding: 0 4rem 0 0.8rem;
-  font-size: 1.6rem;
-  outline: none;
-  transform: translateX(18%);
-  border-radius: 12px;
-  border: 1px solid var(--color-mint);
-  visibility: hidden;
-} */
-
 .search_input_on {
   width: 25rem;
   height: 4rem;
@@ -86,7 +80,7 @@
   outline: none;
   transform: translateX(13%);
   /* border-radius: 12px; */
-  border: 1px solid var(--color-mint);
+  border: 1px solid var(--color-blue);
   transition: 400ms all ease-in-out;
 }
 
@@ -108,7 +102,7 @@
 .search_icon_container_on {
   width: 4rem;
   height: 4rem;
-  background-color: var(--color-mint);
+  background-color: var(--color-blue);
   transition: 400ms width ease-in-out;
 }
 
@@ -151,23 +145,10 @@
   visibility: collapse;
 }
 
-@media screen and (max-width: 1120px) {
-  .header {
-    padding: 2rem 3rem;
-  }
-
-  .header h1 {
-    font-size: 2.8rem;
-  }
-
-  .logo {
-    margin-right: 6rem;
-  }
-}
-
 @media screen and (max-width: 1000px) {
   .header {
     height: auto;
+    padding: 2rem 3rem;
   }
   .toggle_button {
     visibility: visible;
@@ -181,6 +162,13 @@
 
   .header_main {
     display: none;
+  }
+  .header h1 {
+    font-size: 2.8rem;
+  }
+
+  .logo {
+    margin-right: 6rem;
   }
 }
 
