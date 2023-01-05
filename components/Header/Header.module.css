@@ -65,7 +65,7 @@
 
 .navbar ul li a:hover {
   color: var(--color-blue);
-  transition: 140ms all ease-in-out;
+  transition: 200ms all ease-in-out;
 }
 
 .right {
@@ -93,20 +93,21 @@
   font-size: 1.6rem;
   outline: none;
   transform: translateX(13%);
-  /* border-radius: 12px; */
-  transition: 400ms all ease-in-out;
-  box-shadow: 0 0 6px lightgray;
+  transition: 200ms all ease-in-out;
+  box-shadow: 1px 1px 3px lightgray;
+  border: 0.1rem solid rgb(235, 235, 235);
+  border-radius: 8px;
 }
 
 .search_input_off {
   width: 0;
   height: 4rem;
-  transition: 400ms all ease-in-out;
+  transition: 200ms all ease-in-out;
 }
 
 .search_icon_container {
   z-index: 1;
-  /* border-radius: 8px; */
+  border-radius: 0 8px 8px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +117,7 @@
   width: 4rem;
   height: 4rem;
   background-color: var(--color-blue);
-  transition: 400ms width ease-in-out;
+  transition: 200ms width ease-in-out;
 }
 
 .search_icon_container_off {
@@ -133,7 +134,7 @@
 
 .header_icon:hover {
   color: var(--color-blue);
-  transition: 140ms all ease-in-out;
+  transition: 200ms all ease-in-out;
 }
 
 .close_icon {

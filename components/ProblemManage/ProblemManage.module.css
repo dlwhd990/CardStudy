@@ -10,7 +10,8 @@
   max-width: 120rem;
   margin: auto;
   /* border: 1px solid lightgray; */
-  box-shadow: 0 0 15px lightgray;
+  /* box-shadow: 0 0 15px lightgray; */
+  border: 0.1rem solid rgb(235, 235, 235);
 }
 
 .top {

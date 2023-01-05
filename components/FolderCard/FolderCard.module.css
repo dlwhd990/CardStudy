@@ -47,6 +47,7 @@
 
 .folder_card:hover {
   /* transform: scale(1.04); */
+  transform: translateY(-0.5rem);
   box-shadow: 0 8px 8px lightgray;
   background-color: rgb(249, 250, 251);
 }
