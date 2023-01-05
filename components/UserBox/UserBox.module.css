@@ -40,7 +40,7 @@
 .user_box_top {
   width: 100%;
   /* background-color: var(--color-blue); */
-  padding: 2rem 2rem 1rem 2rem;
+  padding: 1.6rem 2rem 1rem 2rem;
   font-size: 1.8rem;
   font-weight: 700;
 }
@@ -57,11 +57,23 @@
   height: 5rem;
   border-radius: 50%;
 }
+.name_and_welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 1.5rem;
+}
+
+.welcome {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  color: #687074;
+}
 
 .user_name {
   font-size: 1.8rem;
   font-weight: 700;
-  margin-left: 1.5rem;
 }
 
 .login_button_container {

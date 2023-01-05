@@ -72,7 +72,7 @@
 }
 
 .menu_list {
-  height: calc(100vh - 38rem);
+  height: calc(100vh - 45rem);
   overflow-y: scroll;
 }
 

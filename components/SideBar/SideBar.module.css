@@ -34,25 +34,37 @@
 }
 
 .menu_title_box {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: 700;
   padding: 1rem 3rem;
   background-color: var(--color-blue);
 }
 
 .menu {
-  padding: 0 3rem;
+  padding: 0 2rem;
 }
 
 .button {
-  font-size: 1.8rem;
-  margin: 1.6rem 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
+  margin: 1.1rem 0;
+  border-radius: 8px;
   cursor: pointer;
+  transition: 200ms all ease-in-out;
+}
+
+.button:hover {
+  background-color: rgba(255, 202, 200, 0.2);
+}
+
+.button:hover span {
+  color: var(--color-red);
 }
 
 .button span {
   font-weight: 500;
   margin-left: 1rem;
+  transition: 200ms all ease-in-out;
 }
 
 .icon_green {

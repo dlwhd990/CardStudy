@@ -34,7 +34,10 @@ const UserBox = () => {
             alt="프로필사진"
             className={styles.user_image}
           />
-          <p className={styles.user_name}>{`${userData.name} 님`}</p>
+          <div className={styles.name_and_welcome}>
+            <p className={styles.welcome}>안녕하세요</p>
+            <p className={styles.user_name}>{`${userData.name} 님`}</p>
+          </div>
         </div>
       )}
       <div className={styles.login_button_container}>
