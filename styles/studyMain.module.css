@@ -127,8 +127,8 @@
 
 @media screen and (max-width: 500px) {
   .main {
-    width: 97.5%;
-    padding-top: 3rem;
+    width: 100%;
+    padding: 3rem 1.5rem;
   }
 
   .main h2 {
@@ -137,10 +137,9 @@
   }
 
   .description {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     margin-left: 0.8rem;
     margin-top: 0.6rem;
-    font-weight: 500;
     color: #687074;
   }
 
@@ -150,8 +149,8 @@
 
   .card_list li {
     height: auto;
-    flex-basis: 49%;
-    max-width: 49%;
-    margin: 0.5%;
+    flex-basis: 48%;
+    max-width: 48%;
+    margin: 1%;
   }
 }

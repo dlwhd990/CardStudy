@@ -81,19 +81,19 @@
 
 @media screen and (max-width: 700px) {
   .study {
-    padding: 3rem 1rem;
+    padding: 2.6rem 1rem;
   }
 
   .study_title {
-    font-size: 2.6rem;
+    font-size: 2.2rem;
   }
   .author {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin: 1.2rem 0 2.2rem 0;
   }
 
   .problem_number_count {
-    font-size: 2rem;
+    font-size: 1.7rem;
     letter-spacing: 0.7rem;
     margin-bottom: 1.6rem;
   }

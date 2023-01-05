@@ -3,7 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid var(--color-blue);
+  /* border: 2px solid var(--color-blue); */
+  box-shadow: 0 0 8px lightgray;
   border-radius: 16px;
   padding: 3rem 2rem;
   transition: 200ms all ease-in-out;

@@ -2,11 +2,11 @@
   position: absolute;
   width: 30rem;
   height: 40rem;
-  border: 1px solid lightgray;
-  box-shadow: 0 0 5px lightgray;
+  box-shadow: 0 0 8px lightgray;
   top: 4rem;
-  transform: translateX(-85%);
+  transform: translateX(-81.5%);
   background-color: white;
+  border-radius: 8px;
   z-index: 2;
   animation: 200ms appear;
 }
@@ -18,7 +18,7 @@
   font-size: 2rem;
   font-weight: 700;
   background-color: var(--color-blue);
-  border-bottom: 1px solid lightgray;
+  border-radius: 8px 8px 0 0;
   color: white;
 }
 
@@ -41,9 +41,9 @@
   border-width: 0 6px 8px 6.5px;
   content: "";
   display: block;
-  left: 280px;
+  left: 270px;
   position: absolute;
-  top: -9px;
+  top: -8px;
   width: 0;
   z-index: 1;
 }
@@ -54,9 +54,9 @@
   border-width: 0 6px 8px 6.5px;
   content: "";
   display: block;
-  left: 280px;
+  left: 270px;
   position: absolute;
-  top: -9px;
+  top: -8px;
   width: 0;
   z-index: 0;
 }
@@ -77,10 +77,10 @@
 @keyframes appear {
   0% {
     opacity: 0;
-    transform: translate3d(0, -15px, 0) translateX(-85%);
+    transform: translate3d(0, -15px, 0) translateX(-81.5%);
   }
   to {
     opacity: 1;
-    transform: translateZ(0) translateX(-85%);
+    transform: translateZ(0) translateX(-81.5%);
   }
 }

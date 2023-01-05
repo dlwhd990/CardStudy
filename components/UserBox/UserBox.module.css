@@ -2,22 +2,22 @@
   position: absolute;
   top: 4rem;
   transform: translateX(-80%);
-  width: 22rem;
-  /* height: 25rem; */
+  width: 30rem;
   background-color: white;
-  box-shadow: 0 0 6px lightgray;
+  box-shadow: 0 0 8px lightgray;
   animation: 200ms appear;
+  border-radius: 8px;
   z-index: 1;
 }
 
 /* https://devbirdfeet.tistory.com/152 */
 .user_box::after {
-  border-color: var(--color-blue) transparent;
+  border-color: white transparent;
   border-style: solid;
   border-width: 0 6px 8px 6.5px;
   content: "";
   display: block;
-  left: 203px;
+  left: 267px;
   position: absolute;
   top: -7px;
   width: 0;
@@ -25,12 +25,12 @@
 }
 
 .user_box::before {
-  border-color: var(--color-blue) transparent;
+  border-color: white transparent;
   border-style: solid;
   border-width: 0 6px 8px 6.5px;
   content: "";
   display: block;
-  left: 203px;
+  left: 267px;
   position: absolute;
   top: -8px;
   width: 0;
@@ -39,30 +39,29 @@
 
 .user_box_top {
   width: 100%;
-  background-color: var(--color-blue);
-  padding: 1rem;
+  /* background-color: var(--color-blue); */
+  padding: 2rem 2rem 1rem 2rem;
   font-size: 1.8rem;
   font-weight: 700;
-  color: white;
 }
 
 .user_data {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem 2rem 2rem 2rem;
 }
 
 .user_image {
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
 }
 
 .user_name {
   font-size: 1.8rem;
   font-weight: 700;
-  margin-top: 1rem;
+  margin-left: 1.5rem;
 }
 
 .login_button_container {
@@ -72,12 +71,19 @@
   align-items: center;
 }
 
-.button_container button {
-  width: 22rem;
+.button_container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.button_container button,
+.button_container a {
+  flex-basis: 50%;
 }
 
 .login_container {
-  padding-bottom: 2rem;
+  padding: 2rem 2rem 3rem 2rem;
 }
 
 @keyframes appear {

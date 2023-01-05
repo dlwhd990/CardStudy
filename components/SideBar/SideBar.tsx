@@ -20,10 +20,7 @@ const SideBar: React.FC<{
         {/* 에러나서 일단 next/image는 적용하지 않음 */}
         <img
           loading="lazy"
-          src={
-            userData.picture ||
-            "https://preview.redd.it/0gfxom5gjlr41.jpg?auto=webp&s=aeb12132cabe51ef0953e5f5d23e8295d6694706"
-          }
+          src={userData.picture || "../../public/images/profile_default.jpeg"}
           alt="프로필사진"
           className={styles.user_image}
         />
