@@ -124,7 +124,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin-top: 1rem;
-    width: 95vw;
+    width: 92vw;
     border: none;
     border-radius: 8px;
   }
@@ -153,7 +153,7 @@
   }
 
   .button_container {
-    width: 95vw;
+    width: 92vw;
     padding: 1rem 4rem;
   }
 
