@@ -32,7 +32,7 @@
 
 .card_list li {
   width: 23rem;
-  height: 23rem;
+  height: 22rem;
   margin: 1rem;
 }
 
@@ -110,8 +110,8 @@
 
 @media screen and (max-width: 768px) {
   .card_list li {
-    flex-basis: 49%;
-    margin: 0.5%;
+    flex-basis: 48%;
+    margin: 1%;
   }
 
   .message {
@@ -152,5 +152,14 @@
     flex-basis: 48%;
     max-width: 48%;
     margin: 1%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .card_list li {
+    height: auto;
+    flex-basis: 100%;
+    max-width: 100%;
+    margin: 0.6rem 0;
   }
 }

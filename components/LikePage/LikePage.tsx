@@ -1,9 +1,10 @@
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Like from "../../model/like";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { loadUserLikeList } from "../../store/userLike";
 import FolderCard from "../FolderCard/FolderCard";
 import styles from "./LikePage.module.css";
 
@@ -12,6 +13,7 @@ const LikePage = () => {
   const [pageListNum, setPageListNum] = useState(0);
   const userLikeList = useAppSelector((state) => state.userLike.list);
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const changePageNum = (e: React.MouseEvent) => {
     const eventTarget = e.target as HTMLElement;
@@ -32,6 +34,10 @@ const LikePage = () => {
     setPageNum((nowPageListNum + 1) * 5 + 1);
     setPageListNum((state) => state + 1);
   };
+
+  useEffect(() => {
+    dispatch(loadUserLikeList());
+  }, [dispatch]);
 
   return (
     <div className={styles.like_page}>
