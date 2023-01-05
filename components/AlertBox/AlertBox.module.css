@@ -28,13 +28,13 @@
 
 @keyframes appear {
   0% {
-    transform: translate(-50%, -10px);
-    opacity: 0.4;
+    -webkit-transform: translate(-50%, -10px);
+    -webkit-opacity: 0.4;
   }
 
   100% {
-    transform: translateY(-50%, 0);
-    opacity: 1;
+    -webkit-transform: translate(-50%, 0);
+    -webkit-opacity: 1;
   }
 }
 
