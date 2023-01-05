@@ -1,10 +1,11 @@
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FolderCard from "../../components/FolderCard/FolderCard";
 import Folder from "../../model/folder";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { loadUserFolderList } from "../../store/userFolder";
 import styles from "../../styles/mystudy.module.css";
 
 const MyStudy = () => {
@@ -13,6 +14,7 @@ const MyStudy = () => {
   const userFolderList = useAppSelector((state) => state.userFolder.list);
   const userData = useAppSelector((state) => state.userData);
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const changePageNum = (e: React.MouseEvent) => {
     const eventTarget = e.target as HTMLElement;
@@ -33,6 +35,10 @@ const MyStudy = () => {
     setPageNum((nowPageListNum + 1) * 5 + 1);
     setPageListNum((state) => state + 1);
   };
+
+  useEffect(() => {
+    dispatch(loadUserFolderList());
+  }, [dispatch]);
 
   return (
     <main className={styles.main}>

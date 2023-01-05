@@ -82,6 +82,7 @@
 
   .author {
     margin: 0.6rem 0;
+    font-size: 1.3rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -13,6 +13,7 @@
 .list_container {
   width: 100%;
   height: calc(100% - 3rem);
+  box-shadow: 0 0 15px lightgray;
 }
 
 .mobile_top {
@@ -53,17 +54,9 @@
 }
 
 .objection_list {
-  height: calc(100% - 8rem);
+  height: calc(100% - 4rem);
   overflow-y: scroll;
-  border: 1px solid lightgray;
-}
-
-.objection_item {
-  padding: 1rem;
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid lightgray;
-  cursor: pointer;
+  /* border: 1px solid lightgray; */
 }
 
 .objection_item p {
@@ -72,7 +65,7 @@
 
 @media screen and (max-width: 700px) {
   .objection_page {
-    padding: 3rem 0;
+    padding: 3rem 1.5rem;
   }
 
   .title,
@@ -91,6 +84,5 @@
 
   .objection_page h2 {
     font-size: 2.2rem;
-    margin-left: 1rem;
   }
 }

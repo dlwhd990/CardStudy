@@ -55,7 +55,7 @@
   padding: 0 0.5rem;
   outline: none;
   border: 1px solid lightgray;
-  box-shadow: 0 0 2px lightgray;
+  /* box-shadow: 0 0 2px lightgray; */
   border-radius: 6px;
 }
 
@@ -65,7 +65,7 @@
   font-size: 1.8rem;
   border-radius: 6px;
   border: 1px solid lightgray;
-  box-shadow: 0 0 2px lightgray;
+  /* box-shadow: 0 0 2px lightgray; */
   outline: none;
   resize: none;
 }

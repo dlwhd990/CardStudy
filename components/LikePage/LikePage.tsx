@@ -38,7 +38,7 @@ const LikePage = () => {
       {userLikeList.length === 0 ? (
         <div className={styles.message_box}>
           <p className={styles.message}>
-            아직 좋아요 하신 카드 묶음이 없어요 😂
+            아직 북마크 하신 카드 묶음이 없어요 😂
           </p>
           <button
             className={styles.message_button}
@@ -49,9 +49,9 @@ const LikePage = () => {
         </div>
       ) : (
         <>
-          <h2>좋아요</h2>
+          <h2>북마크</h2>
           <p className={styles.description}>
-            내가 좋아요 한 카드 묶음을 모아서 볼 수 있어요
+            내가 북마크 한 카드 묶음을 모아서 볼 수 있어요
           </p>
           <section className={styles.folder_card_section}>
             <ul className={styles.card_list}>

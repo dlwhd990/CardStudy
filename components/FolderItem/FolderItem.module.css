@@ -35,7 +35,6 @@
 
 .add_button {
   width: 100%;
-
   background-color: transparent;
   border: none;
   border-bottom: 1px solid lightgray;
@@ -90,7 +89,7 @@
     padding: 1.2rem 1.5rem;
   }
   .add_button {
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.5rem 1rem 4rem;
   }
 
   .title {
@@ -99,7 +98,7 @@
 
   .plus_icon {
     font-size: 1.6rem;
-    margin-right: 0.5rem;
+    margin-right: 0.7rem;
   }
 
   .add_button {

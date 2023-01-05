@@ -4,6 +4,7 @@ import {
   faIdCard,
   faListCheck,
   faPenToSquare,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppSelector } from "../../store/hooks";
@@ -20,7 +21,7 @@ const SideBar: React.FC<{
         {/* 에러나서 일단 next/image는 적용하지 않음 */}
         <img
           loading="lazy"
-          src={userData.picture || "../../public/images/profile_default.jpeg"}
+          src={userData.picture || "/images/profile_default.jpeg"}
           alt="프로필사진"
           className={styles.user_image}
         />
@@ -45,8 +46,8 @@ const SideBar: React.FC<{
             className={styles.button}
             onClick={() => changeSelectedValue("like")}
           >
-            <FontAwesomeIcon icon={faHeart} className={styles.icon_red} />
-            <span>좋아요</span>
+            <FontAwesomeIcon icon={faStar} className={styles.icon_yellow} />
+            <span>북마크</span>
           </li>
           <li
             className={styles.button}

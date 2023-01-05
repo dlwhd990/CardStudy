@@ -7,6 +7,7 @@ import {
   faIdCard,
   faListCheck,
   faPenToSquare,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GoogleLogin } from "@react-oauth/google";
@@ -64,7 +65,7 @@ const MobileMenu = () => {
       <section className={styles.user_data_container}>
         <img
           loading="lazy"
-          src={userData.picture || "../../public/images/profile_default.jpeg"}
+          src={userData.picture || "/images/profile_default.jpeg"}
           alt="프로필사진"
           className={styles.user_image}
         />
@@ -87,11 +88,9 @@ const MobileMenu = () => {
           </div>
         )}
       </section>
-      <div className={styles.divide_line}></div>
       <section className={styles.search_section}>
         <SearchBox />
       </section>
-      <div className={styles.divide_line}></div>
       <section className={styles.menu}>
         <p className={styles.menu_title}>메뉴</p>
         <ul className={styles.menu_list}>
@@ -123,8 +122,8 @@ const MobileMenu = () => {
             className={styles.button}
             onClick={() => onMenuClickHandler("/mypage/like")}
           >
-            <FontAwesomeIcon icon={faHeart} className={styles.icon_red} />
-            <span>좋아요</span>
+            <FontAwesomeIcon icon={faStar} className={styles.icon_yellow} />
+            <span>북마크</span>
           </li>
           <li
             className={styles.button}

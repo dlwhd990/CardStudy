@@ -3,9 +3,10 @@ import {
   faAngleRight,
   faComment,
   faFlag,
-  faHeart as fullHeart,
+  // faHeart as fullHeart,
+  faStar as fullStar,
 } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart, faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ObjectId } from "mongodb";
 import { GetServerSidePropsContext } from "next";
@@ -77,7 +78,7 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
       const response = await axios.delete(`/api/like/${router.query.studyId}`);
       if (response.data.success) {
         setLiked(false);
-        dispatch(showAlert("좋아요 취소 되었습니다!"));
+        dispatch(showAlert("북마크 취소 되었습니다!"));
       } else {
         dispatch(showAlert("로그인 후에 사용 가능합니다!"));
       }
@@ -85,7 +86,7 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
       const response = await axios.post("/api/like", { folder, userName });
       if (response.data.success) {
         setLiked(true);
-        dispatch(showAlert("좋아요 하셨습니다!"));
+        dispatch(showAlert("북마크 하셨습니다!"));
       } else {
         dispatch(showAlert("로그인 후에 사용 가능합니다!"));
       }
@@ -93,8 +94,10 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   };
 
   const likeIconSelector = () => {
-    if (liked) return fullHeart;
-    return faHeart;
+    // if (liked) return fullHeart;
+    // return faHeart;
+    if (liked) return fullStar;
+    return faStar;
   };
 
   useEffect(() => {
@@ -161,7 +164,7 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
                 icon={likeIconSelector()}
                 className={styles.heart}
               />
-              <p className={styles.button_name}>좋아요</p>
+              <p className={styles.button_name}>북마크</p>
             </button>
             <button
               className={styles.study_button}

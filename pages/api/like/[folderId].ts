@@ -20,7 +20,7 @@ async function likeAPI(req: NextApiRequest, res: NextApiResponse) {
       res.json({ success: true });
     }
 
-    // 초기 좋아요 여부 판별
+    // 초기 북마크 여부 판별
     if (req.method === "GET") {
       const response = await collection.findOne({ folderId });
       if (response) {

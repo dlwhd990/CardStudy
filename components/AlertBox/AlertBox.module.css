@@ -17,6 +17,7 @@
 .on {
   visibility: visible;
   animation: 0.4s appear;
+  animation-fill-mode: both;
 }
 
 .message {

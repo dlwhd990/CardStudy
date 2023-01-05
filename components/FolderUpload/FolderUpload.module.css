@@ -49,7 +49,7 @@
   padding: 0 0.5rem;
   outline: none;
   border: 1px solid lightgray;
-  box-shadow: 0 0 2px lightgray;
+  /* box-shadow: 0 0 2px lightgray; */
   border-radius: 6px;
 }
 

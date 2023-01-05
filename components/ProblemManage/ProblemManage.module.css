@@ -9,7 +9,8 @@
   height: 100%;
   max-width: 120rem;
   margin: auto;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
+  box-shadow: 0 0 15px lightgray;
 }
 
 .top {
@@ -55,8 +56,7 @@
 
 @media screen and (max-width: 500px) {
   .manage_container {
-    padding: 0;
-    padding-bottom: 8rem;
+    padding: 5rem 1.5rem 8rem 1.5rem;
   }
 
   .manager {
