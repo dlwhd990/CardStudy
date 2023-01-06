@@ -189,22 +189,22 @@
 
 @keyframes appearFromLeft {
   0% {
-    -webkit-transform: translateX(-50%);
-    -webkit-opacity: 0;
+    transform: translateX(-50%);
+    opacity: 0;
   }
   100% {
-    -webkit-transform: translateX(0);
-    -webkit-opacity: 1;
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
 @keyframes appearFromTop {
   0% {
-    -webkit-transform: translateY(-60%);
-    -webkit-opacity: 0;
+    transform: translateY(-60%);
+    opacity: 0;
   }
   100% {
-    -webkit-transform: translateX(0);
-    -webkit-opacity: 1;
+    transform: translateX(0);
+    opacity: 1;
   }
 }
