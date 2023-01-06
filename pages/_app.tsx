@@ -17,7 +17,7 @@ const DEFAULT_SEO = {
     type: "website",
     locale: "ko_KR",
     url: "https://card-study.vercel.app/",
-    title: "카카오톡, 페이스북에 링크 넣으면 올라올 타이틀",
+    title: "카드 스터디",
     site_name: "카드 스터디",
     images: [
       {
