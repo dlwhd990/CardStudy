@@ -8,7 +8,7 @@ import { introCardList } from "../util/introData";
 function HomePage() {
   const introTopCard = {
     _id: {},
-    question: "정답이 뭘까요❓",
+    question: "정답이 뭘까요❓\n카드를 클릭해보세요!",
     answer: "💡 뒤집으면 알 수 있어요!",
     like: 0,
     userId: "1",
@@ -44,7 +44,7 @@ function HomePage() {
               <p>
                 암기한 내용을 다시 확인하고 싶지만 문제와 답이 함께 적혀있어
                 불편했던 경험이 있으신가요? <br></br>
-                <br></br>Card Study에서는 카드를 뒤집기 전에는 정답을 볼 수
+                <br></br>카드스터디에서는 카드를 뒤집기 전에는 정답을 볼 수
                 없습니다! 왼쪽의 카드를 클릭해보세요☺️
               </p>
             </article>

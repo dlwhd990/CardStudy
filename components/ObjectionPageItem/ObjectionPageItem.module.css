@@ -21,6 +21,7 @@
 .content {
   width: 60%;
   padding-right: 3rem;
+  white-space: pre-line;
 }
 
 .date {

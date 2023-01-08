@@ -10,6 +10,7 @@
 .answer {
   display: flex;
   flex-direction: row;
+  white-space: pre-line;
   align-items: flex-start;
   font-size: 1.8rem;
 }
