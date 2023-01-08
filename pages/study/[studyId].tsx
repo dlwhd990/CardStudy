@@ -6,10 +6,10 @@ import {
   // faHeart as fullHeart,
   faStar as fullStar,
 } from "@fortawesome/free-solid-svg-icons";
-import { faHeart, faStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ObjectId } from "mongodb";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
@@ -211,18 +211,36 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   );
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticPaths() {
+  const db = await connectToDatabase();
+  const folderCollection = db.collection<Folder>("folder");
+  const fullList = await folderCollection.find({}).toArray();
+  const idList = fullList.map((folder: Folder) => folder._id.toString());
+  const paths = idList.map((id: string) => {
+    return {
+      params: {
+        studyId: id,
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context: GetStaticPropsContext) {
   const db = await connectToDatabase();
   const collection = db.collection<Folder>("folder");
-  const problemCollection = db.collection<Problem>("problem");
-  const folderPromise = collection.findOne({
+  const folder = await collection.findOne({
     _id: new ObjectId(context?.params?.studyId as string),
   });
-  const problemPromise = problemCollection.find({
-    folderId: context?.params?.studyId,
-  });
-  const folder = await folderPromise;
-  const problemList = await problemPromise.toArray();
+
+  const problemCollection = db.collection<Problem>("problem");
+  const problemList = await problemCollection
+    .find({ folderId: context?.params?.studyId })
+    .toArray();
 
   // https://imgyuzzzang.tistory.com/13
   // https://stackoverflow.com/questions/52453407/the-difference-between-object-and-plain-object-in-javascript
@@ -231,6 +249,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       problemList: JSON.parse(JSON.stringify(problemList)),
       folder: JSON.parse(JSON.stringify(folder)),
     },
+    revalidate: 1,
   };
 }
 
