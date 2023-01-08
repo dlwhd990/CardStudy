@@ -37,6 +37,7 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   const objectionOn = useAppSelector((state) => state.popup.objection);
   const reportOn = useAppSelector((state) => state.popup.report);
   const userName = useAppSelector((state) => state.userData.name);
+  const active = useAppSelector((state) => state.cardActive.active);
 
   const changeNow = (query: boolean) => {
     if (query && now > 0) {
@@ -47,10 +48,14 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   };
 
   const arrowClickHandler = (direction: boolean) => {
-    dispatch(makeInactive());
-    setTimeout(() => {
+    if (active) {
+      dispatch(makeInactive());
+      setTimeout(() => {
+        changeNow(direction);
+      }, 600);
+    } else {
       changeNow(direction);
-    }, 200);
+    }
   };
 
   const openObjectionPopup = () => {
