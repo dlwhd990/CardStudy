@@ -33,7 +33,7 @@ const IntroduceCardImageLeft: React.FC<{ intro: Intro }> = ({ intro }) => {
       }`}
     >
       <div className={styles.image_container}>
-        <img src="/images/home_1.png" alt="소개이미지" />
+        <img src={intro.image} alt="소개이미지" />
       </div>
       <article className={styles.intro_article}>
         <h3>{intro.title}</h3>
