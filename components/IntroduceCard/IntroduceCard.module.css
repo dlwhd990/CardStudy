@@ -4,18 +4,22 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 15rem auto;
+  margin: 8rem auto;
+  padding: 5rem;
+  background-color: rgba(184, 232, 252, 0.2);
+  box-shadow: 3px 3px 5px lightgray;
+  border-radius: 16px;
 }
 
 .intro_card img {
-  width: 43rem;
+  width: 41rem;
   height: 30rem;
   border-radius: 10px;
   box-shadow: 0 0 4px lightgray;
 }
 
 .intro_article {
-  width: 54rem;
+  width: 44rem;
   padding: 1rem 0;
 }
 
@@ -80,6 +84,9 @@
 }
 
 @media screen and (max-width: 500px) {
+  .intro_card {
+    margin: 5rem auto;
+  }
   .intro_article {
     margin-top: 2rem;
   }
