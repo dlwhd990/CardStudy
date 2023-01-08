@@ -9,7 +9,7 @@ import {
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ObjectId } from "mongodb";
-import { GetStaticPropsContext } from "next";
+import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
@@ -211,36 +211,18 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   );
 };
 
-export async function getStaticPaths() {
-  const db = await connectToDatabase();
-  const folderCollection = db.collection<Folder>("folder");
-  const fullList = await folderCollection.find({}).toArray();
-  const idList = fullList.map((folder: Folder) => folder._id.toString());
-  const paths = idList.map((id: string) => {
-    return {
-      params: {
-        studyId: id,
-      },
-    };
-  });
-
-  return {
-    paths,
-    fallback: true,
-  };
-}
-
-export async function getStaticProps(context: GetStaticPropsContext) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const db = await connectToDatabase();
   const collection = db.collection<Folder>("folder");
-  const folder = await collection.findOne({
+  const problemCollection = db.collection<Problem>("problem");
+  const folderPromise = collection.findOne({
     _id: new ObjectId(context?.params?.studyId as string),
   });
-
-  const problemCollection = db.collection<Problem>("problem");
-  const problemList = await problemCollection
-    .find({ folderId: context?.params?.studyId })
-    .toArray();
+  const problemPromise = problemCollection.find({
+    folderId: context?.params?.studyId,
+  });
+  const folder = await folderPromise;
+  const problemList = await problemPromise.toArray();
 
   // https://imgyuzzzang.tistory.com/13
   // https://stackoverflow.com/questions/52453407/the-difference-between-object-and-plain-object-in-javascript
@@ -249,7 +231,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       problemList: JSON.parse(JSON.stringify(problemList)),
       folder: JSON.parse(JSON.stringify(folder)),
     },
-    revalidate: 1,
   };
 }
 

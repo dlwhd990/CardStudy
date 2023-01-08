@@ -51,6 +51,10 @@
   visibility: hidden;
 }
 
+.off .children_container * {
+  visibility: hidden !important;
+}
+
 .on {
   visibility: visible;
   animation: 1000ms appear;

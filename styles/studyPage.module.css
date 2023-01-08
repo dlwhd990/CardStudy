@@ -93,7 +93,7 @@
 
 @media screen and (max-width: 700px) {
   .study {
-    padding: 2.6rem 1rem 24rem 0;
+    padding: 2.6rem 1rem 24rem 1rem;
   }
 
   .study_title {
