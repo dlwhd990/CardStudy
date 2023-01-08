@@ -158,7 +158,7 @@ const MobileMenu = () => {
                 dispatch(showAlert("로그인 후에 사용 가능합니다!"));
                 return;
               }
-              onMenuClickHandler("/mypage/problem");
+              onMenuClickHandler("/mypage/changeName");
             }}
           >
             <FontAwesomeIcon icon={faIdCard} className={styles.icon_pink} />
