@@ -27,7 +27,8 @@ function HomePage() {
     <>
       <Head>
         <link
-          rel="stylesheet"
+          rel="preload"
+          as="style"
           href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
         />
       </Head>
