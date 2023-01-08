@@ -1,4 +1,4 @@
-import { GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import axios from "axios";
 import { useAppSelector } from "../../store/hooks";
 import LogoutButton from "../LogoutButton/LogoutButton";
@@ -48,12 +48,16 @@ const UserBox = () => {
           </div>
         ) : (
           <div className={styles.login_container}>
-            <GoogleLogin
-              onSuccess={(credentialResponse: any) => {
-                loginHandler(credentialResponse);
-              }}
-              onError={() => {}}
-            />
+            <GoogleOAuthProvider
+              clientId={process.env.NEXT_PUBLIC_GOOGLE_API || ""}
+            >
+              <GoogleLogin
+                onSuccess={(credentialResponse: any) => {
+                  loginHandler(credentialResponse);
+                }}
+                onError={() => {}}
+              />
+            </GoogleOAuthProvider>
           </div>
         )}
       </div>

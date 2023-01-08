@@ -3,7 +3,6 @@ import type { AppProps } from "next/app";
 import Layout from "../components/Layout/Layout";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 import { DefaultSeo } from "next-seo";
@@ -38,13 +37,10 @@ const DEFAULT_SEO = {
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_API || ""}>
-        <DefaultSeo {...DEFAULT_SEO} />
-
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </GoogleOAuthProvider>
+      <DefaultSeo {...DEFAULT_SEO} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </Provider>
   );
 }

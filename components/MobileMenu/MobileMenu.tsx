@@ -10,7 +10,7 @@ import {
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { showAlert } from "../../store/alert";
@@ -78,12 +78,16 @@ const MobileMenu = () => {
         ) : (
           <div className={styles.login_container}>
             <p>로그인</p>
-            <GoogleLogin
-              onSuccess={(credentialResponse: any) => {
-                loginHandler(credentialResponse);
-              }}
-              onError={() => {}}
-            />
+            <GoogleOAuthProvider
+              clientId={process.env.NEXT_PUBLIC_GOOGLE_API || ""}
+            >
+              <GoogleLogin
+                onSuccess={(credentialResponse: any) => {
+                  loginHandler(credentialResponse);
+                }}
+                onError={() => {}}
+              />
+            </GoogleOAuthProvider>
           </div>
         )}
       </section>
