@@ -13,7 +13,7 @@ async function likeAPI(req: NextApiRequest, res: NextApiResponse) {
     // 삭제
     if (req.method === "DELETE") {
       await collection.deleteOne({
-        likedUserId: userData.sub,
+        userId: userData.sub,
         folderId,
       });
 
