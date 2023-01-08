@@ -25,13 +25,6 @@ function HomePage() {
 
   return (
     <>
-      <Head>
-        <link
-          rel="preload"
-          as="style"
-          href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
-        />
-      </Head>
       <main className={styles.homepage}>
         <section className={styles.top_banner}>
           <div className={styles.top_banner_background}>
