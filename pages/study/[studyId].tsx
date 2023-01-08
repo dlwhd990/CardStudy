@@ -122,8 +122,8 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   }, [dispatch]);
 
   const seoData = {
-    title: `카드 스터디 - ${folder.title}`,
-    description: `카드 스터디 - ${folder.title}`,
+    title: `카드스터디 - ${folder.title}`,
+    description: `카드스터디 - ${folder.title}`,
     canonical: "https://card-study.vercel.app/search",
   };
 

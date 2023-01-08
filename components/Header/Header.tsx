@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faBell,
-  faFolderOpen,
+  faCube,
   faMagnifyingGlass,
   faUser,
   faXmark,
@@ -96,8 +96,8 @@ const Header = () => {
       />
       <div className={styles.header_body}>
         <Link href="/" className={styles.logo}>
-          <FontAwesomeIcon icon={faFolderOpen} className={styles.logo_icon} />
-          <h1>CardStudy</h1>
+          <FontAwesomeIcon icon={faCube} className={styles.logo_icon} />
+          <h1>카드스터디</h1>
         </Link>
         <div className={styles.header_main}>
           <div className={styles.left}>

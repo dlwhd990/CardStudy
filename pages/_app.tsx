@@ -10,15 +10,15 @@ import { DefaultSeo } from "next-seo";
 config.autoAddCss = false;
 
 const DEFAULT_SEO = {
-  title: "카드 스터디 - 플래시 카드로 암기하세요",
+  title: "카드스터디 - 플래시 카드로 암기하세요",
   description: "플래시 카드로 공부하는 곳입니다.",
   canonical: "https://card-study.vercel.app/",
   openGraph: {
     type: "website",
     locale: "ko_KR",
     url: "https://card-study.vercel.app/",
-    title: "카드 스터디",
-    site_name: "카드 스터디",
+    title: "카드스터디",
+    site_name: "카드스터디",
     images: [
       {
         url: "https://card-study.vercel.app/images/top_banner.jpg",

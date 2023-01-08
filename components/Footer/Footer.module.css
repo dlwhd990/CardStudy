@@ -1,0 +1,227 @@
+.footer_container {
+  width: 100%;
+  background-color: var(--color-blue);
+}
+
+.footer {
+  width: 100rem;
+  margin: auto;
+}
+
+.top {
+  padding: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  transition: 200ms all ease-in-out;
+}
+
+.logo h1 {
+  font-size: 2.6rem;
+  font-weight: 900;
+}
+
+.logo_icon {
+  font-size: 2.6rem;
+  color: white;
+}
+
+.top_button_container button {
+  outline: 2px solid white;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.top_button_container button:hover {
+  outline-color: var(--color-blue);
+  color: var(--color-blue);
+  background-color: white;
+  transition: 200ms all ease-in-out;
+}
+.bottom {
+  padding: 2rem 0 5rem 0;
+}
+
+.bottom p {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.bottom_button_container {
+  text-align: center;
+  padding: 2.5rem 0 5rem 0;
+}
+
+.bottom_button_container button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  margin: 0 3rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.bottom_button_container button:hover {
+  transform: scale(1.1);
+  transition: 200ms all ease-in-out;
+}
+
+.button_icon {
+  font-size: 4rem;
+  color: white;
+}
+
+.email_tooltip,
+.kakao_tooltip {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  transform: translate(-40%, -140%);
+  background-color: var(--color-pink);
+  padding: 0.6rem 1.5rem;
+  font-size: 1.6rem;
+  border-radius: 10px;
+  color: white;
+  opacity: 0;
+}
+
+.email:hover .email_tooltip,
+.kakao:hover .kakao_tooltip {
+  visibility: visible;
+  opacity: 1;
+  transition: 500ms all ease-in-out;
+}
+
+.email_tooltip::after {
+  border-color: var(--color-pink) transparent;
+  border-style: solid;
+  border-width: 8px 6px 0 6.5px;
+  content: "";
+  display: block;
+  left: 96px;
+  position: absolute;
+  bottom: -8px;
+  width: 0;
+  z-index: 1;
+}
+
+.email_tooltip::before {
+  border-color: var(--color-pink) transparent;
+  border-style: solid;
+  border-width: 8px 6px 0 6.5px;
+  content: "";
+  display: block;
+  left: 96px;
+  position: absolute;
+  bottom: -8px;
+  width: 0;
+  z-index: 0;
+}
+
+.kakao_tooltip::after {
+  border-color: var(--color-pink) transparent;
+  border-style: solid;
+  border-width: 8px 6px 0 6.5px;
+  content: "";
+  display: block;
+  left: 63px;
+  position: absolute;
+  bottom: -8px;
+  width: 0;
+  z-index: 1;
+}
+
+.kakao_tooltip::before {
+  border-color: var(--color-pink) transparent;
+  border-style: solid;
+  border-width: 8px 6px 0 6.5px;
+  content: "";
+  display: block;
+  left: 63px;
+  position: absolute;
+  bottom: -8px;
+  width: 0;
+  z-index: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .footer {
+    width: 100%;
+    padding: 0 5rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .footer {
+    padding: 0 3rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer {
+    width: 100%;
+    padding: 0 1.5rem;
+  }
+
+  .top {
+    flex-direction: column;
+    padding-top: 1.6rem;
+  }
+  .logo {
+    margin-bottom: 2rem;
+  }
+
+  .logo h1 {
+    font-size: 2.2rem;
+  }
+
+  .top_button_container {
+    width: 100%;
+    text-align: center;
+  }
+
+  .top_button_container button {
+    width: 35%;
+    margin: 0 3.75%;
+  }
+
+  .bottom_button_container {
+    padding-top: 1.2rem;
+  }
+
+  .bottom_button_container button {
+    margin: 0 2.6rem;
+  }
+
+  .button_icon {
+    font-size: 3.8rem;
+  }
+
+  .bottom p {
+    font-size: 1.7rem;
+  }
+}

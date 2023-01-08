@@ -10,7 +10,7 @@ import styles from "../../styles/studyMain.module.css";
 import { connectToDatabase } from "../../util/mongodb";
 
 const seoData = {
-  title: "카드 스터디 - 공부하기",
+  title: "카드스터디 - 공부하기",
   description: "다른 사람들이 만든 카드 묶음으로 공부할 수 있어요",
   canonical: "https://card-study.vercel.app/study",
 };

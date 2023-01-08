@@ -27,14 +27,14 @@ function HomePage() {
       <section className={styles.top_banner}>
         <div className={styles.top_banner_background}>
           <p className={styles.top_banner_subtitle}>직접 만드는 암기 카드</p>
-          <h2 className={styles.top_banner_title}>CardStudy에서 공부하세요</h2>
+          <h2 className={styles.top_banner_title}>카드스터디에서 공부하세요</h2>
           <button className={styles.top_banner_button} onClick={goStudy}>
             시작하기
           </button>
         </div>
       </section>
       <section className={styles.intro_section}>
-        <h2 className={styles.intro_title}>🎉 CardStudy를 소개합니다 🎉</h2>
+        <h2 className={styles.intro_title}>🎉 카드스터디를 소개합니다 🎉</h2>
         <div className={styles.card_part}>
           <div className={styles.intro_card}>
             <Card item={introTopCard} />

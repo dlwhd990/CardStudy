@@ -7,6 +7,7 @@ import { loadUserLikeList } from "../../store/userLike";
 import { loadUserObjectionList } from "../../store/userObjection";
 import { loadUserProblemList } from "../../store/userProblem";
 import AlertBox from "../AlertBox/AlertBox";
+import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import MobileMenu from "../MobileMenu/MobileMenu";
 
@@ -43,6 +44,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <AlertBox />
       <MobileMenu />
       <Fragment>{children}</Fragment>
+      <Footer />
     </Fragment>
   );
 };

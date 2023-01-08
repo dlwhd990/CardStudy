@@ -35,8 +35,8 @@ const SearchPage: React.FC<{ searchResult: Folder[] }> = ({ searchResult }) => {
   };
 
   const seoData = {
-    title: `카드 스터디 - ${router.query.query}`,
-    description: "카드 스터디 검색 결과",
+    title: `카드스터디 - ${router.query.query}`,
+    description: "카드스터디 검색 결과",
     canonical: "https://card-study.vercel.app/search",
   };
 

@@ -10,7 +10,7 @@ import { loadUserFolderList } from "../../store/userFolder";
 import styles from "../../styles/mystudy.module.css";
 
 const seoData = {
-  title: "카드 스터디 - 나의 공부",
+  title: "카드스터디 - 나의 공부",
   description: "내가 만든 카드 묶음들로 공부할 수 있습니다.",
   canonical: "https://card-study.vercel.app/mystudy",
 };

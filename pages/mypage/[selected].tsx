@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 
 const seoData = {
-  title: "카드 스터디 - 마이페이지",
+  title: "카드스터디 - 마이페이지",
   description: "나의 회원 정보를 관리합니다.",
   canonical: "https://card-study.vercel.app/mypage",
 };

@@ -101,6 +101,7 @@
   .search_page {
     width: 90%;
     margin: auto;
+    padding-bottom: 12rem;
   }
   .card_list li {
     flex-basis: 32%;
@@ -128,7 +129,7 @@
 @media screen and (max-width: 500px) {
   .search_page {
     width: 100%;
-    padding: 3rem 1.5rem;
+    padding: 3rem 1.5rem 10rem 1.5rem;
   }
 
   .search_page h2 {
