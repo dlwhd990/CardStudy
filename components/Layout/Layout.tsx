@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { Fragment, useEffect } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import { removeUserData, setUserData } from "../../store/userData";
@@ -13,6 +14,7 @@ import MobileMenu from "../MobileMenu/MobileMenu";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     // 로그인 체크 => 새로고침 시 마다 실행
@@ -44,7 +46,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <AlertBox />
       <MobileMenu />
       <Fragment>{children}</Fragment>
-      <Footer />
+      {!router.pathname.includes("mypage") && <Footer />}
     </Fragment>
   );
 };

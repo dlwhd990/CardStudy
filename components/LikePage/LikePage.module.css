@@ -106,6 +106,7 @@
   .like_page {
     width: 90%;
     margin: auto;
+    margin-bottom: 10rem;
     padding: 3rem 0;
   }
   .card_list li {
