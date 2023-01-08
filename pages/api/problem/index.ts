@@ -10,7 +10,9 @@ async function uploadProblem(req: NextApiRequest, res: NextApiResponse) {
     const { question, answer, folderId } = req.body;
     const db = await connectToDatabase();
     const collection = db.collection("problem");
-    await collection.insertOne({
+    const folderCollection = db.collection("folder");
+
+    const problemPromise = collection.insertOne({
       question,
       answer,
       like: 0,
@@ -19,11 +21,13 @@ async function uploadProblem(req: NextApiRequest, res: NextApiResponse) {
       date: new Date().getTime(),
     });
 
-    const folderCollection = db.collection("folder");
-    await folderCollection.findOneAndUpdate(
+    const folderPromise = folderCollection.findOneAndUpdate(
       { _id: new ObjectId(folderId.toString()) },
       { $inc: { problemCount: 1 } }
     );
+
+    await problemPromise;
+    await folderPromise;
 
     res.json({ success: true });
   } catch (err) {

@@ -214,14 +214,15 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const db = await connectToDatabase();
   const collection = db.collection<Folder>("folder");
-  const folder = await collection.findOne({
+  const problemCollection = db.collection<Problem>("problem");
+  const folderPromise = collection.findOne({
     _id: new ObjectId(context?.params?.studyId as string),
   });
-
-  const problemCollection = db.collection<Problem>("problem");
-  const problemList = await problemCollection
-    .find({ folderId: context?.params?.studyId })
-    .toArray();
+  const problemPromise = problemCollection.find({
+    folderId: context?.params?.studyId,
+  });
+  const folder = await folderPromise;
+  const problemList = await problemPromise.toArray();
 
   // https://imgyuzzzang.tistory.com/13
   // https://stackoverflow.com/questions/52453407/the-difference-between-object-and-plain-object-in-javascript
