@@ -22,7 +22,10 @@ async function likeAPI(req: NextApiRequest, res: NextApiResponse) {
 
     // 초기 북마크 여부 판별
     if (req.method === "GET") {
-      const response = await collection.findOne({ folderId });
+      const response = await collection.findOne({
+        folderId,
+        userId: userData.sub,
+      });
       if (response) {
         res.json({ success: true, isLiked: true });
       } else {

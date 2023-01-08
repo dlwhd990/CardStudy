@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Like from "../model/like";
 
 const initialState = { list: [] };
 
@@ -17,9 +16,8 @@ const userLikeSlice = createSlice({
       if (!action.payload.success) {
         state.list = [];
       } else {
-        state.list = action.payload.result.sort(
-          (a: Like, b: Like) => b.date - a.date
-        );
+        console.log(state.list);
+        state.list = action.payload.result;
       }
     });
   },

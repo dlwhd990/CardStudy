@@ -84,7 +84,9 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
         dispatch(showAlert("로그인 후에 사용 가능합니다!"));
       }
     } else {
-      const response = await axios.post("/api/like", { folder, userName });
+      const response = await axios.post("/api/like", {
+        folderId: folder._id,
+      });
       if (response.data.success) {
         setLiked(true);
         dispatch(showAlert("북마크 하셨습니다!"));

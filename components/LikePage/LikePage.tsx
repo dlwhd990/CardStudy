@@ -2,7 +2,7 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Like from "../../model/like";
+import Folder from "../../model/folder";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loadUserLikeList } from "../../store/userLike";
 import FolderCard from "../FolderCard/FolderCard";
@@ -63,9 +63,9 @@ const LikePage = () => {
             <ul className={styles.card_list}>
               {userLikeList
                 .slice((pageNum - 1) * 8, pageNum * 8)
-                .map((like: Like) => (
-                  <li key={like._id.toString()}>
-                    <FolderCard item={like} count={-1} />
+                .map((folder: Folder) => (
+                  <li key={folder._id.toString()}>
+                    <FolderCard folder={folder} count={folder.problemCount} />
                   </li>
                 ))}
             </ul>

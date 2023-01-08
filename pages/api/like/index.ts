@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../../util/mongodb";
 import verifyToken from "../../../util/verifyToken";
@@ -10,16 +9,9 @@ async function likeUploadAPI(req: NextApiRequest, res: NextApiResponse) {
     const db = await connectToDatabase();
     const collection = db.collection("like");
 
-    const { _id, title, like, userId, userName } = req.body.folder;
-
     await collection.insertOne({
-      folderId: _id.toString(),
-      title,
-      like,
-      likedUserId: userData.sub,
-      likedUserName: req.body.userName,
-      authorId: userId,
-      authorName: userName,
+      folderId: req.body.folderId.toString(),
+      userId: userData.sub,
       date: new Date().getTime(),
     });
 
