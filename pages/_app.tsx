@@ -10,9 +10,7 @@ import { DefaultSeo } from "next-seo";
 config.autoAddCss = false;
 
 const DEFAULT_SEO = {
-  keywords:
-    "카드 스터디, Card Study, 플래시 카드, 카드 공부, 암기, 시험 공부, 공부, 시험, 영단어, 단어 외우기, 단어 암기, 영어 단어, 영어 단어 외우기",
-  title: "카드 스터디",
+  title: "카드 스터디 - 플래시 카드로 암기하세요",
   description: "플래시 카드로 공부하는 곳입니다.",
   canonical: "https://card-study.vercel.app/",
   openGraph: {

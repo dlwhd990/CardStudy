@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ChangeName from "../../components/ChangeName/ChangeName";
 import ProblemManage from "../../components/ProblemManage/ProblemManage";
 import SideBar from "../../components/SideBar/SideBar";
@@ -8,6 +7,13 @@ import styles from "../../styles/mypage.module.css";
 import ObjectionPage from "../../components/ObjectionPage/ObjectionPage";
 import LikePage from "../../components/LikePage/LikePage";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
+
+const seoData = {
+  title: "카드 스터디 - 마이페이지",
+  description: "나의 회원 정보를 관리합니다.",
+  canonical: "https://card-study.vercel.app/mypage",
+};
 
 const MyPage = () => {
   const userData = useAppSelector((state) => state.userData);
@@ -25,12 +31,16 @@ const MyPage = () => {
     else if (selected === "like") return <LikePage />;
     else if (selected === "alert") return <ObjectionPage />;
   };
+
   return (
-    <main className={styles.mypage}>
-      {folderUploadOn && <FolderUpload />}
-      <SideBar changeSelectedValue={changeSelectedValue} />
-      <section className={styles.function_section}>{showSelected()}</section>
-    </main>
+    <>
+      <NextSeo {...seoData} />
+      <main className={styles.mypage}>
+        {folderUploadOn && <FolderUpload />}
+        <SideBar changeSelectedValue={changeSelectedValue} />
+        <section className={styles.function_section}>{showSelected()}</section>
+      </main>
+    </>
   );
 };
 

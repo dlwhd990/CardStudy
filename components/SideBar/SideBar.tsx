@@ -1,12 +1,14 @@
 import {
+  faArrowRightFromBracket,
   faBell,
-  faHeart,
+  // faHeart,
   faIdCard,
   faListCheck,
-  faPenToSquare,
+  // faPenToSquare,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import { useAppSelector } from "../../store/hooks";
 import styles from "./SideBar.module.css";
 
@@ -15,6 +17,11 @@ const SideBar: React.FC<{
 }> = (props) => {
   const userData = useAppSelector((state) => state.userData);
   const { changeSelectedValue } = props;
+  const logoutHandler = async () => {
+    await axios.post("/api/logout");
+    window.location.reload();
+  };
+
   return (
     <aside className={styles.sidebar}>
       <section className={styles.user_data_container}>
@@ -63,7 +70,14 @@ const SideBar: React.FC<{
             <FontAwesomeIcon icon={faIdCard} className={styles.icon_pink} />
             <span>닉네임 변경</span>
           </li>
-          <li
+          <li className={styles.button} onClick={logoutHandler}>
+            <FontAwesomeIcon
+              icon={faArrowRightFromBracket}
+              className={styles.icon_blue}
+            />
+            <span>로그아웃</span>
+          </li>
+          {/* <li
             className={styles.button}
             onClick={() => changeSelectedValue("article")}
           >
@@ -72,7 +86,7 @@ const SideBar: React.FC<{
               className={styles.icon_blue}
             />
             <span>나의 글</span>
-          </li>
+          </li> */}
         </ul>
       </section>
     </aside>

@@ -13,7 +13,6 @@
 .list_container {
   width: 100%;
   height: calc(100% - 3rem);
-  border: 0.1rem solid rgb(235, 235, 235);
   /* box-shadow: 0 0 15px lightgray; */
 }
 
@@ -57,7 +56,7 @@
 .objection_list {
   height: calc(100% - 4rem);
   overflow-y: scroll;
-  /* border: 1px solid lightgray; */
+  border: 0.1rem solid rgb(235, 235, 235);
 }
 
 .objection_item p {
