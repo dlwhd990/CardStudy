@@ -17,7 +17,6 @@ async function loadUserLikeList(req: NextApiRequest, res: NextApiResponse) {
     likeList.sort((a, b) => b.date - a.date);
 
     for await (const like of likeList) {
-      console.log(like);
       const matchedFolder = await folderCollection.findOne({
         _id: new ObjectId(like.folderId),
       });

@@ -16,7 +16,6 @@ const userLikeSlice = createSlice({
       if (!action.payload.success) {
         state.list = [];
       } else {
-        console.log(state.list);
         state.list = action.payload.result;
       }
     });

@@ -54,7 +54,6 @@ const FolderItem: React.FC<{ folder: Folder; problemList: Problem[] }> = ({
     const response = await axios.patch(`/api/folder/${folder._id.toString()}`, {
       title: newTitle,
     });
-    console.log(response);
 
     if (response.data.success) {
       dispatch(loadUserFolderList());

@@ -40,6 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_API || ""}>
         <DefaultSeo {...DEFAULT_SEO} />
+
         <Layout>
           <Component {...pageProps} />
         </Layout>

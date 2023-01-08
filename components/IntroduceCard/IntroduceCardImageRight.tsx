@@ -37,7 +37,7 @@ const IntroduceCardImageRight: React.FC<{ intro: Intro }> = ({ intro }) => {
         <p>{intro.content}</p>
       </article>
       <div className={styles.image_container}>
-        <img src={intro.image} alt="소개이미지" />
+        <img loading="lazy" src={intro.image} alt="소개이미지" />
       </div>
       <article className={`${styles.intro_article} ${styles.article_mobile}`}>
         <h3>{intro.title}</h3>

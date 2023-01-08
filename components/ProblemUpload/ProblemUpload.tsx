@@ -49,7 +49,6 @@ const ProblemUpload: React.FC<{ folderId: string }> = ({ folderId }) => {
       folderId,
     });
     if (response.data.success) {
-      console.log(response.data);
       dispatch(loadUserProblemList());
       dispatch(closeProblemUpload());
       dispatch(showAlert("문제가 추가되었습니다!"));

@@ -24,7 +24,6 @@ const AnswerItem: React.FC<{ problem: Problem }> = ({ problem }) => {
         answer: newAnswer,
       }
     );
-    console.log(response);
 
     if (response.data.success) {
       dispatch(loadUserProblemList());

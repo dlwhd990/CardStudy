@@ -47,7 +47,6 @@ async function folderIdAPI(req: NextApiRequest, res: NextApiResponse) {
 
     // 폴더 ID로 폴더 찾기
     else if (req.method === "GET") {
-      console.log("SDFASDSA");
       const result = await collection.findOne({
         _id: new ObjectId(folderId),
       });

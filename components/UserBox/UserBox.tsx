@@ -52,9 +52,7 @@ const UserBox = () => {
               onSuccess={(credentialResponse: any) => {
                 loginHandler(credentialResponse);
               }}
-              onError={() => {
-                console.log("Login Failed");
-              }}
+              onError={() => {}}
             />
           </div>
         )}
