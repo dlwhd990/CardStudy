@@ -1,8 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Intro from "../../model/intro";
 import styles from "./IntroduceCard.module.css";
 
-const IntroduceCardImageLeft: React.FC<{ intro: Intro }> = ({ intro }) => {
+const IntroduceCardImageLeft: React.FC<{
+  intro: Intro;
+  direction: boolean;
+  children: React.ReactNode;
+}> = ({ intro, direction, children }) => {
+  // direction => true = 왼쪽 이미지 / false = 오른쪽 이미지
   const introRef = useRef<HTMLDivElement>(null);
   const [intersecting, setIntersecting] = useState(false);
 
@@ -30,15 +35,13 @@ const IntroduceCardImageLeft: React.FC<{ intro: Intro }> = ({ intro }) => {
       ref={introRef}
       className={`${styles.intro_card} ${
         intersecting ? `${styles.on}` : `${styles.off}`
-      }`}
+      } ${direction ? `${styles.left}` : `${styles.right}`}`}
     >
-      <div className={styles.image_container}>
-        <img loading="lazy" src={intro.image} alt="소개이미지" />
-      </div>
-      <article className={styles.intro_article}>
+      <article className={`${styles.intro_article}`}>
         <h3>{intro.title}</h3>
         <p>{intro.content}</p>
       </article>
+      <div className={styles.children_container}>{children}</div>
     </div>
   );
 };

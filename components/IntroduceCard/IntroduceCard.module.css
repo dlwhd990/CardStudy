@@ -1,14 +1,25 @@
 .intro_card {
   width: 100rem;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
   margin: 8rem auto;
   padding: 5rem;
-  background-color: rgba(184, 232, 252, 0.2);
+  background-color: rgba(184, 232, 252, 0.1);
   /* box-shadow: 3px 3px 5px lightgray; */
   border-radius: 16px;
+}
+
+.left {
+  flex-direction: row;
+}
+
+.right {
+  flex-direction: row-reverse;
+}
+
+.children_container * {
+  width: 41rem !important;
 }
 
 .intro_card img {

@@ -1,8 +1,7 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
+import { title } from "process";
 import Card from "../components/Card/Card";
-import IntroduceCardImageLeft from "../components/IntroduceCard/IntroduceCardImageLeft";
-import IntroduceCardImageRight from "../components/IntroduceCard/IntroduceCardImageRight";
+import IntroduceCard from "../components/IntroduceCard/IntroduceCard";
 import Intro from "../model/intro";
 import styles from "../styles/homepage.module.css";
 import { introCardList } from "../util/introData";
@@ -40,24 +39,31 @@ function HomePage() {
         <section className={styles.intro_section}>
           <h2 className={styles.intro_title}>🎉 카드스터디를 소개합니다 🎉</h2>
           <div className={styles.card_part}>
-            <div className={styles.intro_card}>
+            <IntroduceCard
+              intro={{
+                id: 0,
+                title: "카드를 활용한 공부 💡",
+                content:
+                  "암기한 내용을 다시 확인하고 싶지만 문제와 답이 함께 적혀있어 불편했던 경험이 있으신가요?\n\n카드스터디에서는 카드를 뒤집기 전에는 정답을 볼 수 없습니다! 왼쪽의 카드를 클릭해보세요☺️",
+              }}
+              direction={false}
+            >
               <Card item={introTopCard} />
-
-              <article className={styles.intro_article}>
-                <h3>카드를 활용한 공부 💡</h3>
-                <p>
-                  암기한 내용을 다시 확인하고 싶지만 문제와 답이 함께 적혀있어
-                  불편했던 경험이 있으신가요? <br></br>
-                  <br></br>카드스터디에서는 카드를 뒤집기 전에는 정답을 볼 수
-                  없습니다! 왼쪽의 카드를 클릭해보세요☺️
-                </p>
-              </article>
-            </div>
+            </IntroduceCard>
             {introCardList.map((intro: Intro, idx) => {
-              if (idx % 2 == 0)
-                return <IntroduceCardImageRight key={intro.id} intro={intro} />;
-              else
-                return <IntroduceCardImageLeft key={intro.id} intro={intro} />;
+              return (
+                <IntroduceCard
+                  key={intro.id}
+                  intro={{
+                    id: intro.id,
+                    title: intro.title,
+                    content: intro.content,
+                  }}
+                  direction={idx % 2 === 0}
+                >
+                  <img loading="lazy" src={intro.image} alt="소개이미지" />
+                </IntroduceCard>
+              );
             })}
           </div>
         </section>
