@@ -16,7 +16,7 @@ const Card: React.FC<{ item: Problem }> = ({ item }) => {
   return (
     <div
       onClick={cardClickHandler}
-      className={`${styles.card_container} ${
+      className={`card ${styles.card_container} ${
         active ? `${styles.active}` : `${styles.off}`
       }`}
     >

@@ -75,8 +75,12 @@
     margin-top: 3rem;
   }
 
+  .children_container div {
+    width: calc(100vw - 5rem) !important;
+  }
+
   .intro_card img {
-    width: 100%;
+    width: 100% !important;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 0 4px lightgray;
@@ -91,6 +95,7 @@
 @media screen and (max-width: 500px) {
   .intro_card {
     margin: 5rem auto;
+    padding: 3rem 1.5rem;
   }
   .intro_article {
     margin-top: 2rem;
