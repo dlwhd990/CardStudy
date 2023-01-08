@@ -64,7 +64,7 @@
   .intro_card {
     width: 100%;
     height: auto;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     text-align: center;
     margin: 8rem auto;
@@ -73,12 +73,6 @@
   .intro_article {
     width: 100%;
     margin-top: 3rem;
-  }
-  .article_pc {
-    display: none;
-  }
-  .article_mobile {
-    display: block;
   }
 
   .intro_card img {

@@ -45,6 +45,7 @@ function HomePage() {
                 title: "카드를 활용한 공부 💡",
                 content:
                   "암기한 내용을 다시 확인하고 싶지만 문제와 답이 함께 적혀있어 불편했던 경험이 있으신가요?\n\n카드스터디에서는 카드를 뒤집기 전에는 정답을 볼 수 없습니다! 왼쪽의 카드를 클릭해보세요☺️",
+                image: "",
               }}
               direction={false}
             >
@@ -54,11 +55,7 @@ function HomePage() {
               return (
                 <IntroduceCard
                   key={intro.id}
-                  intro={{
-                    id: intro.id,
-                    title: intro.title,
-                    content: intro.content,
-                  }}
+                  intro={intro}
                   direction={idx % 2 === 0}
                 >
                   <img loading="lazy" src={intro.image} alt="소개이미지" />
