@@ -70,13 +70,15 @@ const SideBar: React.FC<{
             <FontAwesomeIcon icon={faIdCard} className={styles.icon_pink} />
             <span>닉네임 변경</span>
           </li>
-          <li className={styles.button} onClick={logoutHandler}>
-            <FontAwesomeIcon
-              icon={faArrowRightFromBracket}
-              className={styles.icon_blue}
-            />
-            <span>로그아웃</span>
-          </li>
+          {userData.name.length > 0 && (
+            <li className={styles.button} onClick={logoutHandler}>
+              <FontAwesomeIcon
+                icon={faArrowRightFromBracket}
+                className={styles.icon_blue}
+              />
+              <span>로그아웃</span>
+            </li>
+          )}
           {/* <li
             className={styles.button}
             onClick={() => changeSelectedValue("article")}

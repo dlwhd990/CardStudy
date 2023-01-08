@@ -40,10 +40,18 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
   const active = useAppSelector((state) => state.cardActive.active);
 
   const changeNow = (query: boolean) => {
-    if (query && now > 0) {
-      setNow((state) => state - 1);
-    } else if (!query && now < problemList.length - 1) {
-      setNow((state) => state + 1);
+    if (query) {
+      if (now > 0) {
+        setNow((state) => state - 1);
+      } else {
+        dispatch(showAlert("첫 번째 카드입니다."));
+      }
+    } else if (!query) {
+      if (now < problemList.length - 1) {
+        setNow((state) => state + 1);
+      } else {
+        dispatch(showAlert("마지막 카드입니다."));
+      }
     }
   };
 

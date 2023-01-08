@@ -25,7 +25,8 @@ const MyPage = () => {
   };
 
   const showSelected = () => {
-    if (userData.name.length === 0) return <p>로그인 후에 사용 가능합니다.</p>;
+    if (userData.name.length === 0)
+      return <p className={styles.need_login}>로그인 후에 사용 가능합니다.</p>;
     else if (selected === "changeName") return <ChangeName />;
     else if (selected === "problem") return <ProblemManage />;
     else if (selected === "like") return <LikePage />;

@@ -3,7 +3,7 @@ import {
   faBars,
   faBell,
   faFolder,
-  faHeart,
+  // faHeart,
   faIdCard,
   faListCheck,
   faPenToSquare,
@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { showAlert } from "../../store/alert";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { changeMobileMenu, closeMobileMenu } from "../../store/popup";
 import SearchBox from "../SearchBox/SearchBox";
@@ -113,28 +114,52 @@ const MobileMenu = () => {
           </li>
           <li
             className={styles.button}
-            onClick={() => onMenuClickHandler("/mypage/problem")}
+            onClick={() => {
+              if (userData.name.length === 0) {
+                dispatch(showAlert("로그인 후에 사용 가능합니다!"));
+                return;
+              }
+              onMenuClickHandler("/mypage/problem");
+            }}
           >
             <FontAwesomeIcon icon={faListCheck} className={styles.icon_mint} />
             <span>문제 관리</span>
           </li>
           <li
             className={styles.button}
-            onClick={() => onMenuClickHandler("/mypage/like")}
+            onClick={() => {
+              if (userData.name.length === 0) {
+                dispatch(showAlert("로그인 후에 사용 가능합니다!"));
+                return;
+              }
+              onMenuClickHandler("/mypage/like");
+            }}
           >
             <FontAwesomeIcon icon={faStar} className={styles.icon_yellow} />
             <span>북마크</span>
           </li>
           <li
             className={styles.button}
-            onClick={() => onMenuClickHandler("/mypage/alert")}
+            onClick={() => {
+              if (userData.name.length === 0) {
+                dispatch(showAlert("로그인 후에 사용 가능합니다!"));
+                return;
+              }
+              onMenuClickHandler("/mypage/alert");
+            }}
           >
             <FontAwesomeIcon icon={faBell} className={styles.icon_green} />
             <span>알림</span>
           </li>
           <li
             className={styles.button}
-            onClick={() => onMenuClickHandler("/mypage/changeName")}
+            onClick={() => {
+              if (userData.name.length === 0) {
+                dispatch(showAlert("로그인 후에 사용 가능합니다!"));
+                return;
+              }
+              onMenuClickHandler("/mypage/problem");
+            }}
           >
             <FontAwesomeIcon icon={faIdCard} className={styles.icon_pink} />
             <span>닉네임 변경</span>

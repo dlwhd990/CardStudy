@@ -40,6 +40,7 @@
 
 @media screen and (max-width: 768px) {
   .alert_box {
+    top: 10rem;
     padding: 0.8rem 2rem;
     background-color: var(--color-pink);
     box-shadow: 0 0 4px lightgray;

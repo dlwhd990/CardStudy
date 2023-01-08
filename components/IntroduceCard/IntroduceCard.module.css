@@ -7,7 +7,7 @@
   margin: 8rem auto;
   padding: 5rem;
   background-color: rgba(184, 232, 252, 0.2);
-  box-shadow: 3px 3px 5px lightgray;
+  /* box-shadow: 3px 3px 5px lightgray; */
   border-radius: 16px;
 }
 

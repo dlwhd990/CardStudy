@@ -11,6 +11,12 @@
   align-items: center;
 }
 
+.need_login {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 @media screen and (max-width: 1000px) {
   .function_section {
     width: 100%;

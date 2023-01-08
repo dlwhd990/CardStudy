@@ -13,10 +13,12 @@ const Footer = () => {
     <div className={styles.footer_container}>
       <footer className={styles.footer}>
         <div className={styles.top}>
-          <div className={styles.logo}>
-            <FontAwesomeIcon icon={faCube} className={styles.logo_icon} />
-            <h1 className={styles.top}>카드스터디</h1>
-          </div>
+          <Link href="/">
+            <div className={styles.logo}>
+              <FontAwesomeIcon icon={faCube} className={styles.logo_icon} />
+              <h1 className={styles.top}>카드스터디</h1>
+            </div>
+          </Link>
           <div className={styles.top_button_container}>
             <Link href="/study">
               <button>공부하기</button>
