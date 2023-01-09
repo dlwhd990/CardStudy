@@ -19,9 +19,10 @@ async function loadUserLikeList(req: NextApiRequest, res: NextApiResponse) {
       const matchedFolder = await folderCollection.findOne({
         _id: new ObjectId(like.folderId),
       });
-      result.push(matchedFolder);
+      if (matchedFolder) {
+        result.push(matchedFolder);
+      }
     }
-
     res.json({ success: true, result });
   } catch (err) {
     res.json({ success: false });
