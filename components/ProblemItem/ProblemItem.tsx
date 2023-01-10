@@ -62,6 +62,8 @@ const ProblemItem: React.FC<{ problem: Problem }> = ({ problem }) => {
           {updateOpen ? (
             <UpdateNameForm
               updateFunc={updateProblem}
+              prevName={problem.question}
+              isTextArea={false}
               minLength={1}
               maxLength={50}
               placeholder="질문 변경 (50자 이하)"

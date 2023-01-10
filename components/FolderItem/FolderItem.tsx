@@ -74,6 +74,8 @@ const FolderItem: React.FC<{ folder: Folder; problemList: Problem[] }> = ({
           {updateOpen ? (
             <UpdateNameForm
               updateFunc={updateFolder}
+              isTextArea={false}
+              prevName={folder.title}
               minLength={2}
               maxLength={15}
               placeholder="제목 변경 (2~15자)"

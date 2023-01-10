@@ -1,19 +1,29 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { showAlert } from "../../store/alert";
 import { useAppDispatch } from "../../store/hooks";
 import styles from "./UpdateNameForm.module.css";
 
 const UpdateNameForm: React.FC<{
   updateFunc: (newTitle: string) => void;
+  isTextArea: boolean;
+  prevName: string;
   minLength: number;
   maxLength: number;
   placeholder: string;
-}> = ({ updateFunc, minLength, maxLength, placeholder }) => {
+}> = ({
+  updateFunc,
+  minLength,
+  maxLength,
+  placeholder,
+  prevName,
+  isTextArea,
+}) => {
   const [newTitle, setNewTitle] = useState("");
   const dispatch = useAppDispatch();
 
-  const changeNewTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeNewTitle = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setNewTitle(e.target.value);
   };
 
@@ -26,21 +36,36 @@ const UpdateNameForm: React.FC<{
     updateFunc(newTitle);
   };
 
+  useEffect(() => {
+    setNewTitle(prevName);
+  }, [prevName]);
+
   return (
     <form
-      className={styles.form}
+      className={`${styles.form} ${
+        isTextArea ? `${styles.vertical}` : `${styles.horizontal}`
+      }`}
       onClick={(e: React.MouseEvent) => {
         e.stopPropagation();
       }}
       onSubmit={onSubmitHandler}
     >
-      <input
-        value={newTitle}
-        onChange={changeNewTitle}
-        type="text"
-        placeholder={placeholder}
-        autoFocus
-      />
+      {isTextArea ? (
+        <textarea
+          value={newTitle}
+          onChange={changeNewTitle}
+          placeholder={placeholder}
+          autoFocus
+        ></textarea>
+      ) : (
+        <input
+          value={newTitle}
+          onChange={changeNewTitle}
+          type="text"
+          placeholder={placeholder}
+          autoFocus
+        />
+      )}
       <button>변경</button>
     </form>
   );

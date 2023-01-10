@@ -1,3 +1,17 @@
+.form {
+  display: flex;
+}
+
+.vertical {
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.vertical button {
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 .form input {
   width: 30rem;
   height: 3rem;
@@ -6,6 +20,17 @@
   margin-right: 0.6rem;
   padding: 0 0.6rem;
   font-size: 1.6rem;
+}
+
+.form textarea {
+  width: 50vw;
+  height: 10rem;
+  border-radius: 6px;
+  border: 1px solid rgb(170, 160, 160);
+  margin-right: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 1.6rem;
+  resize: none;
 }
 
 .form button {
@@ -19,9 +44,6 @@
 }
 
 @media screen and (max-width: 700px) {
-  .form {
-    width: 100%;
-  }
   .form input {
     width: 75%;
   }

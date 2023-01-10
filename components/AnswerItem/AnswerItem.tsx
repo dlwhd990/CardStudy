@@ -39,6 +39,8 @@ const AnswerItem: React.FC<{ problem: Problem }> = ({ problem }) => {
         {updateOpen ? (
           <UpdateNameForm
             updateFunc={updateAnswer}
+            isTextArea={true}
+            prevName={problem.answer}
             minLength={1}
             maxLength={150}
             placeholder="답변 변경 (150자 이하)"
