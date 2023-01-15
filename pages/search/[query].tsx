@@ -1,16 +1,16 @@
-import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FolderCard from "../../components/FolderCard/FolderCard";
 import Folder from "../../model/folder";
 import styles from "../../styles/searchPage.module.css";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { connectToDatabase } from "../../util/mongodb";
 import { NextSeo } from "next-seo";
+import axios from "axios";
 
-const SearchPage: React.FC<{ searchResult: Folder[] }> = ({ searchResult }) => {
+const SearchPage = () => {
   const router = useRouter();
+  const [searchResult, setSearchResult] = useState<Folder[]>([]);
   const [pageNum, setPageNum] = useState(1);
   const [pageListNum, setPageListNum] = useState(0);
 
@@ -39,6 +39,15 @@ const SearchPage: React.FC<{ searchResult: Folder[] }> = ({ searchResult }) => {
     description: "카드스터디 검색 결과",
     canonical: "https://card-study.vercel.app/search",
   };
+
+  useEffect(() => {
+    const getSearchResult = async () => {
+      const response = await axios.get(`/api/search/${router.query.query}`);
+      setSearchResult(response.data.result);
+    };
+
+    getSearchResult();
+  }, [router.query.query]);
 
   return (
     <>
@@ -136,32 +145,5 @@ const SearchPage: React.FC<{ searchResult: Folder[] }> = ({ searchResult }) => {
     </>
   );
 };
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const db = await connectToDatabase();
-  const folderCollection = db.collection("folder");
-  // const problemCollection = db.collection("problem");
-
-  const folderResult = await folderCollection
-    .find({
-      title: { $regex: `${context?.params?.query}` },
-      public: true,
-    })
-    .toArray();
-
-  // const problemResult = await problemCollection
-  //   .find({
-  //     $or: [
-  //       { question: { $regex: `${context?.params?.query}` } },
-  //       { answer: { $regex: `${context?.params?.query}` } },
-  //     ],
-  //   })
-  //   .toArray();
-  return {
-    props: {
-      searchResult: JSON.parse(JSON.stringify(folderResult)),
-    },
-  };
-}
 
 export default SearchPage;

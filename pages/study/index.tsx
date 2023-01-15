@@ -139,7 +139,7 @@ const StudyMain: React.FC<{ folderList: Folder[]; problemList: Problem[] }> = ({
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const db = await connectToDatabase();
   const folderCollection = db.collection<Folder>("folder");
   const problemCollection = db.collection<Problem>("problem");
