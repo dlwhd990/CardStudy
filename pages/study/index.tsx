@@ -15,9 +15,7 @@ const seoData = {
   canonical: "https://card-study.vercel.app/study",
 };
 
-const StudyMain: React.FC<{ folderList: Folder[]; problemList: Problem[] }> = ({
-  folderList,
-}) => {
+const StudyMain: React.FC<{ folderList: Folder[] }> = ({ folderList }) => {
   const [pageNum, setPageNum] = useState(1);
   const [pageListNum, setPageListNum] = useState(0);
   const router = useRouter();
@@ -142,17 +140,12 @@ const StudyMain: React.FC<{ folderList: Folder[]; problemList: Problem[] }> = ({
 export async function getStaticProps() {
   const db = await connectToDatabase();
   const folderCollection = db.collection<Folder>("folder");
-  const problemCollection = db.collection<Problem>("problem");
-  const folderListPromise = folderCollection.find({ public: true }).toArray();
-  const problemListPromise = problemCollection.find({}).toArray();
-  const folderList = await folderListPromise;
-  const problemList = await problemListPromise;
+  const folderList = await folderCollection.find({ public: true }).toArray();
   folderList.sort((a, b) => b.date - a.date);
 
   return {
     props: {
       folderList: JSON.parse(JSON.stringify(folderList)),
-      problemList: JSON.parse(JSON.stringify(problemList)),
     },
   };
 }
