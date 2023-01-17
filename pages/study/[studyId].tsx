@@ -26,10 +26,11 @@ import ReportPopup from "../../components/ReportPopup/ReportPopup";
 import { NextSeo } from "next-seo";
 import { GetStaticPropsContext } from "next";
 
-const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
-  problemList,
-  folder,
-}) => {
+const Study: React.FC<{
+  problemList: Problem[];
+  folder: Folder;
+  seoData: { title: string; description: string; canonical: string };
+}> = ({ problemList, folder, seoData }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [liked, setLiked] = useState(false);
@@ -134,79 +135,86 @@ const Study: React.FC<{ problemList: Problem[]; folder: Folder }> = ({
     };
   }, [dispatch]);
 
-  const seoData = {
-    title: `카드스터디 - ${folder.title}`,
-    description: `카드스터디 - ${folder.title}`,
-    canonical: "https://card-study.vercel.app/search",
-  };
-
   return (
     <>
-      <NextSeo {...seoData} />
-      <main className={styles.study}>
-        {objectionOn && <ObjectionPopup folder={folder} />}
-        {reportOn && <ReportPopup folder={folder} />}
-        {problemList && problemList.length > 0 ? (
-          <Fragment>
-            <section className={styles.card_section}>
-              <p className={styles.problem_number_count}>{`${now + 1}/${
-                problemList.length
-              }`}</p>
-              <h2 className={styles.study_title}>{`[${folder.title}]`}</h2>
-              <p className={styles.author}>{`by ${folder.userName} 님`}</p>
-              <div className={styles.problem_container}>
-                <FontAwesomeIcon
-                  icon={faAngleLeft}
-                  className={styles.arrow_left}
-                  onClick={() => arrowClickHandler(true)}
-                />
-                <Card item={problemList[now]} />
-                <FontAwesomeIcon
-                  icon={faAngleRight}
-                  className={styles.arrow_right}
-                  onClick={() => arrowClickHandler(false)}
-                />
-                <div className={styles.mobile_arrow_container}>
+      {problemList && folder && (
+        <>
+          <NextSeo {...seoData} />
+          <main className={styles.study}>
+            {objectionOn && <ObjectionPopup folder={folder} />}
+            {reportOn && <ReportPopup folder={folder} />}
+            {problemList && problemList.length > 0 ? (
+              <Fragment>
+                <section className={styles.card_section}>
+                  <p className={styles.problem_number_count}>{`${now + 1}/${
+                    problemList.length
+                  }`}</p>
+                  <h2 className={styles.study_title}>{`[${folder.title}]`}</h2>
+                  <p className={styles.author}>{`by ${folder.userName} 님`}</p>
+                  <div className={styles.problem_container}>
+                    <FontAwesomeIcon
+                      icon={faAngleLeft}
+                      className={styles.arrow_left}
+                      onClick={() => arrowClickHandler(true)}
+                    />
+                    <Card item={problemList[now]} />
+                    <FontAwesomeIcon
+                      icon={faAngleRight}
+                      className={styles.arrow_right}
+                      onClick={() => arrowClickHandler(false)}
+                    />
+                    <div className={styles.mobile_arrow_container}>
+                      <button
+                        className={styles.mobile_arrow_left}
+                        onClick={() => arrowClickHandler(true)}
+                      >
+                        이전
+                      </button>
+                      <button
+                        className={styles.mobile_arrow_right}
+                        onClick={() => arrowClickHandler(false)}
+                      >
+                        다음
+                      </button>
+                    </div>
+                  </div>
+                </section>
+                <section className={styles.button_container}>
                   <button
-                    className={styles.mobile_arrow_left}
-                    onClick={() => arrowClickHandler(true)}
+                    className={styles.study_button}
+                    onClick={onLikeHandler}
                   >
-                    이전
+                    <FontAwesomeIcon
+                      icon={likeIconSelector()}
+                      className={styles.heart}
+                    />
+                    <p className={styles.button_name}>북마크</p>
                   </button>
                   <button
-                    className={styles.mobile_arrow_right}
-                    onClick={() => arrowClickHandler(false)}
+                    className={styles.study_button}
+                    onClick={openObjectionPopup}
                   >
-                    다음
+                    <FontAwesomeIcon
+                      icon={faComment}
+                      className={styles.comment}
+                    />
+                    <p className={styles.button_name}>이의제기</p>
                   </button>
-                </div>
-              </div>
-            </section>
-            <section className={styles.button_container}>
-              <button className={styles.study_button} onClick={onLikeHandler}>
-                <FontAwesomeIcon
-                  icon={likeIconSelector()}
-                  className={styles.heart}
-                />
-                <p className={styles.button_name}>북마크</p>
-              </button>
-              <button
-                className={styles.study_button}
-                onClick={openObjectionPopup}
-              >
-                <FontAwesomeIcon icon={faComment} className={styles.comment} />
-                <p className={styles.button_name}>이의제기</p>
-              </button>
-              <button className={styles.study_button} onClick={openReportPopup}>
-                <FontAwesomeIcon icon={faFlag} className={styles.report} />
-                <p className={styles.button_name}>신고</p>
-              </button>
-            </section>
-          </Fragment>
-        ) : (
-          <p>잘못된 접근입니다.</p>
-        )}
-      </main>
+                  <button
+                    className={styles.study_button}
+                    onClick={openReportPopup}
+                  >
+                    <FontAwesomeIcon icon={faFlag} className={styles.report} />
+                    <p className={styles.button_name}>신고</p>
+                  </button>
+                </section>
+              </Fragment>
+            ) : (
+              <p>잘못된 접근입니다.</p>
+            )}
+          </main>
+        </>
+      )}
     </>
   );
 };
@@ -243,13 +251,28 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   const folder = await folderPromise;
   const problemList = await problemPromise.toArray();
 
+  let seoData = {
+    title: "카드 스터디",
+    description: "카드스터디에서 공부하세요",
+    canonical: "https://card-study.vercel.app/study/",
+  };
+
+  if (folder) {
+    seoData = {
+      title: `카드스터디 - ${folder.title}`,
+      description: `카드스터디 - ${folder.title}`,
+      canonical: "https://card-study.vercel.app/study/",
+    };
+  }
   // https://imgyuzzzang.tistory.com/13
   // https://stackoverflow.com/questions/52453407/the-difference-between-object-and-plain-object-in-javascript
   return {
     props: {
       problemList: JSON.parse(JSON.stringify(problemList)),
       folder: JSON.parse(JSON.stringify(folder)),
+      seoData: seoData,
     },
+    revalidate: 10,
   };
 }
 

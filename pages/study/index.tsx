@@ -147,6 +147,7 @@ export async function getStaticProps() {
     props: {
       folderList: JSON.parse(JSON.stringify(folderList)),
     },
+    revalidate: 10,
   };
 }
 
