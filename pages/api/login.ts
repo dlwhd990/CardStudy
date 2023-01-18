@@ -30,7 +30,7 @@ async function login(req: NextApiRequest, res: NextApiResponse) {
     }
     const credentials = { ...payload, signedIn: true };
     const jwtToken = jwt.sign(credentials, secret); // 비밀키 임시로 둠
-    res.setHeader("Set-Cookie", `token=${jwtToken}; Max-Age=86400000`);
+    res.setHeader("Set-Cookie", `token=${jwtToken}; Max-Age=${60 * 60}`); // 구글 jwt 만료시간 1시간
     res.status(200).json({ message: "success" });
   } catch (err) {
     console.error(err);
