@@ -24,12 +24,7 @@ import axios from "axios";
 import { showAlert } from "../../store/alert";
 import ReportPopup from "../../components/ReportPopup/ReportPopup";
 import { NextSeo } from "next-seo";
-import { GetServerSidePropsContext } from "next";
-
-const isServerReq = (context: GetServerSidePropsContext) => {
-  const url = context.req.url || "";
-  return !url.startsWith("/_next");
-};
+import { GetStaticPropsContext } from "next";
 
 const Study: React.FC<{
   problemList: Problem[];
@@ -224,53 +219,37 @@ const Study: React.FC<{
   );
 };
 
-// export async function getStaticPaths() {
-//   const db = await connectToDatabase();
-//   const folderCollection = db.collection<Folder>("folder");
-//   const fullList = await folderCollection.find({}).toArray();
-//   const idList = fullList.map((folder: Folder) => folder._id.toString());
-//   const paths = idList.map((id: string) => {
-//     return {
-//       params: {
-//         studyId: id,
-//       },
-//     };
-//   });
+export async function getStaticPaths() {
+  const db = await connectToDatabase();
+  const folderCollection = db.collection<Folder>("folder");
+  const fullList = await folderCollection.find({}).toArray();
+  const idList = fullList.map((folder: Folder) => folder._id.toString());
+  const paths = idList.map((id: string) => {
+    return {
+      params: {
+        studyId: id,
+      },
+    };
+  });
 
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// }
+  return {
+    paths,
+    fallback: true,
+  };
+}
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticProps(context: GetStaticPropsContext) {
   const db = await connectToDatabase();
   const collection = db.collection<Folder>("folder");
   const problemCollection = db.collection<Problem>("problem");
   const folderPromise = collection.findOne({
     _id: new ObjectId(context?.params?.studyId as string),
   });
-
   const problemPromise = problemCollection.find({
     folderId: context?.params?.studyId,
   });
-
-  const folder = isServerReq(context)
-    ? await folderPromise
-    : {
-        _id: {},
-        title: "",
-        like: 0,
-        userId: "",
-        userName: "",
-        problemCount: 0,
-        date: 0,
-        public: false,
-      };
-
-  const problemList = isServerReq(context)
-    ? await problemPromise.toArray()
-    : [];
+  const folder = await folderPromise;
+  const problemList = await problemPromise.toArray();
 
   let seoData = {
     title: "카드 스터디",
@@ -293,6 +272,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       folder: JSON.parse(JSON.stringify(folder)),
       seoData: seoData,
     },
+    revalidate: 10,
   };
 }
 

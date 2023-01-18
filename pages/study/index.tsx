@@ -1,6 +1,5 @@
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -13,11 +12,6 @@ const seoData = {
   title: "카드스터디 - 공부하기",
   description: "다른 사람들이 만든 카드 묶음으로 공부할 수 있어요",
   canonical: "https://card-study.vercel.app/study",
-};
-
-const isServerReq = (context: GetServerSidePropsContext) => {
-  const url = context.req.url || "";
-  return !url.startsWith("/_next");
 };
 
 const StudyMain: React.FC<{ folderList: Folder[] }> = ({ folderList }) => {
@@ -142,18 +136,17 @@ const StudyMain: React.FC<{ folderList: Folder[] }> = ({ folderList }) => {
   );
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticProps() {
   const db = await connectToDatabase();
   const folderCollection = db.collection<Folder>("folder");
-  const folderList: Folder[] = isServerReq(context)
-    ? await folderCollection.find({ public: true }).toArray()
-    : [];
+  const folderList = await folderCollection.find({ public: true }).toArray();
   folderList.sort((a, b) => b.date - a.date);
 
   return {
     props: {
       folderList: JSON.parse(JSON.stringify(folderList)),
     },
+    revalidate: 10,
   };
 }
 
