@@ -24,7 +24,7 @@ import axios from "axios";
 import { showAlert } from "../../store/alert";
 import ReportPopup from "../../components/ReportPopup/ReportPopup";
 import { NextSeo } from "next-seo";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 
 const Study: React.FC<{
   problemList: Problem[];
@@ -219,26 +219,26 @@ const Study: React.FC<{
   );
 };
 
-// export async function getStaticPaths() {
-//   const db = await connectToDatabase();
-//   const folderCollection = db.collection<Folder>("folder");
-//   const fullList = await folderCollection.find({}).toArray();
-//   const idList = fullList.map((folder: Folder) => folder._id.toString());
-//   const paths = idList.map((id: string) => {
-//     return {
-//       params: {
-//         studyId: id,
-//       },
-//     };
-//   });
+export async function getStaticPaths() {
+  const db = await connectToDatabase();
+  const folderCollection = db.collection<Folder>("folder");
+  const fullList = await folderCollection.find({}).toArray();
+  const idList = fullList.map((folder: Folder) => folder._id.toString());
+  const paths = idList.map((id: string) => {
+    return {
+      params: {
+        studyId: id,
+      },
+    };
+  });
 
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// }
+  return {
+    paths,
+    fallback: true,
+  };
+}
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticProps(context: GetStaticPropsContext) {
   const db = await connectToDatabase();
   const collection = db.collection<Folder>("folder");
   const problemCollection = db.collection<Problem>("problem");

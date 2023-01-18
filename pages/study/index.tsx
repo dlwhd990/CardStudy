@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import FolderCard from "../../components/FolderCard/FolderCard";
 import Folder from "../../model/folder";
+import Problem from "../../model/problem";
 import styles from "../../styles/studyMain.module.css";
 import { connectToDatabase } from "../../util/mongodb";
 
@@ -136,7 +137,7 @@ const StudyMain: React.FC<{ folderList: Folder[] }> = ({ folderList }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const db = await connectToDatabase();
   const folderCollection = db.collection<Folder>("folder");
   const folderList = await folderCollection.find({ public: true }).toArray();
@@ -146,7 +147,7 @@ export async function getServerSideProps() {
     props: {
       folderList: JSON.parse(JSON.stringify(folderList)),
     },
-    // revalidate: 10,
+    revalidate: 10,
   };
 }
 
