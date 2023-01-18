@@ -136,7 +136,7 @@ const StudyMain: React.FC<{ folderList: Folder[] }> = ({ folderList }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const db = await connectToDatabase();
   const folderCollection = db.collection<Folder>("folder");
   const folderList = await folderCollection.find({ public: true }).toArray();
@@ -146,7 +146,7 @@ export async function getStaticProps() {
     props: {
       folderList: JSON.parse(JSON.stringify(folderList)),
     },
-    revalidate: 10,
+    // revalidate: 10,
   };
 }
 
