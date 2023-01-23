@@ -23,7 +23,7 @@
   -webkit-transition: 1s;
   backface-visibility: hidden;
   visibility: visible;
-  transition: 400ms;
+  transition: 450ms all ease-in-out;
 }
 
 .front {
