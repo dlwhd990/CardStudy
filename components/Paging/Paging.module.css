@@ -1,0 +1,55 @@
+.paging_container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.paging_container * {
+  font-size: 1.7rem;
+}
+
+.paging_list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.paging_list li,
+.left,
+.right {
+  padding: 1rem;
+  cursor: pointer;
+  transition: 250ms all ease-in-out;
+}
+
+.paging_container button {
+  background-color: transparent;
+  border: none;
+}
+
+.paging_list li:hover,
+.left:hover,
+.right:hover {
+  color: var(--color-blue);
+}
+
+.paging_list li {
+  margin: 0 0.5rem;
+}
+
+.left {
+  margin-right: 0.5rem;
+  color: var(--color-black);
+}
+
+.right {
+  margin-left: 0.5rem;
+  color: var(--color-black);
+}
+
+.selected {
+  color: var(--color-blue);
+}

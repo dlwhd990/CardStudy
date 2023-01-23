@@ -1,11 +1,9 @@
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FolderCard from "../../components/FolderCard/FolderCard";
+import Paging from "../../components/Paging/Paging";
 import Folder from "../../model/folder";
-import Problem from "../../model/problem";
 import styles from "../../styles/studyMain.module.css";
 import { connectToDatabase } from "../../util/mongodb";
 
@@ -15,30 +13,22 @@ const seoData = {
   canonical: "https://card-study.vercel.app/study",
 };
 
+const itemsPerPage = 8;
+
 const StudyMain: React.FC<{ folderList: Folder[] }> = ({ folderList }) => {
   const [pageNum, setPageNum] = useState(1);
-  const [pageListNum, setPageListNum] = useState(0);
   const router = useRouter();
 
-  const changePageNum = (e: React.MouseEvent) => {
-    const eventTarget = e.target as HTMLElement;
-    if (eventTarget.tagName !== "LI") return;
-    setPageNum(Number(eventTarget.innerHTML));
-  };
+  useEffect(() => {
+    let page;
 
-  const clickArrowPrev = () => {
-    if (pageListNum === 0) return;
-    const nowPageListNum = pageListNum;
-    setPageNum((nowPageListNum - 1) * 5 + 5);
-    setPageListNum((state) => state - 1);
-  };
-
-  const clickArrowNext = () => {
-    if ((5 + pageListNum * 5) * 8 >= folderList.length) return;
-    const nowPageListNum = pageListNum;
-    setPageNum((nowPageListNum + 1) * 5 + 1);
-    setPageListNum((state) => state + 1);
-  };
+    if (isNaN(Number(router.query.page))) {
+      page = 1;
+    } else {
+      page = Number(router.query.page);
+    }
+    setPageNum(page);
+  }, [router.query.page]);
 
   return (
     <>
@@ -62,74 +52,18 @@ const StudyMain: React.FC<{ folderList: Folder[] }> = ({ folderList }) => {
           <section className={styles.folder_card_section}>
             <ul className={styles.card_list}>
               {folderList
-                .slice((pageNum - 1) * 8, pageNum * 8)
+                .slice((pageNum - 1) * itemsPerPage, pageNum * itemsPerPage)
                 .map((folder: Folder) => (
                   <li key={folder._id.toString()}>
                     <FolderCard folder={folder} count={folder.problemCount} />
                   </li>
                 ))}
             </ul>
-            <div className={styles.page_box}>
-              <FontAwesomeIcon
-                icon={faAngleLeft}
-                className={styles.arrow_prev}
-                onClick={clickArrowPrev}
-              />
-              <ul onClick={changePageNum}>
-                <li
-                  className={`${
-                    pageNum === 1 + pageListNum * 5 && `${styles.page_selected}`
-                  }`}
-                >
-                  {1 + pageListNum * 5}
-                </li>
-                {(1 + pageListNum * 5) * 8 < folderList.length && (
-                  <li
-                    className={`${
-                      pageNum === 2 + pageListNum * 5 &&
-                      `${styles.page_selected}`
-                    }`}
-                  >
-                    {2 + pageListNum * 5}
-                  </li>
-                )}
-                {(2 + pageListNum * 5) * 8 < folderList.length && (
-                  <li
-                    className={`${
-                      pageNum === 3 + pageListNum * 5 &&
-                      `${styles.page_selected}`
-                    }`}
-                  >
-                    {3 + pageListNum * 5}
-                  </li>
-                )}
-                {(3 + pageListNum * 5) * 8 < folderList.length && (
-                  <li
-                    className={`${
-                      pageNum === 4 + pageListNum * 5 &&
-                      `${styles.page_selected}`
-                    }`}
-                  >
-                    {4 + pageListNum * 5}
-                  </li>
-                )}
-                {(4 + pageListNum * 5) * 8 < folderList.length && (
-                  <li
-                    className={`${
-                      pageNum === 5 + pageListNum * 5 &&
-                      `${styles.page_selected}`
-                    }`}
-                  >
-                    {5 + pageListNum * 5}
-                  </li>
-                )}
-              </ul>
-              <FontAwesomeIcon
-                icon={faAngleRight}
-                className={styles.arrow_next}
-                onClick={clickArrowNext}
-              />
-            </div>
+            <Paging
+              listLength={folderList.length}
+              route="study"
+              itemsPerPage={itemsPerPage}
+            />
           </section>
         )}
       </main>

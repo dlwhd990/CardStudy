@@ -98,6 +98,14 @@
   padding: 2rem 2rem 3rem 2rem;
 }
 
+.off {
+  visibility: collapse;
+}
+
+.on {
+  visibility: hidden;
+}
+
 @keyframes appear {
   0% {
     opacity: 0;

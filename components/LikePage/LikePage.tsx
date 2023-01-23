@@ -6,38 +6,31 @@ import Folder from "../../model/folder";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loadUserLikeList } from "../../store/userLike";
 import FolderCard from "../FolderCard/FolderCard";
+import Paging from "../Paging/Paging";
 import styles from "./LikePage.module.css";
+
+const itemsPerPage = 8;
 
 const LikePage = () => {
   const [pageNum, setPageNum] = useState(1);
-  const [pageListNum, setPageListNum] = useState(0);
   const userLikeList = useAppSelector((state) => state.userLike.list);
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const changePageNum = (e: React.MouseEvent) => {
-    const eventTarget = e.target as HTMLElement;
-    if (eventTarget.tagName !== "LI") return;
-    setPageNum(Number(eventTarget.innerHTML));
-  };
-
-  const clickArrowPrev = () => {
-    if (pageListNum === 0) return;
-    const nowPageListNum = pageListNum;
-    setPageNum((nowPageListNum - 1) * 5 + 5);
-    setPageListNum((state) => state - 1);
-  };
-
-  const clickArrowNext = () => {
-    if ((5 + pageListNum * 5) * 8 >= userLikeList.length) return;
-    const nowPageListNum = pageListNum;
-    setPageNum((nowPageListNum + 1) * 5 + 1);
-    setPageListNum((state) => state + 1);
-  };
-
   useEffect(() => {
     dispatch(loadUserLikeList());
   }, [dispatch]);
+
+  useEffect(() => {
+    let page;
+
+    if (isNaN(Number(router.query.page))) {
+      page = 1;
+    } else {
+      page = Number(router.query.page);
+    }
+    setPageNum(page);
+  }, [router.query.page]);
 
   return (
     <div className={styles.like_page}>
@@ -62,74 +55,18 @@ const LikePage = () => {
           <section className={styles.folder_card_section}>
             <ul className={styles.card_list}>
               {userLikeList
-                .slice((pageNum - 1) * 8, pageNum * 8)
+                .slice((pageNum - 1) * itemsPerPage, pageNum * itemsPerPage)
                 .map((folder: Folder) => (
                   <li key={folder._id.toString()}>
                     <FolderCard folder={folder} count={folder.problemCount} />
                   </li>
                 ))}
             </ul>
-            <div className={styles.page_box}>
-              <FontAwesomeIcon
-                icon={faAngleLeft}
-                className={styles.arrow_prev}
-                onClick={clickArrowPrev}
-              />
-              <ul onClick={changePageNum}>
-                <li
-                  className={`${
-                    pageNum === 1 + pageListNum * 5 && `${styles.page_selected}`
-                  }`}
-                >
-                  {1 + pageListNum * 5}
-                </li>
-                {(1 + pageListNum * 5) * 8 < userLikeList.length && (
-                  <li
-                    className={`${
-                      pageNum === 2 + pageListNum * 5 &&
-                      `${styles.page_selected}`
-                    }`}
-                  >
-                    {2 + pageListNum * 5}
-                  </li>
-                )}
-                {(2 + pageListNum * 5) * 8 < userLikeList.length && (
-                  <li
-                    className={`${
-                      pageNum === 3 + pageListNum * 5 &&
-                      `${styles.page_selected}`
-                    }`}
-                  >
-                    {3 + pageListNum * 5}
-                  </li>
-                )}
-                {(3 + pageListNum * 5) * 8 < userLikeList.length && (
-                  <li
-                    className={`${
-                      pageNum === 4 + pageListNum * 5 &&
-                      `${styles.page_selected}`
-                    }`}
-                  >
-                    {4 + pageListNum * 5}
-                  </li>
-                )}
-                {(4 + pageListNum * 5) * 8 < userLikeList.length && (
-                  <li
-                    className={`${
-                      pageNum === 5 + pageListNum * 5 &&
-                      `${styles.page_selected}`
-                    }`}
-                  >
-                    {5 + pageListNum * 5}
-                  </li>
-                )}
-              </ul>
-              <FontAwesomeIcon
-                icon={faAngleRight}
-                className={styles.arrow_next}
-                onClick={clickArrowNext}
-              />
-            </div>
+            <Paging
+              listLength={userLikeList.length}
+              route="mypage/like"
+              itemsPerPage={itemsPerPage}
+            />
           </section>
         </>
       )}

@@ -66,7 +66,7 @@ const Header = () => {
       dispatch(showAlert("검색어를 입력해주세요!"));
       return;
     }
-    router.push(`/search/${searchInput}`);
+    router.push(`/search/${searchInput}?page=1`);
     setSearchInput("");
   };
 
@@ -104,12 +104,12 @@ const Header = () => {
             <nav className={styles.navbar}>
               <ul>
                 <li>
-                  <Link href="/study" className={styles.link}>
+                  <Link href="/study?page=1" className={styles.link}>
                     공부하기
                   </Link>
                 </li>
                 <li>
-                  <Link href="/mystudy" className={styles.link}>
+                  <Link href="/mystudy?page=1" className={styles.link}>
                     나의공부
                   </Link>
                 </li>
