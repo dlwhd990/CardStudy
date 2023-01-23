@@ -6,6 +6,9 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { openFolderUpload } from "../../store/popup";
 import Folder from "../../model/folder";
 import Problem from "../../model/problem";
+import { useEffect } from "react";
+import { loadUserFolderList } from "../../store/userFolder";
+import { loadUserProblemList } from "../../store/userProblem";
 
 const ProblemManage = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +18,11 @@ const ProblemManage = () => {
   const openFolderUploadPopup = () => {
     dispatch(openFolderUpload());
   };
+
+  useEffect(() => {
+    dispatch(loadUserFolderList());
+    dispatch(loadUserProblemList());
+  }, []);
   return (
     <div className={styles.manage_container}>
       <div className={styles.manager}>

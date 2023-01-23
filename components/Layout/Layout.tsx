@@ -33,11 +33,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     };
 
     checkLoginStatus();
-    // 로그인 된 사용자의 폴더 리스트 불러오기
-    dispatch(loadUserFolderList());
-    dispatch(loadUserProblemList());
-    dispatch(loadUserLikeList());
-    dispatch(loadUserObjectionList());
+    dispatch(loadUserObjectionList()); // 헤더에 표시하기 위함
   }, [dispatch]);
 
   return (

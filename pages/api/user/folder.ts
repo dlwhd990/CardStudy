@@ -1,4 +1,3 @@
-import { MongoClient } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../../util/mongodb";
 import verifyToken from "../../../util/verifyToken";
