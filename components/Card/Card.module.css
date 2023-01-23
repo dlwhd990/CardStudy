@@ -66,5 +66,6 @@
   .card {
     width: 92vw;
     border-radius: 16px;
+    font-size: 1.8rem;
   }
 }
