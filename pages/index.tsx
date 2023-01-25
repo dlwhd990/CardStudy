@@ -19,7 +19,7 @@ function HomePage() {
   const router = useRouter();
 
   const goStudy = () => {
-    router.push("/study");
+    router.push("/study?page=1");
   };
 
   return (
