@@ -1,4 +1,6 @@
-const config = {
+/** @type {import('next-sitemap').IConfig} */
+
+module.exports = {
   siteUrl: "https://card-study.vercel.app",
   generateRobotsTxt: true,
   exclude: ["/sitemap.xml"],
